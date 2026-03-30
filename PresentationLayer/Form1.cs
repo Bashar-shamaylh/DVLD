@@ -10,11 +10,38 @@ using System.Windows.Forms;
 
 namespace DVLD
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
-        public Form1()
+        public Main()
         {
             InitializeComponent();
+        }
+        private Form MangePeoplePage=new MangePeople();
+        private void Main_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            MangePeoplePage.MdiParent = this;
+            MangePeoplePage.Show();
+        }
+
+        private void applicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("its a Strip Still Working :)");
+        }
+
+        private void accountSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("its a Strip Still Working :)");
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("its a Strip Still Working :)");
         }
     }
 }
