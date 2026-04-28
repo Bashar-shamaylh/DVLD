@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DVLD.DataAccessLayer
+namespace DVLDBussnissLayer
 {
-    internal class clsDataAccessSettings
+    public class Class1
     {
-       
     }
 }

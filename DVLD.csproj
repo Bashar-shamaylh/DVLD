@@ -46,28 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLayer\People\clsPeopleBusiness.cs" />
-    <Compile Include="DataAccessLayer\clsDataAccessSettings.cs" />
-    <Compile Include="DataAccessLayer\People\clsPeopleDataAccess.cs" />
-    <Compile Include="PresentationLayer\MangePeople.cs">
+    <Compile Include="Forms\Tests.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationLayer\MangePeople.Designer.cs">
-      <DependentUpon>MangePeople.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PresentationLayer\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PresentationLayer\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\Tests.Designer.cs">
+      <DependentUpon>Tests.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="PresentationLayer\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\MangePeople.resx">
-      <DependentUpon>MangePeople.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Tests.resx">
+      <DependentUpon>Tests.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -94,7 +82,16 @@
   <ItemGroup>
     <Folder Include="Database\" />
     <Folder Include="Icons\" />
-    <Folder Include="PresentationLayer\UserControls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DVLDModels\DVLDModels.csproj">
+      <Project>{53ad626b-6527-4983-bbff-72c0d626e82b}</Project>
+      <Name>DVLDModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="DVLDBussnissLayer\DVLDBussnissLayer.csproj">
+      <Project>{734646d7-69da-41c6-8341-08a1b671157e}</Project>
+      <Name>DVLDBussnissLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
