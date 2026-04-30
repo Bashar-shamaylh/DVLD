@@ -14,20 +14,30 @@ namespace DVLDDataAccessLayer
         //Update(UpdatePearsonInfo)
         //Delete(DeletePearson)
         //Read All People(GetPeopleData)
-        static public bool GetPearsonByID(int id,ref string Name)
+        static public bool GetPearsonByID(int id,ref string Name,ref string NationalNumber,ref DateTime DateOfBirth,ref string Address,ref string Phone,ref string Email,ref int CountryID ,ref string PearsonPicturePath)
         {
             bool isFound = false;
             string query = "select * from People where PearsonID=@id";
             SqlConnection connection=new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command=new SqlCommand(query, connection);
-            connection.Open();
+            command.Parameters.AddWithValue("@id",id);
+           
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                Name = (string)reader["FullName"];
-                isFound = true;
+                if (reader.Read())
+                {
+                    Name = (string)reader["FullName"];
+                    NationalNumber = (string)reader["NationalNumber"];
+                    DateOfBirth = (DateTime)reader["DateOfBirth"];
+                    Address = (string)reader["Address"];
+                    Phone= (string)reader["Phone"];
+                    Email= (string)reader["Email"];
+                    CountryID= (int)reader["CountryID"];
+                    PearsonPicturePath= (string)reader["PearsonPicturePath"];
+                    isFound = true;
+                }
 
             }
             catch (Exception ex)
@@ -40,6 +50,7 @@ namespace DVLDDataAccessLayer
             return isFound;
             
         }
+        
 
     }
 }
