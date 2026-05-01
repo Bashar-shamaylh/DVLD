@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\PeopleUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PeopleUI.Designer.cs">
+      <DependentUpon>PeopleUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Tests.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\PeopleUI.resx">
+      <DependentUpon>PeopleUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tests.resx">
       <DependentUpon>Tests.cs</DependentUpon>
     </EmbeddedResource>
