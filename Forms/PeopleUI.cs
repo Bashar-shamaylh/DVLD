@@ -20,7 +20,15 @@ namespace DVLD.Forms
 
         private void PeopleUI_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource=clsPearson.GetPeopleInfo(); 
+            DataTable dt = new DataTable();
+            dt= clsPearson.GetPeopleInfo();
+            grdvPeople.DataSource=dt;
+            lblNumberOfRecordsResult.Text=dt.Rows.Count.ToString();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }
