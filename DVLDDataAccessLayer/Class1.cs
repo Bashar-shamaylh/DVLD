@@ -18,7 +18,7 @@ namespace DVLDDataAccessLayer
         //Update(UpdatePearsonInfo)                  done
         //Delete(DeletePearson)                      soon
         //Read All People(GetPeopleData)             soon
-        static public bool GetPearsonByID(int id,ref string Name,ref string NationalNumber,ref DateTime DateOfBirth,ref string Address,ref string Phone,ref string Email,ref int CountryID ,ref string PearsonPicturePath)
+        static public bool GetPearsonByID(int id,ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName, ref string NationalNumber,ref DateTime DateOfBirth,ref string Address,ref string Phone,ref string Email,ref int CountryID ,ref string PearsonPicturePath,ref char Gendor)
         {
             bool isFound = false;
             string query = "select * from People where PearsonID=@id";
@@ -32,9 +32,13 @@ namespace DVLDDataAccessLayer
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    Name = (string)reader["FullName"];
+                    FirstName = (string)reader["FirstName"];
+                    SecondName = (string)reader["SecondName"];
+                    ThirdName = (string)reader["ThirdName"];
+                    LastName = (string)reader["LastName"];
                     NationalNumber = (string)reader["NationalNumber"];
                     DateOfBirth = (DateTime)reader["DateOfBirth"];
+                    Gendor = (char)reader["Gendor"];
                     if (reader["Address"] != DBNull.Value)
                         Address = (string)reader["Address"];
                     else
@@ -66,17 +70,21 @@ namespace DVLDDataAccessLayer
             return isFound;
             
         }
-        static public int AddNewPerson(string nationnalNumber, string name, DateTime dateOfBirth,string address,string phone,string email,int countryID,string personImagePath)
+        static public int AddNewPerson(string nationnalNumber, string firstname, string secondname, string thirdname, string lastname, DateTime dateOfBirth,string address,string phone,string email,int countryID,string personImagePath,char gendor)
         {
             int id = -1;
-            string query = @"insert into People Values  (@nationnalNumber,@name,@dateOfBirth,@address,@phone,@email,@countryID,@personImagePath) ;
+            string query = @"insert into People (NationalNumber,DateOfBirth,Address,Phone,Email,CountryID,PersonalPicturePath,FirstName,SecondName,ThirdName,LastName,Gendor) Values  (@nationnalNumber,@dateOfBirth,@address,@phone,@email,@countryID,@personImagePath,@firstname,@secondname,@thirdname,@lastname,@gendor) ;
                                 SELECT SCOPE_IDENTITY();";
             SqlConnection connection=new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command=new SqlCommand(query, connection);
             
             command.Parameters.AddWithValue("@nationnalNumber", nationnalNumber);
-            command.Parameters.AddWithValue("@name", name);
+            command.Parameters.AddWithValue("@firstname", firstname);
+            command.Parameters.AddWithValue("@secondname", secondname);
+            command.Parameters.AddWithValue("@thirdname", thirdname);
+            command.Parameters.AddWithValue("@lastname", lastname);
             command.Parameters.AddWithValue("@dateOfBirth", dateOfBirth);
+            command.Parameters.AddWithValue("@gendor", gendor);
             if (address == "")
             {
                 command.Parameters.AddWithValue("@address", System.DBNull.Value);
@@ -115,14 +123,18 @@ namespace DVLDDataAccessLayer
             return id;
         }
 
-        static public bool UpdatePersonInfo(int id,string nationnalNumber, string name, DateTime dateOfBirth, string address, string phone, string email, int countryID, string personImagePath)
+        static public bool UpdatePersonInfo(int id,string nationnalNumber, string firstname, string secondname, string thirdname, string lastname, DateTime dateOfBirth, string address, string phone, string email, int countryID, string personImagePath,char gendor)
         {
             bool ChangeWasMade = false;
             
             string query = @"Update People
                                             set 
                                             NationalNumber='@nationnalNumber',
-                                            FullName='@name',
+                                            FirstName='@firstname',
+                                            SecondName='@secondname',
+                                            ThirdName='@thirdname',
+                                            LastName='@lastname',
+                                            Gendor='@gendor',
                                             DateOfBirth=@dateOfBirth,
                                             Address='@address',
                                             Phone='@phone',
@@ -134,8 +146,12 @@ namespace DVLDDataAccessLayer
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@nationnalNumber", nationnalNumber);
-            command.Parameters.AddWithValue("@name", name);
+            command.Parameters.AddWithValue("@firstname", firstname);
+            command.Parameters.AddWithValue("@secondname", secondname);
+            command.Parameters.AddWithValue("@thirdname", thirdname);
+            command.Parameters.AddWithValue("@lastname", lastname);
             command.Parameters.AddWithValue("@dateOfBirth", dateOfBirth);
+            command.Parameters.AddWithValue("@gendor", gendor);
             if (address == "")
             {
                 command.Parameters.AddWithValue("@address", System.DBNull.Value);
@@ -209,7 +225,24 @@ namespace DVLDDataAccessLayer
         static public DataTable GetPeopleInfo()
         {
             DataTable dt = new DataTable();
-            string query = @"select * from People;";
+            string query = @"SELECT [PearsonID]
+                                   ,[FirstName]
+                                  ,[SecondName]
+                                  ,[ThirdName]
+                                  ,[LastName]
+                                  ,[NationalNumber]
+                                  ,[DateOfBirth]
+                                    ,[Gendor]
+                                  ,[Address]
+                                  ,[Phone]
+                                  ,[Email]
+                                  ,[CountryID]
+                                  ,[PersonalPicturePath]
+                                    
+                                  
+                              FROM [dbo].[People]
+
+                                                GO";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command= new SqlCommand(query, connection);
             try

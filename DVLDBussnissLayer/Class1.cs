@@ -16,7 +16,11 @@ namespace DVLDBussnissLayer
        public enum enMode { AddMode=1,UpdateMode}
         public enMode Mode = enMode.AddMode;
         public int ID { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public char Gendor {  get; set; }
+        public string SecondName { get; set; }
+        public string ThirdName { get; set; }
+        public string LastName { get; set; }
         public string NationnalNumber {  get; set; }
         public string Address {  get; set; }
         public string Phone {  get; set; }
@@ -27,19 +31,26 @@ namespace DVLDBussnissLayer
 
         clsPearson() {
             ID = 0;
-            Name = "";
+            FirstName = "";
+            SecondName = "";
+            ThirdName = "";
+            LastName = "";
             NationnalNumber = "";
             Address = "";
             Phone = "";
             Email = "";
+            Gendor = 'M';
             DateOfBirth = DateTime.Now;
             CountryID = -1;
             PersonalImage = null;
         }
-        clsPearson(int id,string name,string nationalnumber, DateTime dateofbirth, string address,string phone,string email,int countryid,string personalimage)
+        clsPearson(int id,string firstname, string secondname, string thirrdname, string lastname, string nationalnumber, DateTime dateofbirth, string address,string phone,string email,int countryid,string personalimage,char gendor)
         {
             ID = id;
-            Name = name;
+             FirstName = firstname;
+            SecondName = secondname;
+            ThirdName = thirrdname;
+            LastName = lastname;
             NationnalNumber = nationalnumber;
             Address = address;
             Phone = phone;
@@ -47,31 +58,36 @@ namespace DVLDBussnissLayer
             DateOfBirth = dateofbirth;
             CountryID = countryid;
             PersonalImage = personalimage;
+            Gendor=gendor;
         }
         static public clsPearson Find(int id)
         {
            
            
-           string Name = "";
-           string NationnalNumber = "";
-            string Address = "";
-            string Phone = "";
-            string Email = "";
-           DateTime DateOfBirth = DateTime.Now;
-           int CountryID = -1;
-            string PersonalImage = null;
-            if (clsPeopleDataAccess.GetPearsonByID(id,ref Name,ref NationnalNumber, ref DateOfBirth, ref Address,ref Phone,ref Email,ref CountryID,ref PersonalImage))
-               return new clsPearson(id,Name,NationnalNumber,DateOfBirth,Address,Phone,Email,CountryID,PersonalImage);
+           string firstName = "";
+            string secondName = "";
+            string thirdName = "";
+            string lastName = "";
+           string nationnalNumber = "";
+            string address = "";
+            string phone = "";
+            string email = "";
+           DateTime dateOfBirth = DateTime.Now;
+            char gendor = 'M';
+           int countryID = -1;
+            string personalImage = null;
+            if (clsPeopleDataAccess.GetPearsonByID(id,ref firstName, ref secondName, ref thirdName, ref lastName, ref nationnalNumber, ref dateOfBirth, ref address,ref phone,ref email,ref countryID,ref personalImage,ref gendor))
+               return new clsPearson(id,firstName,secondName,thirdName,lastName,nationnalNumber,dateOfBirth,address,phone,email,countryID,personalImage,gendor);
             return null;        
         }
          private bool _AddNewPerson()
         {
-            this.ID=clsPeopleDataAccess.AddNewPerson(NationnalNumber,Name,DateOfBirth, Address,Phone,Email,CountryID,PersonalImage);
+            this.ID=clsPeopleDataAccess.AddNewPerson(NationnalNumber,FirstName,SecondName,ThirdName,LastName,DateOfBirth, Address,Phone,Email,CountryID,PersonalImage,Gendor);
             return this.ID!=-1;
         }
         private bool _UpdatePearsonInfo()
         {
-            return clsPeopleDataAccess.UpdatePersonInfo(this.ID, NationnalNumber, Name, DateOfBirth, Address, Phone, Email, CountryID, PersonalImage);
+            return clsPeopleDataAccess.UpdatePersonInfo(this.ID, NationnalNumber, FirstName, SecondName, ThirdName, LastName, DateOfBirth, Address, Phone, Email, CountryID, PersonalImage,Gendor);
         }
         public bool Save()
         {

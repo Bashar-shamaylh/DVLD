@@ -33,6 +33,9 @@
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.lblNumberOfRecordsResult = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.lblFilterBy = new System.Windows.Forms.Label();
+            this.cmbxFitlerItems = new System.Windows.Forms.ComboBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPeople)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +61,7 @@
             this.lblManagePeople.BackColor = System.Drawing.Color.Transparent;
             this.lblManagePeople.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblManagePeople.ForeColor = System.Drawing.Color.Red;
-            this.lblManagePeople.Location = new System.Drawing.Point(339, 80);
+            this.lblManagePeople.Location = new System.Drawing.Point(335, 44);
             this.lblManagePeople.Name = "lblManagePeople";
             this.lblManagePeople.Size = new System.Drawing.Size(241, 43);
             this.lblManagePeople.TabIndex = 1;
@@ -95,12 +98,46 @@
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // lblFilterBy
+            // 
+            this.lblFilterBy.AutoSize = true;
+            this.lblFilterBy.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblFilterBy.Location = new System.Drawing.Point(3, 120);
+            this.lblFilterBy.Name = "lblFilterBy";
+            this.lblFilterBy.Size = new System.Drawing.Size(81, 23);
+            this.lblFilterBy.TabIndex = 5;
+            this.lblFilterBy.Text = "Filter By :";
+            // 
+            // cmbxFitlerItems
+            // 
+            this.cmbxFitlerItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxFitlerItems.FormattingEnabled = true;
+            this.cmbxFitlerItems.Location = new System.Drawing.Point(90, 122);
+            this.cmbxFitlerItems.Name = "cmbxFitlerItems";
+            this.cmbxFitlerItems.Size = new System.Drawing.Size(132, 21);
+            this.cmbxFitlerItems.TabIndex = 7;
+            this.cmbxFitlerItems.SelectedIndexChanged += new System.EventHandler(this.cmbxFitlerItems_SelectedIndexChanged);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(228, 122);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(137, 20);
+            this.txtSearch.TabIndex = 8;
+            this.txtSearch.Visible = false;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // PeopleUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(901, 587);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.cmbxFitlerItems);
+            this.Controls.Add(this.lblFilterBy);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblNumberOfRecordsResult);
             this.Controls.Add(this.lblNumberOfRecords);
@@ -122,5 +159,8 @@
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Label lblNumberOfRecordsResult;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblFilterBy;
+        private System.Windows.Forms.ComboBox cmbxFitlerItems;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }
