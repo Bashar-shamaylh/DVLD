@@ -22,22 +22,21 @@ namespace DVLD.Forms
 
         private void PeopleUI_Load(object sender, EventArgs e)
         {
-            
-            
-            _dtPeople = clsPearson.GetPeopleInfo();
+             
+            _dtPeople = clsPerson.GetPeopleInfo();
             _dvPeople= new DataView(_dtPeople);
             grdvPeople.DataSource= _dtPeople;
             lblNumberOfRecordsResult.Text= _dtPeople.Rows.Count.ToString();
-            cmbxFitlerItems.Items.Add("Person ID");  //number
-            cmbxFitlerItems.Items.Add("First Name");
-            cmbxFitlerItems.Items.Add("Second Name");
-            cmbxFitlerItems.Items.Add("Third Name");
-            cmbxFitlerItems.Items.Add("Last Name");
-            cmbxFitlerItems.Items.Add("National Number");     //number
-            cmbxFitlerItems.Items.Add("Phone");               //number
+            cmbxFitlerItems.Items.Add("PersonID");  
+            cmbxFitlerItems.Items.Add("FirstName");
+            cmbxFitlerItems.Items.Add("SecondName");
+            cmbxFitlerItems.Items.Add("ThirdName");
+            cmbxFitlerItems.Items.Add("LastName");
+            cmbxFitlerItems.Items.Add("NationalNumber");     
+            cmbxFitlerItems.Items.Add("Phone");               
             cmbxFitlerItems.Items.Add("Email");
-            cmbxFitlerItems.Items.Add("Country ID");          //number
-            cmbxFitlerItems.Items.Add("Gendor");
+            cmbxFitlerItems.Items.Add("Nationality");          //................Update it later to string.............
+            cmbxFitlerItems.Items.Add("Gender");
             
         }
 
@@ -54,97 +53,36 @@ namespace DVLD.Forms
         private void cmbxFitlerItems_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSearch.Visible = true;
-           
 
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-           
-            switch (cmbxFitlerItems.SelectedIndex)
-
+            if (cmbxFitlerItems.SelectedIndex == 0 || cmbxFitlerItems.SelectedIndex == 5 || cmbxFitlerItems.SelectedIndex == 6)
             {
-                case 0:
-                    if (char.IsLetter(e.KeyChar))
-                    {
-                        // Set Handled to true to "cancel" the event and block the character
-                        e.Handled = true;
-                    }
-                    
-                    break;
-                case 1:
-                    if (char.IsDigit(e.KeyChar))
-                    {
-                        // Set Handled to true to "cancel" the event and block the character
-                        e.Handled = true;
-                    }
-                    
-                        break;
-                case 2:
-                    if (char.IsDigit(e.KeyChar))
-                    {
-                        // Set Handled to true to "cancel" the event and block the character
-                        e.Handled = true;
-                    }
-                   
-                    break;
-                case 3:
-                    if (char.IsDigit(e.KeyChar))
-                    {
-                        
-                        e.Handled = true;
-                    }
-                    
-                
-                    break;
-                case 4:
-                    if (char.IsDigit(e.KeyChar))
-                    {
-                        
-                        e.Handled = true;
-                    }
-            
-                    break;
-                case 5:
-                    if (char.IsLetter(e.KeyChar))
-                    {
-                        
-                        e.Handled = true;
-                    }
-    
-                    break;
-                case 6:
-                    if (char.IsLetter(e.KeyChar))
-                    {
-                        
-                        e.Handled = true;
-                    }
-             
-                    break;
-                case 7:
-            
-                    break;
-                case 8:
-                    if (char.IsLetter(e.KeyChar))
-                    {
-                        
-                        e.Handled = true;
-                    }
-               
-                    break;
-                case 9:
-                    if (e.KeyChar != 'M' && e.KeyChar != 'm' && e.KeyChar != 'F' && e.KeyChar != 'f' && e.KeyChar != (char)Keys.Back)
-                    {
-                        
-                        e.Handled = true;
-                    }
-             
-                        break;
-                default:
-                    break;
+                if (char.IsLetter(e.KeyChar))
+                {
+                    // Set Handled to true to "cancel" the event and block the character
+                    e.Handled = true;
+                }
             }
+            else if(cmbxFitlerItems.SelectedIndex == 1 || cmbxFitlerItems.SelectedIndex == 2 || cmbxFitlerItems.SelectedIndex == 3 || cmbxFitlerItems.SelectedIndex == 4  )
+            {
+                if (char.IsDigit(e.KeyChar))
+                {
 
+                    e.Handled = true;
+                }
+            }
+            else if(cmbxFitlerItems.SelectedIndex == 9 )
+            {
+                if (e.KeyChar != 'M' && e.KeyChar != 'm' && e.KeyChar != 'F' && e.KeyChar != 'f' && e.KeyChar != (char)Keys.Back)
+                {
+
+                    e.Handled = true;
+                }
+            }
 
         }
 
@@ -158,86 +96,88 @@ namespace DVLD.Forms
                 _dvPeople.RowFilter = "";
                 return;
             }
-            
-            switch (cmbxFitlerItems.SelectedIndex)
+            string ColumnName = cmbxFitlerItems.Text.Trim() ;
+            if(cmbxFitlerItems.SelectedIndex==0 )
+                _dvPeople.RowFilter = $"{ColumnName} = {filterText}";
+            else if(cmbxFitlerItems.SelectedIndex == 9)
+                _dvPeople.RowFilter = $"{ColumnName} = '{filterText}'";
+            else
+                _dvPeople.RowFilter = $"{ColumnName} LIKE '%{filterText}%'";
 
-            {
-                case 0:
+            //switch (cmbxFitlerItems.SelectedIndex)
 
-                    
-                    _dvPeople.RowFilter = $"PearsonID = {filterText}";
-                    grdvPeople.DataSource = _dvPeople;
-
-                    break;
-                case 1:
-
-
-                 
-                   
-                    _dvPeople.RowFilter = $"FirstName LIKE '%{filterText}%'";
-                    grdvPeople.DataSource = _dvPeople;
-
-                    break;
-                case 2:
+            //    {
+            //        case 0:
 
 
-
-                   
-                    _dvPeople.RowFilter = $"SecondName LIKE '%{filterText}%'";
-                    grdvPeople.DataSource = _dvPeople;
-
-                    break;
-                case 3:
-
-                  
-                    _dvPeople.RowFilter = $"ThirdName LIKE '%{filterText}%'";
-                    grdvPeople.DataSource = _dvPeople;
-
-                    break;
-                case 4:
+            //            _dvPeople.RowFilter = $"PersonID = {filterText}";                 //////////
 
 
-                   
-                    _dvPeople.RowFilter = $"LastName LIKE '%{filterText}%'";
-                    grdvPeople.DataSource = _dvPeople;
+            //            break;
+            //        case 1:
+            //            _dvPeople.RowFilter = $"FirstName LIKE '%{filterText}%'";
+            //            break;
+            //        case 2:
 
-                    break;
-                case 5:
 
-               
-                    _dvPeople.RowFilter = $"NationalNumber LIKE '%{filterText}%'"; //
-                    grdvPeople.DataSource = _dvPeople;
 
-                    break;
-                case 6:
 
-                 
-                    _dvPeople.RowFilter = $"Phone LIKE '%{filterText}%'";
-                    grdvPeople.DataSource = _dvPeople;
+            //            _dvPeople.RowFilter = $"SecondName LIKE '%{filterText}%'";
 
-                    break;
-                case 7:
-               
-                    _dvPeople.RowFilter = $"Email LIKE '%{filterText}%'";
-                    grdvPeople.DataSource = _dvPeople;
-                    break;
-                case 8:
 
-              
-                    _dvPeople.RowFilter = $"CountryID LIKE '%{filterText}%'";
-                    grdvPeople.DataSource = _dvPeople;
+            //            break;
+            //        case 3:
 
-                    break;
-                case 9:
 
-                    filterText=filterText.ToUpper();
-                    _dvPeople.RowFilter = $"Gendor ='{filterText}'";
-                    grdvPeople.DataSource = _dvPeople;
+            //            _dvPeople.RowFilter = $"ThirdName LIKE '%{filterText}%'";
 
-                    break;
-                default:
-                    break;
-            }
+
+            //            break;
+            //        case 4:
+
+
+
+            //            _dvPeople.RowFilter = $"LastName LIKE '%{filterText}%'";
+
+
+            //            break;
+            //        case 5:
+
+
+            //            _dvPeople.RowFilter = $"NationalNumber LIKE '%{filterText}%'"; //
+
+
+            //            break;
+            //        case 6:
+
+
+            //            _dvPeople.RowFilter = $"Phone LIKE '%{filterText}%'";
+
+
+            //            break;
+            //        case 7:
+
+            //            _dvPeople.RowFilter = $"Email LIKE '%{filterText}%'";
+
+            //            break;
+            //        case 8:
+
+
+            //            _dvPeople.RowFilter = $"Nationality LIKE '%{filterText}%'";
+
+
+            //            break;
+            //        case 9:
+
+            //            filterText = filterText.ToUpper();
+            //            _dvPeople.RowFilter = $"Gender ='{filterText}'";                 ///////
+
+
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            grdvPeople.DataSource = _dvPeople;
         }
     }
 }

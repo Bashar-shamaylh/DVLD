@@ -36,6 +36,7 @@
             this.lblFilterBy = new System.Windows.Forms.Label();
             this.cmbxFitlerItems = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnAddNewPerson = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPeople)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,11 +131,21 @@
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
+            // btnAddNewPerson
+            // 
+            this.btnAddNewPerson.Location = new System.Drawing.Point(777, 70);
+            this.btnAddNewPerson.Name = "btnAddNewPerson";
+            this.btnAddNewPerson.Size = new System.Drawing.Size(99, 71);
+            this.btnAddNewPerson.TabIndex = 9;
+            this.btnAddNewPerson.Text = "Add Person";
+            this.btnAddNewPerson.UseVisualStyleBackColor = true;
+            // 
             // PeopleUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(901, 587);
+            this.Controls.Add(this.btnAddNewPerson);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.cmbxFitlerItems);
             this.Controls.Add(this.lblFilterBy);
@@ -162,5 +173,6 @@
         private System.Windows.Forms.Label lblFilterBy;
         private System.Windows.Forms.ComboBox cmbxFitlerItems;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnAddNewPerson;
     }
 }
