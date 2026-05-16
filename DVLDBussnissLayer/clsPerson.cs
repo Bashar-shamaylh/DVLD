@@ -29,7 +29,7 @@ namespace DVLDBussnissLayer
         public string Nationality {  get; set; }
         public string PersonalImage { get; set; }
 
-        clsPerson() {
+       public clsPerson() {
             ID = 0;
             FirstName = "";
             SecondName = "";
@@ -59,6 +59,7 @@ namespace DVLDBussnissLayer
             Nationality = nationality;
             PersonalImage = personalimage;
             Gender=gender;
+            Mode=enMode.UpdateMode;
         }
         static public clsPerson Find(int id)
         {
@@ -76,6 +77,7 @@ namespace DVLDBussnissLayer
             char gender = 'M';
            string nationality = "";
             string personalImage = null;
+            
             if (clsPeopleDataAccess.GetPersonByID(id,ref firstName, ref secondName, ref thirdName, ref lastName, ref nationnalNumber, ref dateOfBirth, ref address,ref phone,ref email,ref nationality, ref personalImage,ref gender))
                return new clsPerson(id,firstName,secondName,thirdName,lastName,nationnalNumber,dateOfBirth,address,phone,email, nationality, personalImage,gender);
             return null;        
@@ -115,6 +117,10 @@ namespace DVLDBussnissLayer
         public static DataTable GetPeopleInfo()
         {
             return clsPeopleDataAccess.GetPeopleInfo();
+        }
+        public static bool isNationalNumberExist(string nationalnumber)
+        {
+            return clsPeopleDataAccess.IsNationalNumExist(nationalnumber);
         }
 
     }

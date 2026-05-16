@@ -139,6 +139,7 @@
             this.btnAddNewPerson.TabIndex = 9;
             this.btnAddNewPerson.Text = "Add Person";
             this.btnAddNewPerson.UseVisualStyleBackColor = true;
+            this.btnAddNewPerson.Click += new System.EventHandler(this.btnAddNewPerson_Click);
             // 
             // PeopleUI
             // 

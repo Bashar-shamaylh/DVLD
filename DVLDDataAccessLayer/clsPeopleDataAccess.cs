@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Globalization;
 using System.Data;
+using System.Security.AccessControl;
 namespace DVLDDataAccessLayer
 {
     public  class clsPeopleDataAccess
@@ -263,6 +264,33 @@ namespace DVLDDataAccessLayer
             }
             finally { connection.Close(); }
             return dt;
+        }
+        static public bool IsNationalNumExist(string nationalNum)
+        {
+            bool wasFound= false;
+            string query = @"if exists(select 1 from People where NationalNumber='@nationalNum')
+                                PRINT 'Found'";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@nationalNum", nationalNum);
+            try
+            {
+                connection.Open();
+                object result= command.ExecuteScalar();
+                if(result != null)
+                    wasFound = true;
+                else
+                wasFound = false;
+                
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { connection.Close(); }
+            return wasFound;
         }
 
 

@@ -18,6 +18,7 @@ namespace DVLD.Forms
         public PeopleUI()
         {
             InitializeComponent();
+            
         }
 
         private void PeopleUI_Load(object sender, EventArgs e)
@@ -105,6 +106,12 @@ namespace DVLD.Forms
                 _dvPeople.RowFilter = $"{ColumnName} LIKE '%{filterText}%'";
 
             grdvPeople.DataSource = _dvPeople;
+        }
+
+        private void btnAddNewPerson_Click(object sender, EventArgs e)
+        {
+            Form form = new AddEditPersonInfoUI();
+            form.ShowDialog();
         }
     }
 }
