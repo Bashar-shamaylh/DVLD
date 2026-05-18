@@ -26,14 +26,118 @@ namespace DVLD.Forms
             return clsPerson.isNationalNumberExist(nationalNum);
             
         }
+        private void _FillPersonInfoIntoTheForm()
+        {
+            lblPersonIDResult.Text = person.ID.ToString();
+            lblNationalNumResult.Text = person.NationnalNumber;
+
+            txtBoxFirstName.Text = person.FirstName;
+            txtBoxSecondName.Text = person.SecondName;
+            txtBoxThirdName.Text = person.ThirdName;
+            txtBoxLastName.Text = person.LastName;
+            txtBoxNationalNum.Text = person.NationnalNumber;
+
+            dtpDateOfBirth.Value = person.DateOfBirth;
+
+            if (person.Gender == 'M' || person.Gender == 'm')
+            {
+                rdoMale.Checked = true;
+            }
+            else
+            {
+                rdoFemale.Checked = true;
+            }
+            if (person.Phone != null)
+
+                txtBoxPhone.Text = person.Phone;
+
+            if (person.Email != null)
+                txtBoxEmail.Text = person.Email;
+            if (person.Address != null)
+                txtBoxAddress.Text = person.Address;
+            int index = cmbCountries.FindStringExact(person.Nationality);
+
+            // 3. If found, make it the default selection
+            if (index != -1)
+            {
+                cmbCountries.SelectedIndex = index;
+            }
+            if (person.Address != null)
+                txtBoxAddress.Text = person.Address;
+        }
+        private void _LoadCountriesIntoTheForm()
+        {
+            cmbCountries.DataSource = clsCountry.GetCountriesInfo();
+            cmbCountries.DisplayMember = "CountryName";
+            cmbCountries.ValueMember = "CountryID";
+            cmbCountries.SelectedIndex = 183;
+        }
+        private void _Save()
+        {
+            if (string.IsNullOrEmpty(txtBoxFirstName.Text))
+            {
+                errorProvider1.SetError(txtBoxFirstName, "Plese enter a valid first name");
+            }
+            else if (string.IsNullOrEmpty(txtBoxSecondName.Text))
+            {
+                errorProvider1.SetError(txtBoxSecondName, "Plese enter a valid second name");
+            }
+            else if (string.IsNullOrEmpty(txtBoxThirdName.Text))
+            {
+                errorProvider1.SetError(txtBoxThirdName, "Plese enter a valid Third name");
+            }
+            else if (string.IsNullOrEmpty(txtBoxLastName.Text))
+            {
+                errorProvider1.SetError(txtBoxLastName, "Plese enter a valid Last name");
+            }
+            else if (string.IsNullOrEmpty(txtBoxNationalNum.Text))
+            {
+                errorProvider1.SetError(txtBoxNationalNum, "Plese enter a valid National number");
+            }
+            person.FirstName = txtBoxFirstName.Text;
+            person.SecondName = txtBoxSecondName.Text;
+            person.ThirdName = txtBoxThirdName.Text;
+            person.LastName = txtBoxLastName.Text;
+            person.NationnalNumber = txtBoxNationalNum.Text;
+            person.Address = txtBoxAddress.Text;
+            person.Email = txtBoxEmail.Text;
+            person.Phone = txtBoxPhone.Text;
+            person.Nationality = cmbCountries.Text;
+            person.DateOfBirth = dtpDateOfBirth.Value;
+            if (rdoMale.Checked)
+            {
+                person.Gender = 'M';
+            }
+            else
+            {
+                person.Gender = 'F';
+            }
+
+
+            string path = Path.Combine(Application.StartupPath, "DVLDImages");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string newName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
+            person.PersonalImage = newName;
+            File.Copy(newName, path, true);
+
+            person.Save();
+        }    //Collect the info from the input Controls into Person object and call person.Save at the end
         public AddEditPersonInfoUI(int id = -1)
         {
             InitializeComponent();
-            person = clsPerson.Find(id);
-            if (person == null)
+            if (id != -1)
             {
-                person = new clsPerson();
+                person = clsPerson.Find(id);
+                if (person == null)
+                {
+                    person = new clsPerson();
+                }
             }
+            else
+                person = new clsPerson();
 
         }
 
@@ -43,49 +147,11 @@ namespace DVLD.Forms
             dtpDateOfBirth.MaxDate = DateTime.Now.AddYears(-18);
 
             //Load all the Countries
-            cmbCountries.DataSource = clsCountry.GetCountriesInfo();
-            cmbCountries.DisplayMember = "CountryName";
-            cmbCountries.ValueMember = "CountryID";
-            cmbCountries.SelectedIndex = 183;
+            _LoadCountriesIntoTheForm();
             rdoMale.Checked = true;
             if (person.Mode == clsPerson.enMode.UpdateMode)
             {
-                lblPersonIDResult.Text = person.ID.ToString();
-                lblNationalNumResult.Text = person.NationnalNumber;
-
-                txtBoxFirstName.Text = person.FirstName;
-                txtBoxSecondName.Text = person.SecondName;
-                txtBoxThirdName.Text = person.ThirdName;
-                txtBoxLastName.Text = person.LastName;
-                txtBoxNationalNum.Text = person.NationnalNumber;
-
-                dtpDateOfBirth.Value = person.DateOfBirth;
-
-                if (person.Gender == 'M'||person.Gender=='m')
-                {
-                    rdoMale.Checked = true;
-                }
-                else
-                {
-                    rdoFemale.Checked = true;
-                }
-                if (person.Phone != null)
-
-                    txtBoxPhone.Text = person.Phone;
-
-                if (person.Email != null)
-                    txtBoxEmail.Text = person.Email;
-                if (person.Address != null)
-                    txtBoxAddress.Text = person.Address;
-                int index = cmbCountries.FindStringExact(person.Nationality);
-
-                // 3. If found, make it the default selection
-                if (index != -1)
-                {
-                    cmbCountries.SelectedIndex = index;
-                }
-                if(person.Address != null)
-                    txtBoxAddress.Text = person.Address;
+                _FillPersonInfoIntoTheForm();
                 
             }
 
@@ -175,54 +241,8 @@ namespace DVLD.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txtBoxFirstName.Text))
-            {
-                errorProvider1.SetError(txtBoxFirstName, "Plese enter a valid first name");
-            }
-            else if(string.IsNullOrEmpty(txtBoxSecondName.Text))
-            {
-                errorProvider1.SetError(txtBoxSecondName, "Plese enter a valid second name");
-            }
-            else if (string.IsNullOrEmpty(txtBoxThirdName.Text))
-            {
-                errorProvider1.SetError(txtBoxThirdName, "Plese enter a valid Third name");
-            }
-            else if (string.IsNullOrEmpty(txtBoxLastName.Text))
-            {
-                errorProvider1.SetError(txtBoxLastName, "Plese enter a valid Last name");
-            }
-            else if (string.IsNullOrEmpty(txtBoxNationalNum.Text))
-            {
-                errorProvider1.SetError(txtBoxNationalNum, "Plese enter a valid National number");
-            }
-            person.FirstName = txtBoxFirstName.Text;
-            person.SecondName = txtBoxSecondName.Text;
-            person.ThirdName = txtBoxThirdName.Text;
-            person.LastName = txtBoxLastName.Text;
-            person.NationnalNumber = txtBoxNationalNum.Text;
-            person.Address = txtBoxAddress.Text;
-            person.Email = txtBoxEmail.Text;
-            person.Phone = txtBoxPhone.Text;
-            person.Nationality=cmbCountries.Text;
-            person.DateOfBirth=dtpDateOfBirth.Value;
-            if (rdoMale.Checked)
-            {
-                person.Gender = 'M';
-            }
-            else
-            {
-                person.Gender = 'F';
-            }
-            person.Save();
+            _Save();
 
-            string path = Path.Combine(Application.StartupPath, "DVLDImages");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            string newName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
-            person.PersonalImagePath = newName;
-            File.Copy(newName, path, true);
 
         }
 
