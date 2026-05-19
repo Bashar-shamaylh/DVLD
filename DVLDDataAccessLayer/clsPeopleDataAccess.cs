@@ -153,6 +153,7 @@ namespace DVLDDataAccessLayer
             command.Parameters.AddWithValue("@lastname", lastname);
             command.Parameters.AddWithValue("@dateOfBirth", dateOfBirth);
             command.Parameters.AddWithValue("@gender", gender);
+            command.Parameters.AddWithValue("@id", id);
             if (address == "")
             {
                 command.Parameters.AddWithValue("@address", System.DBNull.Value);

@@ -113,18 +113,40 @@ namespace DVLD.Forms
                 person.Gender = 'F';
             }
 
-
-            string path = Path.Combine(Application.StartupPath, "DVLDImages");
-            if (!Directory.Exists(path))
+            if(imagePath!="")
             {
-                Directory.CreateDirectory(path);
+                string path = Path.Combine(Application.StartupPath, "DVLDImages");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                string newName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
+                string destPath = Path.Combine(path, newName);
+                person.PersonalImage = newName;
+                File.Copy(imagePath, destPath, true);
             }
-            string newName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
-            person.PersonalImage = newName;
-            File.Copy(newName, path, true);
+            
 
             person.Save();
+            lblPersonIDResult.Text = person.ID.ToString();
+            lblPersonIDResult.Visible = true;
+            lblNationalNumResult.Text=person.NationnalNumber.ToString();
+            lblNationalNumResult.Visible = true;
         }    //Collect the info from the input Controls into Person object and call person.Save at the end
+        private void _SetImage(string ImagePath="")
+        {
+            if (person.PersonalImage == null && imagePath == "")
+            {
+                if (rdoMale.Checked)
+                {
+                    PersonalImage.Image = Properties.Resources.Male_512;
+                }
+                else
+                {
+                    PersonalImage.Image = Properties.Resources.Female_512;
+                }
+            }
+        }
         public AddEditPersonInfoUI(int id = -1)
         {
             InitializeComponent();
@@ -174,35 +196,13 @@ namespace DVLD.Forms
 
         private void rdoMale_CheckedChanged(object sender, EventArgs e)
         {
-            if(person.PersonalImage==null)
-            {
-                if (rdoMale.Checked)
-                {
-                    PersonalImage.Image = Properties.Resources.Male_512;
-                }
-                else
-                {
-                    PersonalImage.Image = Properties.Resources.Female_512;
-                }
-            }
+            _SetImage();
 
-           
-           
         }
 
         private void rdoFemale_CheckedChanged(object sender, EventArgs e)
         {
-            if (person.PersonalImage == null)
-            {
-                if (rdoMale.Checked)
-                {
-                    PersonalImage.Image = Properties.Resources.Male_512;
-                }
-                else
-                {
-                    PersonalImage.Image = Properties.Resources.Female_512;
-                }
-            }
+            _SetImage();
         }
 
         private void txtBoxEmail_Leave(object sender, EventArgs e)
@@ -243,7 +243,7 @@ namespace DVLD.Forms
         {
             _Save();
 
-
+            
         }
 
         private void txtBoxFirstName_TextChanged(object sender, EventArgs e)
@@ -274,7 +274,18 @@ namespace DVLD.Forms
 
         private void linkRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            imagePath = "";
+            _SetImage();
+            if (person.PersonalImage != null)
+            {
+                string path = Path.Combine(Application.StartupPath, "DVLDImages");
+                if (File.Exists(path))
+                {
+                    File.Delete(Path.Combine(path,person.PersonalImage));
 
+                }
+
+            }
         }
     }
 }
