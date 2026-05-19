@@ -113,5 +113,10 @@ namespace DVLD.Forms
             Form form = new AddEditPersonInfoUI();
             form.ShowDialog();
         }
+
+        private void lblManagePeople_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

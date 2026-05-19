@@ -121,17 +121,21 @@ namespace DVLD.Forms
                     Directory.CreateDirectory(path);
                 }
                 string newName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
-                string destPath = Path.Combine(path, newName);
                 person.PersonalImage = newName;
-                File.Copy(imagePath, destPath, true);
-            }
-            
+                if(person.Mode==clsPerson.enMode.UpdateMode)
+                {
+                    string destPath = Path.Combine(path, newName);
+                    File.Copy(imagePath, destPath, true);
+                }
 
+               
+            }
             person.Save();
             lblPersonIDResult.Text = person.ID.ToString();
             lblPersonIDResult.Visible = true;
             lblNationalNumResult.Text=person.NationnalNumber.ToString();
             lblNationalNumResult.Visible = true;
+            lblTitle.Text = "Update Mode";
         }    //Collect the info from the input Controls into Person object and call person.Save at the end
         private void _SetImage(string ImagePath="")
         {
@@ -147,12 +151,26 @@ namespace DVLD.Forms
                 }
             }
         }
+        private void _EmailFilter()
+        {
+            if (!string.IsNullOrWhiteSpace(txtBoxEmail.Text))
+            {
+                if (!Regex.IsMatch(txtBoxEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    errorProvider1.SetError(txtBoxEmail, "This isn't a valid email");
+                }
+                else
+                    errorProvider1.SetError(txtBoxEmail, "");
+            }
+        }
         public AddEditPersonInfoUI(int id = -1)
         {
             InitializeComponent();
+
             if (id != -1)
             {
                 person = clsPerson.Find(id);
+                
                 if (person == null)
                 {
                     person = new clsPerson();
@@ -173,12 +191,9 @@ namespace DVLD.Forms
             rdoMale.Checked = true;
             if (person.Mode == clsPerson.enMode.UpdateMode)
             {
-                _FillPersonInfoIntoTheForm();
-                
+                lblTitle.Text = "Update Person";
+                _FillPersonInfoIntoTheForm();            
             }
-
-
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -207,16 +222,7 @@ namespace DVLD.Forms
 
         private void txtBoxEmail_Leave(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(txtBoxEmail.Text))
-                {
-                if (!Regex.IsMatch(txtBoxEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-                {
-                    errorProvider1.SetError(txtBoxEmail, "This isn't a valid email");
-                }
-                else
-                    errorProvider1.SetError(txtBoxEmail, "");
-                }
-            
+            _EmailFilter();
         }
 
         private void linklblSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -236,9 +242,6 @@ namespace DVLD.Forms
            
 
         }
-
-
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             _Save();
@@ -282,7 +285,7 @@ namespace DVLD.Forms
                 if (File.Exists(path))
                 {
                     File.Delete(Path.Combine(path,person.PersonalImage));
-
+                    person.PersonalImage = null;
                 }
 
             }

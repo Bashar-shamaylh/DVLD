@@ -32,10 +32,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.grbBoxPerson = new System.Windows.Forms.GroupBox();
+            this.linkRemove = new System.Windows.Forms.LinkLabel();
             this.linklblSetImage = new System.Windows.Forms.LinkLabel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.PersonalImage = new System.Windows.Forms.PictureBox();
             this.txtBoxAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
             this.cmbCountries = new System.Windows.Forms.ComboBox();
@@ -64,10 +64,11 @@
             this.lblPersonIDResult = new System.Windows.Forms.Label();
             this.lblNationalNumResult = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.linkRemove = new System.Windows.Forms.LinkLabel();
+            this.PersonalImage = new System.Windows.Forms.PictureBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.grbBoxPerson.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PersonalImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PersonalImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -127,6 +128,19 @@
             this.grbBoxPerson.TabIndex = 2;
             this.grbBoxPerson.TabStop = false;
             // 
+            // linkRemove
+            // 
+            this.linkRemove.AutoSize = true;
+            this.linkRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkRemove.Location = new System.Drawing.Point(770, 326);
+            this.linkRemove.Name = "linkRemove";
+            this.linkRemove.Size = new System.Drawing.Size(86, 24);
+            this.linkRemove.TabIndex = 55;
+            this.linkRemove.TabStop = true;
+            this.linkRemove.Text = "Remove ";
+            this.linkRemove.Visible = false;
+            this.linkRemove.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkRemove_LinkClicked);
+            // 
             // linklblSetImage
             // 
             this.linklblSetImage.AutoSize = true;
@@ -158,16 +172,6 @@
             this.btnClose.Text = "Colse";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // PersonalImage
-            // 
-            this.PersonalImage.Image = global::DVLD.Properties.Resources.Male_512;
-            this.PersonalImage.Location = new System.Drawing.Point(738, 84);
-            this.PersonalImage.Name = "PersonalImage";
-            this.PersonalImage.Size = new System.Drawing.Size(161, 175);
-            this.PersonalImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PersonalImage.TabIndex = 51;
-            this.PersonalImage.TabStop = false;
             // 
             // txtBoxAddress
             // 
@@ -426,24 +430,34 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // linkRemove
+            // PersonalImage
             // 
-            this.linkRemove.AutoSize = true;
-            this.linkRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkRemove.Location = new System.Drawing.Point(770, 326);
-            this.linkRemove.Name = "linkRemove";
-            this.linkRemove.Size = new System.Drawing.Size(86, 24);
-            this.linkRemove.TabIndex = 55;
-            this.linkRemove.TabStop = true;
-            this.linkRemove.Text = "Remove ";
-            this.linkRemove.Visible = false;
-            this.linkRemove.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkRemove_LinkClicked);
+            this.PersonalImage.Image = global::DVLD.Properties.Resources.Male_512;
+            this.PersonalImage.Location = new System.Drawing.Point(738, 84);
+            this.PersonalImage.Name = "PersonalImage";
+            this.PersonalImage.Size = new System.Drawing.Size(161, 175);
+            this.PersonalImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PersonalImage.TabIndex = 51;
+            this.PersonalImage.TabStop = false;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.Red;
+            this.lblTitle.Location = new System.Drawing.Point(329, 38);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(262, 43);
+            this.lblTitle.TabIndex = 5;
+            this.lblTitle.Text = "Add New Person";
             // 
             // AddEditPersonInfoUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 487);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblNationalNumResult);
             this.Controls.Add(this.lblPersonIDResult);
             this.Controls.Add(this.grbBoxPerson);
@@ -454,8 +468,8 @@
             this.Load += new System.EventHandler(this.AddEditPersonInfoUI_Load);
             this.grbBoxPerson.ResumeLayout(false);
             this.grbBoxPerson.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PersonalImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PersonalImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,5 +513,6 @@
         private System.Windows.Forms.Label lblPersonIDResult;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.LinkLabel linkRemove;
+        private System.Windows.Forms.Label lblTitle;
     }
 }

@@ -75,6 +75,9 @@
     <EmbeddedResource Include="Forms\AddEditPersonInfoUI.resx">
       <DependentUpon>AddEditPersonInfoUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\PeopleUI.resx">
       <DependentUpon>PeopleUI.cs</DependentUpon>
     </EmbeddedResource>
