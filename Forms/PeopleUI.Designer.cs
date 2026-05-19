@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grdvPeople = new System.Windows.Forms.DataGridView();
             this.lblManagePeople = new System.Windows.Forms.Label();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
@@ -42,8 +43,13 @@
             this.sdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sdsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dsdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPeople)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdvPeople
@@ -171,20 +177,47 @@
             // sdToolStripMenuItem
             // 
             this.sdToolStripMenuItem.Name = "sdToolStripMenuItem";
-            this.sdToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sdToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.sdToolStripMenuItem.Text = "sd";
             // 
             // sdsToolStripMenuItem
             // 
             this.sdsToolStripMenuItem.Name = "sdsToolStripMenuItem";
-            this.sdsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sdsToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.sdsToolStripMenuItem.Text = "sds";
             // 
             // dsdToolStripMenuItem
             // 
             this.dsdToolStripMenuItem.Name = "dsdToolStripMenuItem";
-            this.dsdToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dsdToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.dsdToolStripMenuItem.Text = "dsd";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Text = "Add Person";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Text = "Edit Person ";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Text = "view info";
             // 
             // PeopleUI
             // 
@@ -208,6 +241,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdvPeople)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,5 +263,9 @@
         private System.Windows.Forms.ToolStripMenuItem sdToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sdsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dsdToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }
