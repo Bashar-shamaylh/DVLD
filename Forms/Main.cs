@@ -16,8 +16,8 @@ namespace DVLD.Forms
         {
             InitializeComponent();
         }
-        PeopleUI Peopleform = new PeopleUI();
-
+       
+        
         private void applicationsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
@@ -25,9 +25,16 @@ namespace DVLD.Forms
 
         private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            PeopleUI Peopleform = new PeopleUI();
             Peopleform.MdiParent = this;
+            
             Peopleform.Show();
+
+
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
 
         }
     }
