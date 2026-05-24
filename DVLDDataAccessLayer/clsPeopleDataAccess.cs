@@ -39,7 +39,7 @@ namespace DVLDDataAccessLayer
                     LastName = (string)reader["LastName"];
                     NationalNumber = (string)reader["NationalNumber"];
                     DateOfBirth = (DateTime)reader["DateOfBirth"];
-                    Gender = (char)reader["Gender"];
+                    Gender  = reader["Gender"].ToString()[0];
                     if (reader["Address"] != DBNull.Value)
                         Address = (string)reader["Address"];
                     else
@@ -130,18 +130,18 @@ namespace DVLDDataAccessLayer
             
             string query = @"Update People
                                             set 
-                                            NationalNumber='@nationnalNumber',
-                                            FirstName='@firstname',
-                                            SecondName='@secondname',
-                                            ThirdName='@thirdname',
-                                            LastName='@lastname',
-                                            Gender='@gender',
+                                            NationalNumber=@nationnalNumber,
+                                            FirstName=@firstname,
+                                            SecondName=@secondname,
+                                            ThirdName=@thirdname,
+                                            LastName=@lastname,
+                                            Gender=@gender,
                                             DateOfBirth=@dateOfBirth,
-                                            Address='@address',
-                                            Phone='@phone',
-                                            Email='@email',
+                                            Address=@address,
+                                            Phone=@phone,
+                                            Email=@email,
                                             Nationality=@nationality,
-                                            PersonalPicturePath='@personImagePath'
+                                            PersonalPicturePath=@personImagePath
                                             where PersonID=@id;";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);

@@ -30,6 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grdvPeople = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmAddPerson = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmUpdatePersonInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmViewDetails = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmDeletePerson = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmSendEmail = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPhoneCall = new System.Windows.Forms.ToolStripMenuItem();
             this.lblManagePeople = new System.Windows.Forms.Label();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.lblNumberOfRecordsResult = new System.Windows.Forms.Label();
@@ -43,16 +50,9 @@
             this.sdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sdsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dsdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmShowDetails = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddNewPerson = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmEditPerson = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmDeletePerson = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSendEmail = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmPhoneCall = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPeople)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdvPeople
@@ -63,14 +63,63 @@
             this.grdvPeople.AllowUserToResizeRows = false;
             this.grdvPeople.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.grdvPeople.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdvPeople.ContextMenuStrip = this.contextMenuStrip1;
             this.grdvPeople.Location = new System.Drawing.Point(5, 146);
             this.grdvPeople.Name = "grdvPeople";
             this.grdvPeople.ReadOnly = true;
             this.grdvPeople.Size = new System.Drawing.Size(891, 380);
             this.grdvPeople.StandardTab = true;
             this.grdvPeople.TabIndex = 0;
-            this.grdvPeople.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.grdvPeople.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdvPeople_CellMouseClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAddPerson,
+            this.tsmUpdatePersonInfo,
+            this.tsmViewDetails,
+            this.tsmDeletePerson,
+            this.tsmSendEmail,
+            this.tsmPhoneCall});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 158);
+            // 
+            // tsmAddPerson
+            // 
+            this.tsmAddPerson.Name = "tsmAddPerson";
+            this.tsmAddPerson.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddPerson.Text = "Add Person";
+            this.tsmAddPerson.Click += new System.EventHandler(this.tsmAddPerson_Click);
+            // 
+            // tsmUpdatePersonInfo
+            // 
+            this.tsmUpdatePersonInfo.Name = "tsmUpdatePersonInfo";
+            this.tsmUpdatePersonInfo.Size = new System.Drawing.Size(180, 22);
+            this.tsmUpdatePersonInfo.Text = "Update Person";
+            this.tsmUpdatePersonInfo.Click += new System.EventHandler(this.tsmUpdatePersonInfo_Click);
+            // 
+            // tsmViewDetails
+            // 
+            this.tsmViewDetails.Name = "tsmViewDetails";
+            this.tsmViewDetails.Size = new System.Drawing.Size(180, 22);
+            this.tsmViewDetails.Text = "view info";
+            // 
+            // tsmDeletePerson
+            // 
+            this.tsmDeletePerson.Name = "tsmDeletePerson";
+            this.tsmDeletePerson.Size = new System.Drawing.Size(180, 22);
+            this.tsmDeletePerson.Text = "Delete";
+            // 
+            // tsmSendEmail
+            // 
+            this.tsmSendEmail.Name = "tsmSendEmail";
+            this.tsmSendEmail.Size = new System.Drawing.Size(180, 22);
+            this.tsmSendEmail.Text = "Send Email";
+            // 
+            // tsmPhoneCall
+            // 
+            this.tsmPhoneCall.Name = "tsmPhoneCall";
+            this.tsmPhoneCall.Size = new System.Drawing.Size(180, 22);
+            this.tsmPhoneCall.Text = "Phone Call";
             // 
             // lblManagePeople
             // 
@@ -196,54 +245,6 @@
             this.dsdToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.dsdToolStripMenuItem.Text = "dsd";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmShowDetails,
-            this.tsmAddNewPerson,
-            this.tsmEditPerson,
-            this.tsmDeletePerson,
-            this.tsmSendEmail,
-            this.tsmPhoneCall});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 136);
-            // 
-            // tsmShowDetails
-            // 
-            this.tsmShowDetails.Name = "tsmShowDetails";
-            this.tsmShowDetails.Size = new System.Drawing.Size(180, 22);
-            this.tsmShowDetails.Text = "Add Person";
-            // 
-            // tsmAddNewPerson
-            // 
-            this.tsmAddNewPerson.Name = "tsmAddNewPerson";
-            this.tsmAddNewPerson.Size = new System.Drawing.Size(180, 22);
-            this.tsmAddNewPerson.Text = "Edit Person ";
-            // 
-            // tsmEditPerson
-            // 
-            this.tsmEditPerson.Name = "tsmEditPerson";
-            this.tsmEditPerson.Size = new System.Drawing.Size(180, 22);
-            this.tsmEditPerson.Text = "view info";
-            // 
-            // tsmDeletePerson
-            // 
-            this.tsmDeletePerson.Name = "tsmDeletePerson";
-            this.tsmDeletePerson.Size = new System.Drawing.Size(180, 22);
-            this.tsmDeletePerson.Text = "Delete";
-            // 
-            // tsmSendEmail
-            // 
-            this.tsmSendEmail.Name = "tsmSendEmail";
-            this.tsmSendEmail.Size = new System.Drawing.Size(180, 22);
-            this.tsmSendEmail.Text = "Send Email";
-            // 
-            // tsmPhoneCall
-            // 
-            this.tsmPhoneCall.Name = "tsmPhoneCall";
-            this.tsmPhoneCall.Size = new System.Drawing.Size(180, 22);
-            this.tsmPhoneCall.Text = "Phone Call";
-            // 
             // PeopleUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,9 +265,9 @@
             this.Text = "Manege People";
             this.Load += new System.EventHandler(this.PeopleUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdvPeople)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,9 +290,9 @@
         private System.Windows.Forms.ToolStripMenuItem sdsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dsdToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem tsmShowDetails;
-        private System.Windows.Forms.ToolStripMenuItem tsmAddNewPerson;
-        private System.Windows.Forms.ToolStripMenuItem tsmEditPerson;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddPerson;
+        private System.Windows.Forms.ToolStripMenuItem tsmUpdatePersonInfo;
+        private System.Windows.Forms.ToolStripMenuItem tsmViewDetails;
         private System.Windows.Forms.ToolStripMenuItem tsmDeletePerson;
         private System.Windows.Forms.ToolStripMenuItem tsmSendEmail;
         private System.Windows.Forms.ToolStripMenuItem tsmPhoneCall;

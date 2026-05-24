@@ -18,7 +18,8 @@ namespace DVLD.Forms
         public PeopleUI()
         {
             InitializeComponent();
-            
+
+          
         }
 
         private void PeopleUI_Load(object sender, EventArgs e)
@@ -41,10 +42,7 @@ namespace DVLD.Forms
             
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
+     
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -117,6 +115,39 @@ namespace DVLD.Forms
         private void lblManagePeople_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tsmAddPerson_Click(object sender, EventArgs e)
+        {
+            Form form = new AddEditPersonInfoUI();
+            form.ShowDialog();
+        }
+
+        private void tsmUpdatePersonInfo_Click(object sender, EventArgs e)
+        {
+
+
+            if (int.TryParse(grdvPeople.CurrentCell.Value.ToString(), out int id))
+            {
+                Form form = new AddEditPersonInfoUI(id);
+                form.ShowDialog();
+            }
+
+        }
+
+        private void grdvPeople_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            if (e.RowIndex < 0 || e.ColumnIndex <0)
+                return;
+            if(e.Button==MouseButtons.Right)
+            {
+                
+                
+               grdvPeople.CurrentCell=grdvPeople.Rows[e.RowIndex].Cells[0];
+                contextMenuStrip1.Show(Cursor.Position);
+
+            }
         }
     }
 }

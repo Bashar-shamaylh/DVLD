@@ -64,6 +64,19 @@ namespace DVLD.Forms
             }
             if (person.Address != null)
                 txtBoxAddress.Text = person.Address;
+            if(person.PersonalImage != null)
+            {
+                string path = Path.Combine(Application.StartupPath, "DVLDImages");
+
+                path = Path.Combine(path, person.PersonalImage);
+                if (File.Exists(path))
+                {
+
+                    PersonalImage.Image = Image.FromFile(path);
+                }
+                
+            }
+            
         }
         private void _LoadCountriesIntoTheForm()
         {
