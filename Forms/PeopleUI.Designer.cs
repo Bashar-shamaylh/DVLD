@@ -66,7 +66,7 @@
             this.grdvPeople.Location = new System.Drawing.Point(5, 146);
             this.grdvPeople.Name = "grdvPeople";
             this.grdvPeople.ReadOnly = true;
-            this.grdvPeople.Size = new System.Drawing.Size(891, 380);
+            this.grdvPeople.Size = new System.Drawing.Size(1100, 380);
             this.grdvPeople.StandardTab = true;
             this.grdvPeople.TabIndex = 0;
             this.grdvPeople.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdvPeople_CellMouseClick);
@@ -81,44 +81,46 @@
             this.tsmSendEmail,
             this.tsmPhoneCall});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(152, 136);
             // 
             // tsmAddPerson
             // 
             this.tsmAddPerson.Name = "tsmAddPerson";
-            this.tsmAddPerson.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddPerson.Size = new System.Drawing.Size(151, 22);
             this.tsmAddPerson.Text = "Add Person";
             this.tsmAddPerson.Click += new System.EventHandler(this.tsmAddPerson_Click);
             // 
             // tsmUpdatePersonInfo
             // 
             this.tsmUpdatePersonInfo.Name = "tsmUpdatePersonInfo";
-            this.tsmUpdatePersonInfo.Size = new System.Drawing.Size(180, 22);
+            this.tsmUpdatePersonInfo.Size = new System.Drawing.Size(151, 22);
             this.tsmUpdatePersonInfo.Text = "Update Person";
             this.tsmUpdatePersonInfo.Click += new System.EventHandler(this.tsmUpdatePersonInfo_Click);
             // 
             // tsmViewDetails
             // 
             this.tsmViewDetails.Name = "tsmViewDetails";
-            this.tsmViewDetails.Size = new System.Drawing.Size(180, 22);
+            this.tsmViewDetails.Size = new System.Drawing.Size(151, 22);
             this.tsmViewDetails.Text = "view info";
+            this.tsmViewDetails.Click += new System.EventHandler(this.tsmViewDetails_Click);
             // 
             // tsmDeletePerson
             // 
             this.tsmDeletePerson.Name = "tsmDeletePerson";
-            this.tsmDeletePerson.Size = new System.Drawing.Size(180, 22);
+            this.tsmDeletePerson.Size = new System.Drawing.Size(151, 22);
             this.tsmDeletePerson.Text = "Delete";
+            this.tsmDeletePerson.Click += new System.EventHandler(this.tsmDeletePerson_Click);
             // 
             // tsmSendEmail
             // 
             this.tsmSendEmail.Name = "tsmSendEmail";
-            this.tsmSendEmail.Size = new System.Drawing.Size(180, 22);
+            this.tsmSendEmail.Size = new System.Drawing.Size(151, 22);
             this.tsmSendEmail.Text = "Send Email";
             // 
             // tsmPhoneCall
             // 
             this.tsmPhoneCall.Name = "tsmPhoneCall";
-            this.tsmPhoneCall.Size = new System.Drawing.Size(180, 22);
+            this.tsmPhoneCall.Size = new System.Drawing.Size(151, 22);
             this.tsmPhoneCall.Text = "Phone Call";
             // 
             // lblManagePeople
@@ -159,7 +161,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(740, 542);
+            this.btnClose.Location = new System.Drawing.Point(968, 541);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(137, 40);
             this.btnClose.TabIndex = 4;
@@ -199,7 +201,7 @@
             // 
             // btnAddNewPerson
             // 
-            this.btnAddNewPerson.Location = new System.Drawing.Point(777, 70);
+            this.btnAddNewPerson.Location = new System.Drawing.Point(1006, 69);
             this.btnAddNewPerson.Name = "btnAddNewPerson";
             this.btnAddNewPerson.Size = new System.Drawing.Size(99, 71);
             this.btnAddNewPerson.TabIndex = 9;
@@ -213,7 +215,7 @@
             this.sToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(901, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1118, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -249,7 +251,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 587);
+            this.ClientSize = new System.Drawing.Size(1118, 587);
             this.Controls.Add(this.btnAddNewPerson);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.cmbxFitlerItems);

@@ -15,6 +15,23 @@ namespace DVLD.Forms
     {
         DataTable _dtPeople ;
         DataView _dvPeople ;
+        public void LoadPeopleDataIntoTheForm()
+        {
+            _dtPeople = clsPerson.GetPeopleInfo();
+            _dvPeople = new DataView(_dtPeople);
+            grdvPeople.DataSource = _dtPeople;
+            lblNumberOfRecordsResult.Text = _dtPeople.Rows.Count.ToString();
+            cmbxFitlerItems.Items.Add("PersonID");
+            cmbxFitlerItems.Items.Add("FirstName");
+            cmbxFitlerItems.Items.Add("SecondName");
+            cmbxFitlerItems.Items.Add("ThirdName");
+            cmbxFitlerItems.Items.Add("LastName");
+            cmbxFitlerItems.Items.Add("NationalNumber");
+            cmbxFitlerItems.Items.Add("Phone");
+            cmbxFitlerItems.Items.Add("Email");
+            cmbxFitlerItems.Items.Add("Nationality");          //................Update it later to string.............
+            cmbxFitlerItems.Items.Add("Gender");
+        }
         public PeopleUI()
         {
             InitializeComponent();
@@ -24,22 +41,7 @@ namespace DVLD.Forms
 
         private void PeopleUI_Load(object sender, EventArgs e)
         {
-             
-            _dtPeople = clsPerson.GetPeopleInfo();
-            _dvPeople= new DataView(_dtPeople);
-            grdvPeople.DataSource= _dtPeople;
-            lblNumberOfRecordsResult.Text= _dtPeople.Rows.Count.ToString();
-            cmbxFitlerItems.Items.Add("PersonID");  
-            cmbxFitlerItems.Items.Add("FirstName");
-            cmbxFitlerItems.Items.Add("SecondName");
-            cmbxFitlerItems.Items.Add("ThirdName");
-            cmbxFitlerItems.Items.Add("LastName");
-            cmbxFitlerItems.Items.Add("NationalNumber");     
-            cmbxFitlerItems.Items.Add("Phone");               
-            cmbxFitlerItems.Items.Add("Email");
-            cmbxFitlerItems.Items.Add("Nationality");          //................Update it later to string.............
-            cmbxFitlerItems.Items.Add("Gender");
-            
+             LoadPeopleDataIntoTheForm();  
         }
 
      
@@ -110,6 +112,7 @@ namespace DVLD.Forms
         {
             Form form = new AddEditPersonInfoUI();
             form.ShowDialog();
+            LoadPeopleDataIntoTheForm();
         }
 
         private void lblManagePeople_Click(object sender, EventArgs e)
@@ -121,6 +124,8 @@ namespace DVLD.Forms
         {
             Form form = new AddEditPersonInfoUI();
             form.ShowDialog();
+            LoadPeopleDataIntoTheForm();
+
         }
 
         private void tsmUpdatePersonInfo_Click(object sender, EventArgs e)
@@ -132,6 +137,7 @@ namespace DVLD.Forms
                 Form form = new AddEditPersonInfoUI(id);
                 form.ShowDialog();
             }
+            LoadPeopleDataIntoTheForm();
 
         }
 
@@ -148,6 +154,28 @@ namespace DVLD.Forms
                 contextMenuStrip1.Show(Cursor.Position);
 
             }
+        }
+
+        private void tsmViewDetails_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(grdvPeople.CurrentCell.Value.ToString(), out int id))
+            {
+                frmPersonInfo frmPersonInfo = new frmPersonInfo(id);
+                frmPersonInfo.ShowDialog();
+                
+            }
+            
+        }
+
+        private void tsmDeletePerson_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(grdvPeople.CurrentCell.Value.ToString(), out int id))
+            {
+                clsPerson.DeletePerson(id);
+
+            }
+            LoadPeopleDataIntoTheForm();
+
         }
     }
 }

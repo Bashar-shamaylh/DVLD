@@ -36,6 +36,7 @@
             this.linklblSetImage = new System.Windows.Forms.LinkLabel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.PersonalImage = new System.Windows.Forms.PictureBox();
             this.txtBoxAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
             this.cmbCountries = new System.Windows.Forms.ComboBox();
@@ -64,11 +65,10 @@
             this.lblPersonIDResult = new System.Windows.Forms.Label();
             this.lblNationalNumResult = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.PersonalImage = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.grbBoxPerson.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PersonalImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -172,6 +172,16 @@
             this.btnClose.Text = "Colse";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // PersonalImage
+            // 
+            this.PersonalImage.Image = global::DVLD.Properties.Resources.Male_512;
+            this.PersonalImage.Location = new System.Drawing.Point(738, 84);
+            this.PersonalImage.Name = "PersonalImage";
+            this.PersonalImage.Size = new System.Drawing.Size(161, 175);
+            this.PersonalImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PersonalImage.TabIndex = 51;
+            this.PersonalImage.TabStop = false;
             // 
             // txtBoxAddress
             // 
@@ -306,6 +316,7 @@
             this.txtBoxNationalNum.Size = new System.Drawing.Size(161, 20);
             this.txtBoxNationalNum.TabIndex = 37;
             this.txtBoxNationalNum.TextChanged += new System.EventHandler(this.txtBoxNationalNum_TextChanged);
+            this.txtBoxNationalNum.Leave += new System.EventHandler(this.txtBoxNationalNum_Leave);
             this.txtBoxNationalNum.MouseLeave += new System.EventHandler(this.txtBoxNationalNum_MouseLeave);
             // 
             // lblNationalNum
@@ -366,6 +377,7 @@
             this.txtBoxLastName.Size = new System.Drawing.Size(161, 20);
             this.txtBoxLastName.TabIndex = 31;
             this.txtBoxLastName.TextChanged += new System.EventHandler(this.txtBoxLastName_TextChanged);
+            this.txtBoxLastName.Leave += new System.EventHandler(this.txtBoxLastName_Leave);
             // 
             // txtBoxThirdName
             // 
@@ -375,6 +387,7 @@
             this.txtBoxThirdName.Size = new System.Drawing.Size(161, 20);
             this.txtBoxThirdName.TabIndex = 30;
             this.txtBoxThirdName.TextChanged += new System.EventHandler(this.txtBoxThirdName_TextChanged);
+            this.txtBoxThirdName.Leave += new System.EventHandler(this.txtBoxThirdName_Leave);
             // 
             // txtBoxSecondName
             // 
@@ -384,6 +397,7 @@
             this.txtBoxSecondName.Size = new System.Drawing.Size(161, 20);
             this.txtBoxSecondName.TabIndex = 29;
             this.txtBoxSecondName.TextChanged += new System.EventHandler(this.txtBoxSecondName_TextChanged);
+            this.txtBoxSecondName.Leave += new System.EventHandler(this.txtBoxSecondName_Leave);
             // 
             // txtBoxFirstName
             // 
@@ -393,6 +407,7 @@
             this.txtBoxFirstName.Size = new System.Drawing.Size(161, 20);
             this.txtBoxFirstName.TabIndex = 28;
             this.txtBoxFirstName.TextChanged += new System.EventHandler(this.txtBoxFirstName_TextChanged);
+            this.txtBoxFirstName.Leave += new System.EventHandler(this.txtBoxFirstName_Leave);
             // 
             // label3
             // 
@@ -430,16 +445,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // PersonalImage
-            // 
-            this.PersonalImage.Image = global::DVLD.Properties.Resources.Male_512;
-            this.PersonalImage.Location = new System.Drawing.Point(738, 84);
-            this.PersonalImage.Name = "PersonalImage";
-            this.PersonalImage.Size = new System.Drawing.Size(161, 175);
-            this.PersonalImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PersonalImage.TabIndex = 51;
-            this.PersonalImage.TabStop = false;
-            // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
@@ -468,8 +473,8 @@
             this.Load += new System.EventHandler(this.AddEditPersonInfoUI_Load);
             this.grbBoxPerson.ResumeLayout(false);
             this.grbBoxPerson.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PersonalImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

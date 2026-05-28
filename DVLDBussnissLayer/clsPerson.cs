@@ -112,7 +112,7 @@ namespace DVLDBussnissLayer
         }
         public static bool DeletePerson(int id)
         {
-            return clsPerson.DeletePerson(id);
+            return clsPeopleDataAccess.DeletePerson(id);
         }
         public static DataTable GetPeopleInfo()
         {
