@@ -69,7 +69,7 @@ namespace DVLD.Forms
                 txtBoxEmail.Text = person.Email;
             if (person.Address != null)
                 txtBoxAddress.Text = person.Address;
-            int index = cmbCountries.FindStringExact(person.Nationality);
+            int index = person.Nationality;
 
             // 3. If found, make it the default selection
             if (index != -1)
@@ -97,7 +97,7 @@ namespace DVLD.Forms
             cmbCountries.DataSource = clsCountry.GetCountriesInfo();
             cmbCountries.DisplayMember = "CountryName";
             cmbCountries.ValueMember = "CountryID";
-            cmbCountries.SelectedIndex = 183;   //jorda id
+            cmbCountries.SelectedIndex = 183;   //jordan id
         }
         
         private void _SetImage(string ImagePath="")
@@ -206,7 +206,7 @@ namespace DVLD.Forms
             person.Address = txtBoxAddress.Text;
             person.Email = txtBoxEmail.Text;
             person.Phone = txtBoxPhone.Text;
-            person.Nationality = cmbCountries.Text;
+            person.Nationality = Convert.ToInt32(cmbCountries.Text);
             person.DateOfBirth = dtpDateOfBirth.Value;
             if (rdoMale.Checked)
             {

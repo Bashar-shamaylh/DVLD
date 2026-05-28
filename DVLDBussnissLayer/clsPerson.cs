@@ -26,7 +26,7 @@ namespace DVLDBussnissLayer
         public string Phone {  get; set; }
         public string Email {  get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string Nationality {  get; set; }
+        public int Nationality {  get; set; }
         public string PersonalImage { get; set; }
 
        public clsPerson() {
@@ -41,10 +41,10 @@ namespace DVLDBussnissLayer
             Email = "";
             Gender = 'M';
             DateOfBirth = DateTime.Now;
-            Nationality = "";
+            Nationality = -1;
             PersonalImage = null;
         }
-        clsPerson(int id,string firstname, string secondname, string thirrdname, string lastname, string nationalnumber, DateTime dateofbirth, string address,string phone,string email,string nationality, string personalimage,char gender)
+        clsPerson(int id,string firstname, string secondname, string thirrdname, string lastname, string nationalnumber, DateTime dateofbirth, string address,string phone,string email,int nationality, string personalimage,char gender)
         {
             ID = id;
              FirstName = firstname;
@@ -75,7 +75,7 @@ namespace DVLDBussnissLayer
             string email = "";
            DateTime dateOfBirth = DateTime.Now;
             char gender = 'M';
-           string nationality = "";
+           int nationality = -1;
             string personalImage = null;
             
             if (clsPeopleDataAccess.GetPersonByID(id,ref firstName, ref secondName, ref thirdName, ref lastName, ref nationnalNumber, ref dateOfBirth, ref address,ref phone,ref email,ref nationality, ref personalImage,ref gender))

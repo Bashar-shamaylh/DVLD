@@ -52,16 +52,16 @@
     <Compile Include="ctrlPersonInfo.Designer.cs">
       <DependentUpon>ctrlPersonInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AddEditPersonInfoUI.cs">
+    <Compile Include="Forms\People\AddEditPersonInfoUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddEditPersonInfoUI.Designer.cs">
+    <Compile Include="Forms\People\AddEditPersonInfoUI.Designer.cs">
       <DependentUpon>AddEditPersonInfoUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmPersonInfo.cs">
+    <Compile Include="Forms\People\frmPersonInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmPersonInfo.Designer.cs">
+    <Compile Include="Forms\People\frmPersonInfo.Designer.cs">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Main.cs">
@@ -70,10 +70,10 @@
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PeopleUI.cs">
+    <Compile Include="Forms\People\PeopleUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PeopleUI.Designer.cs">
+    <Compile Include="Forms\People\PeopleUI.Designer.cs">
       <DependentUpon>PeopleUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Tests.cs">
@@ -87,16 +87,16 @@
     <EmbeddedResource Include="ctrlPersonInfo.resx">
       <DependentUpon>ctrlPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddEditPersonInfoUI.resx">
+    <EmbeddedResource Include="Forms\People\AddEditPersonInfoUI.resx">
       <DependentUpon>AddEditPersonInfoUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmPersonInfo.resx">
+    <EmbeddedResource Include="Forms\People\frmPersonInfo.resx">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PeopleUI.resx">
+    <EmbeddedResource Include="Forms\People\PeopleUI.resx">
       <DependentUpon>PeopleUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tests.resx">

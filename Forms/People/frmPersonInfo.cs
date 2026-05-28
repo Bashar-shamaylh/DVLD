@@ -23,5 +23,9 @@ namespace DVLD.Forms
             
         }
 
+        private void ctrlPersonInfo1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
