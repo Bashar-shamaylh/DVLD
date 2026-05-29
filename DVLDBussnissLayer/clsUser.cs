@@ -1,0 +1,98 @@
+﻿using DVLDDataAccessLayer;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DVLDBussnissLayer
+{
+    public class clsUser
+    {
+        public enum enMode { AddMode = 1, UpdateMode }
+        public enMode Mode = enMode.AddMode;
+        public int UserID { get; set; }
+        public string UserName { get; set; }
+       
+        public string UserPassword { get; set; }
+        public int PersonID { get; set; }
+        public bool isActive { get; set; }
+       
+
+        public clsUser()
+        {
+            UserID =-1;
+            UserName = "";
+            UserPassword = "";
+            PersonID = -1;
+            isActive = false;
+            
+        }
+        clsUser(int userid, string username, string userpassword, int personid, bool isactive)
+        {
+            UserID = userid;
+            UserName = username;
+            UserPassword = userpassword;
+            PersonID = personid;
+            isActive = isactive;
+           
+            Mode = enMode.UpdateMode;
+        }
+        static public clsUser Find(int userid)
+        {
+
+
+            string username = "";
+            string userpassword = "";
+            int personid = -1;
+            bool isactive = false;
+
+            if (clsUsersDataAccess.GetUserByID(userid,ref username,ref userpassword,ref personid,ref isactive))
+                return new clsUser(userid,username,userpassword,personid,isactive);
+            return null;
+        }
+        private bool _AddNewUser()
+        {
+            this.UserID = clsUsersDataAccess.AddNewUser(UserName,UserPassword,PersonID,isActive);
+            return this.UserID != -1;
+        }
+        private bool _UpdateUserInfo()
+        {
+            return clsUsersDataAccess.UpdateUserInfo(UserID,UserName,UserPassword,PersonID,isActive);
+        }
+        public bool Save()
+        {
+            if (this.Mode == enMode.AddMode)
+            {
+                if (_AddNewUser())
+                {
+                    this.Mode = enMode.UpdateMode;
+                    return true;
+                }
+                else
+                    return false;
+            }
+            else
+            {
+                if (_UpdateUserInfo())
+                    return true;
+                return false;
+            }
+        }
+        public static bool DeleteUser(int userid)
+        {
+            return clsUsersDataAccess.DeleteUser(userid);
+        }
+        public static DataTable GetPeopleInfo()
+        {
+            return clsUsersDataAccess.GetUsersInfo();
+        }
+        public static bool FindUserByUserNameAndUserPassword(string userName,string userpassword,ref bool isactive)
+        {
+            return clsUsersDataAccess.FindUserByUserNameAndUserPassword(userName,userpassword,ref isactive);
+        }
+
+
+    }
+}
