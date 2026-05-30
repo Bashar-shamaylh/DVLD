@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.chkbRememberMe = new System.Windows.Forms.CheckBox();
             this.lblLogin = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUserName
@@ -82,6 +85,10 @@
             this.lblLogin.TabIndex = 4;
             this.lblLogin.Text = "Login";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmLoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -95,6 +102,7 @@
             this.Name = "frmLoginScreen";
             this.Text = "frmLoginScreen";
             this.Load += new System.EventHandler(this.frmLoginScreen_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,5 +115,6 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.CheckBox chkbRememberMe;
         private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

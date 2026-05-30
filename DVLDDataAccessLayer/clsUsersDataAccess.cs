@@ -192,7 +192,7 @@ namespace DVLDDataAccessLayer
                 if (reader.Read())
                 {
 
-                    isactive = (bool)reader["isActive"];
+                    isactive =(bool)reader["isActive"];
                     isFound = true;
                 }
 
