@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD.Forms.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,5 +38,17 @@ namespace DVLD.Forms
         {
 
         }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUsersManagement frmUsersManagement = new frmUsersManagement();
+            frmUsersManagement.Show();
+        }
+
     }
 }

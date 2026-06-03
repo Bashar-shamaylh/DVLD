@@ -82,7 +82,27 @@ namespace DVLDBussnissLayer
                return new clsPerson(id,firstName,secondName,thirdName,lastName,nationnalNumber,dateOfBirth,address,phone,email, nationality, personalImage,gender);
             return null;        
         }
-         private bool _AddNewPerson()
+         public static clsPerson FindPersonByNationnalNum(string nationalNumber)
+        {
+            int id = -1;
+            string firstName = "";
+            string secondName = "";
+            string thirdName = "";
+            string lastName = "";
+
+            string address = "";
+            string phone = "";
+            string email = "";
+            DateTime dateOfBirth = DateTime.Now;
+            char gender = 'M';
+            int nationality = -1;
+            string personalImage = null;
+
+            if (clsPeopleDataAccess.GetPersonByNationalNum(ref id, ref firstName, ref secondName, ref thirdName, ref lastName,  nationalNumber, ref dateOfBirth, ref address, ref phone, ref email, ref nationality, ref personalImage, ref gender))
+                return new clsPerson(id, firstName, secondName, thirdName, lastName, nationalNumber, dateOfBirth, address, phone, email, nationality, personalImage, gender);
+            return null;
+        }
+        private bool _AddNewPerson()
         {
             this.ID=clsPeopleDataAccess.AddNewPerson(NationnalNumber,FirstName,SecondName,ThirdName,LastName,DateOfBirth, Address,Phone,Email, Nationality, PersonalImage,Gender);
             return this.ID!=-1;
@@ -122,6 +142,7 @@ namespace DVLDBussnissLayer
         {
             return clsPeopleDataAccess.IsNationalNumExist(nationalnumber);
         }
+     
 
     }
 }

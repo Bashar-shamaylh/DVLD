@@ -84,7 +84,7 @@ namespace DVLDBussnissLayer
         {
             return clsUsersDataAccess.DeleteUser(userid);
         }
-        public static DataTable GetPeopleInfo()
+        public static DataTable GetUsersInfo()
         {
             return clsUsersDataAccess.GetUsersInfo();
         }

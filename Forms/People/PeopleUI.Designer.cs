@@ -45,14 +45,8 @@
             this.cmbxFitlerItems = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnAddNewPerson = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.sToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sdsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dsdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grdvPeople)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdvPeople
@@ -209,44 +203,6 @@
             this.btnAddNewPerson.UseVisualStyleBackColor = true;
             this.btnAddNewPerson.Click += new System.EventHandler(this.btnAddNewPerson_Click);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1118, 24);
-            this.menuStrip1.TabIndex = 10;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // sToolStripMenuItem
-            // 
-            this.sToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sdToolStripMenuItem,
-            this.sdsToolStripMenuItem,
-            this.dsdToolStripMenuItem});
-            this.sToolStripMenuItem.Name = "sToolStripMenuItem";
-            this.sToolStripMenuItem.Size = new System.Drawing.Size(24, 20);
-            this.sToolStripMenuItem.Text = "s";
-            // 
-            // sdToolStripMenuItem
-            // 
-            this.sdToolStripMenuItem.Name = "sdToolStripMenuItem";
-            this.sdToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
-            this.sdToolStripMenuItem.Text = "sd";
-            // 
-            // sdsToolStripMenuItem
-            // 
-            this.sdsToolStripMenuItem.Name = "sdsToolStripMenuItem";
-            this.sdsToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
-            this.sdsToolStripMenuItem.Text = "sds";
-            // 
-            // dsdToolStripMenuItem
-            // 
-            this.dsdToolStripMenuItem.Name = "dsdToolStripMenuItem";
-            this.dsdToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
-            this.dsdToolStripMenuItem.Text = "dsd";
-            // 
             // PeopleUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,15 +217,11 @@
             this.Controls.Add(this.lblNumberOfRecords);
             this.Controls.Add(this.lblManagePeople);
             this.Controls.Add(this.grdvPeople);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "PeopleUI";
             this.Text = "Manege People";
             this.Load += new System.EventHandler(this.PeopleUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdvPeople)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,11 +238,6 @@
         private System.Windows.Forms.ComboBox cmbxFitlerItems;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnAddNewPerson;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem sToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sdToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sdsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dsdToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmAddPerson;
         private System.Windows.Forms.ToolStripMenuItem tsmUpdatePersonInfo;

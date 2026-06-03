@@ -46,10 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ctrlPersonInfo.cs">
+    <Compile Include="Forms\Users\frmUsersManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Users\frmUsersManagement.Designer.cs">
+      <DependentUpon>frmUsersManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user Controls\ctrlFindPersonFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctrlPersonInfo.Designer.cs">
+    <Compile Include="user Controls\ctrlFindPersonFilter.Designer.cs">
+      <DependentUpon>ctrlFindPersonFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user Controls\ctrlPersonInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="user Controls\ctrlPersonInfo.Designer.cs">
       <DependentUpon>ctrlPersonInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmLoginScreen.cs">
@@ -90,7 +102,19 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ctrlPersonInfo.resx">
+    <Compile Include="user Controls\ctrlPersonInfoWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="user Controls\ctrlPersonInfoWithFilter.Designer.cs">
+      <DependentUpon>ctrlPersonInfoWithFilter.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\Users\frmUsersManagement.resx">
+      <DependentUpon>frmUsersManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user Controls\ctrlFindPersonFilter.resx">
+      <DependentUpon>ctrlFindPersonFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user Controls\ctrlPersonInfo.resx">
       <DependentUpon>ctrlPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmLoginScreen.resx">
@@ -121,6 +145,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="user Controls\ctrlPersonInfoWithFilter.resx">
+      <DependentUpon>ctrlPersonInfoWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -136,7 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Database\" />
-    <Folder Include="Forms\Users\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DVLDModels\DVLDModels.csproj">

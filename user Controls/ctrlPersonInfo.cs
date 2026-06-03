@@ -25,9 +25,7 @@ namespace DVLD
 
         }
      
-
-     
-        public void ctrlPersonInfo_Load(int id = -1)
+        public void FillPersonInfoIntoTheForm(int id)
         {
             try
             {
@@ -75,6 +73,11 @@ namespace DVLD
                 throw;
             }
         }
+     
+        public void ctrlPersonInfo_Load(int id = -1)
+        {
+            FillPersonInfoIntoTheForm(id);
+        }
 
         private void grbUserInfo_Enter(object sender, EventArgs e)
         {
@@ -91,6 +94,7 @@ namespace DVLD
             AddEditPersonInfoUI addEditPersonInfoUI = new AddEditPersonInfoUI(Convert.ToInt32(lblPersonIdResult.Text));
             addEditPersonInfoUI.ShowDialog();
         }
+
 
         
     }

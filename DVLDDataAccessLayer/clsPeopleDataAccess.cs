@@ -71,6 +71,58 @@ namespace DVLDDataAccessLayer
             return isFound;
             
         }
+        static public bool GetPersonByNationalNum(ref int  id, ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName,  string NationalNumber, ref DateTime DateOfBirth, ref string Address, ref string Phone, ref string Email, ref int Nationality, ref string PearsonPicturePath, ref char Gender)
+        {
+            bool isFound = false;
+            string query = "select * from People where NationalNumber=@NationalNumber";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id", id);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    FirstName = (string)reader["FirstName"];
+                    SecondName = (string)reader["SecondName"];
+                    ThirdName = (string)reader["ThirdName"];
+                    LastName = (string)reader["LastName"];
+                    id = (int)reader["PersonID"];
+                    DateOfBirth = (DateTime)reader["DateOfBirth"];
+                    Gender = reader["Gender"].ToString()[0];
+                    if (reader["Address"] != DBNull.Value)
+                        Address = (string)reader["Address"];
+                    else
+                        Address = null;
+                    if (reader["Phone"] != DBNull.Value)
+                        Phone = (string)reader["Phone"];
+                    else
+                        Phone = null;
+                    if (reader["Email"] != DBNull.Value)
+                        Email = (string)reader["Email"];
+                    else
+                        Email = null;
+                    Nationality = (int)reader["Nationality"];
+                    if (reader["PersonalPicturePath"] != DBNull.Value)
+                        PearsonPicturePath = (string)reader["PersonalPicturePath"];
+                    else
+                        PearsonPicturePath = null;
+                    isFound = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            connection.Close();
+            return isFound;
+
+        }
         static public int AddNewPerson(string nationnalNumber, string firstname, string secondname, string thirdname, string lastname, DateTime dateOfBirth,string address,string phone,string email,int nationality, string personImagePath,char gender)
         {
             int id = -1;

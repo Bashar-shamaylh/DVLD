@@ -67,6 +67,7 @@ namespace DVLD.Forms
                     // Set Handled to true to "cancel" the event and block the character
                     e.Handled = true;
                 }
+
             }
             else if(cmbxFitlerItems.SelectedIndex == 1 || cmbxFitlerItems.SelectedIndex == 2 || cmbxFitlerItems.SelectedIndex == 3 || cmbxFitlerItems.SelectedIndex == 4  )
             {
