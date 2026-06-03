@@ -22,14 +22,14 @@ namespace DVLD
 
         private void ctrlPersonInfo_Load(object sender, EventArgs e)
         {
-
+            pcbPersonalImage.Image = Properties.Resources.Male_512;
         }
      
-        public void FillPersonInfoIntoTheForm(int id)
+        public void FillPersonInfoIntoTheForm(clsPerson person)
         {
             try
             {
-                clsPerson person = clsPerson.Find(id);
+               
                 if (person != null)
                 {
                     lblPersonIdResult.Text = person.ID.ToString();
@@ -62,6 +62,14 @@ namespace DVLD
 
                             pcbPersonalImage.Image = Image.FromFile(path);
                         }
+                        else
+                        {
+                            if (lblGendorResult.Text == "M")
+                                pcbPersonalImage.Image = Properties.Resources.Male_512;
+                            else if(lblGendorResult.Text == "F")
+                                pcbPersonalImage.Image= Properties.Resources.Female_512;
+                        }
+
 
                     }
 
@@ -74,9 +82,9 @@ namespace DVLD
             }
         }
      
-        public void ctrlPersonInfo_Load(int id = -1)
+        public void ctrlPersonInfo_Load(clsPerson person)
         {
-            FillPersonInfoIntoTheForm(id);
+            FillPersonInfoIntoTheForm(person);
         }
 
         private void grbUserInfo_Enter(object sender, EventArgs e)
@@ -95,7 +103,14 @@ namespace DVLD
             addEditPersonInfoUI.ShowDialog();
         }
 
+        private void grbUserInfo_Enter_1(object sender, EventArgs e)
+        {
 
-        
+        }
+
+        private void pcbPersonalImage_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

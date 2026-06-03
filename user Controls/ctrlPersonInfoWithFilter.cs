@@ -28,7 +28,7 @@ namespace DVLD.user_Controls
             //this
             ctrlFindPersonFilter1.DataBack += FindPerson;
         }
-        public void FindPerson(Object sender,string SearchText,string SearchType)
+        public void FindPerson(Object sender, string SearchText, string SearchType)
         {
             if (SearchText == null)
             {
@@ -41,17 +41,24 @@ namespace DVLD.user_Controls
             else
             {
                 clsPerson person;
-                if (SearchType=="PersonID")
+                if (SearchType == "PersonID")
                 {
-                     person=clsPerson.Find(int.Parse(SearchText));
+                    person = clsPerson.Find(int.Parse(SearchText));
+
                 }
                 else
-                     person=clsPerson.FindPersonByNationnalNum(SearchText);
+                    person = clsPerson.FindPersonByNationnalNum(SearchText);
                 if (person != null)
                 {
-
+                    ctrlPersonInfo1.FillPersonInfoIntoTheForm(person);
                 }
 
             }
+        }
+
+        private void ctrlFindPersonFilter1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

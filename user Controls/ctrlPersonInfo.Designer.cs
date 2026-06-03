@@ -81,6 +81,7 @@
             this.grbUserInfo.TabIndex = 2;
             this.grbUserInfo.TabStop = false;
             this.grbUserInfo.Text = "Person Information";
+            this.grbUserInfo.Enter += new System.EventHandler(this.grbUserInfo_Enter_1);
             // 
             // linklblEditPersonInfo
             // 
@@ -101,6 +102,7 @@
             this.pcbPersonalImage.Size = new System.Drawing.Size(170, 220);
             this.pcbPersonalImage.TabIndex = 18;
             this.pcbPersonalImage.TabStop = false;
+            this.pcbPersonalImage.Click += new System.EventHandler(this.pcbPersonalImage_Click);
             // 
             // lblCountryResult
             // 

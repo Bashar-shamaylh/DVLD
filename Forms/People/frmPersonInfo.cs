@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLDBussnissLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,7 @@ namespace DVLD.Forms
         public frmPersonInfo(int id)
         {
             InitializeComponent();
-            ctrlPersonInfo1.ctrlPersonInfo_Load(id);
+            ctrlPersonInfo1.ctrlPersonInfo_Load(clsPerson.Find(id));
         }
 
         private void frmPersonInfo_Load(object sender, EventArgs e)
@@ -25,7 +26,7 @@ namespace DVLD.Forms
 
         private void ctrlPersonInfo1_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

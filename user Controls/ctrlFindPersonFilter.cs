@@ -1,4 +1,5 @@
-﻿using DVLDBussnissLayer;
+﻿using DVLD.Forms;
+using DVLDBussnissLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -74,7 +75,8 @@ namespace DVLD.user_Controls
 
         private void btnAddNewPerson_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("not programmed yet!");
+           AddEditPersonInfoUI addEditPersonInfoUI = new AddEditPersonInfoUI();
+            addEditPersonInfoUI.ShowDialog();
         }
     }
 }

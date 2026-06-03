@@ -46,6 +46,7 @@
             this.ctrlFindPersonFilter1.Name = "ctrlFindPersonFilter1";
             this.ctrlFindPersonFilter1.Size = new System.Drawing.Size(777, 77);
             this.ctrlFindPersonFilter1.TabIndex = 1;
+            this.ctrlFindPersonFilter1.Load += new System.EventHandler(this.ctrlFindPersonFilter1_Load);
             // 
             // ctrlPersonInfoWithFilter
             // 
