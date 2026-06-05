@@ -92,6 +92,10 @@ namespace DVLDBussnissLayer
         {
             return clsUsersDataAccess.FindUserByUserNameAndUserPassword(userName,userpassword,ref isactive);
         }
+        public static bool IsUserWithPersonIDExist(int personid)
+        {
+            return clsUsersDataAccess.isUserWithPersonIDExist(personid);
+        }
 
 
     }

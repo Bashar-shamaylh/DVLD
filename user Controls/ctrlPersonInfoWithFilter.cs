@@ -17,7 +17,7 @@ namespace DVLD.user_Controls
         {
             InitializeComponent();
         }
-
+        public clsPerson person;
         private void ctrlPersonInfo1_Load(object sender, EventArgs e)
         {
 
@@ -40,7 +40,7 @@ namespace DVLD.user_Controls
             }
             else
             {
-                clsPerson person;
+                
                 if (SearchType == "PersonID")
                 {
                     person = clsPerson.Find(int.Parse(SearchText));
