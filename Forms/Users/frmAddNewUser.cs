@@ -109,7 +109,7 @@ namespace DVLD.Forms.Users
                 else
                 {
                     clsUser user = new clsUser();
-                    if(!string.IsNullOrEmpty(txtboxUserName.Text)&&!string.IsNullOrEmpty(txtboxPassword.Text)&&string.IsNullOrEmpty(txtboxConfirmPassword.Text))
+                    if(!(string.IsNullOrEmpty(txtboxUserName.Text)||string.IsNullOrEmpty(txtboxPassword.Text)||string.IsNullOrEmpty(txtboxConfirmPassword.Text)))
                     {
                         user.UserName = txtboxUserName.Text;
                         user.UserPassword = txtboxPassword.Text;
@@ -147,7 +147,7 @@ namespace DVLD.Forms.Users
                     }
                 else
                 {
-                    tbpLoginInfo.Focus();
+                    tabControl1.SelectedIndex = 1;
                 }
 
                     

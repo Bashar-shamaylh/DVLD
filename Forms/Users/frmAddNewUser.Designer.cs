@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbpPersonalInfo = new System.Windows.Forms.TabPage();
+            this.btnNext = new System.Windows.Forms.Button();
             this.ctrlPersonInfoWithFilter1 = new DVLD.user_Controls.ctrlPersonInfoWithFilter();
             this.tbpLoginInfo = new System.Windows.Forms.TabPage();
             this.lblConfirmPassword = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnNext = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tbpPersonalInfo.SuspendLayout();
             this.tbpLoginInfo.SuspendLayout();
@@ -74,6 +74,16 @@
             this.tbpPersonalInfo.Text = "Personal Info";
             this.tbpPersonalInfo.UseVisualStyleBackColor = true;
             // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(694, 434);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.TabIndex = 3;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
             // ctrlPersonInfoWithFilter1
             // 
             this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(9, 3);
@@ -96,7 +106,7 @@
             this.tbpLoginInfo.Location = new System.Drawing.Point(4, 22);
             this.tbpLoginInfo.Name = "tbpLoginInfo";
             this.tbpLoginInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpLoginInfo.Size = new System.Drawing.Size(819, 450);
+            this.tbpLoginInfo.Size = new System.Drawing.Size(819, 463);
             this.tbpLoginInfo.TabIndex = 1;
             this.tbpLoginInfo.Text = "Login Info";
             this.tbpLoginInfo.UseVisualStyleBackColor = true;
@@ -212,16 +222,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // btnNext
-            // 
-            this.btnNext.Location = new System.Drawing.Point(694, 434);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
-            this.btnNext.TabIndex = 3;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // frmAddNewUser
             // 

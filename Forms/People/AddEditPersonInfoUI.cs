@@ -206,7 +206,7 @@ namespace DVLD.Forms
             person.Address = txtBoxAddress.Text;
             person.Email = txtBoxEmail.Text;
             person.Phone = txtBoxPhone.Text;
-            person.Nationality = Convert.ToInt32(cmbCountries.Text);
+            person.Nationality = Convert.ToInt32(cmbCountries.SelectedIndex);
             person.DateOfBirth = dtpDateOfBirth.Value;
             if (rdoMale.Checked)
             {

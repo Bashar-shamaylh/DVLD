@@ -290,11 +290,11 @@ namespace DVLDDataAccessLayer
                                   ,[Address]
                                   ,[Phone]
                                   ,[Email]
-                                  ,[Nationality]
+                                  ,[CountryName]
                                   ,[PersonalPicturePath]
                                     
                                   
-                              FROM [dbo].[People]
+                              FROM [dbo].[PeopleCountry]
 
                                                 GO";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
