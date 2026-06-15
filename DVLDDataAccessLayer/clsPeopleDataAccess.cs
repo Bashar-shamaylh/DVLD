@@ -77,7 +77,7 @@ namespace DVLDDataAccessLayer
             string query = "select * from People where NationalNumber=@NationalNumber";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@NationalNumber", NationalNumber);
 
             try
             {
@@ -321,8 +321,8 @@ namespace DVLDDataAccessLayer
         static public bool IsNationalNumExist(string nationalNum)
         {
             bool wasFound= false;
-            string query = @"if exists(select 1 from People where NationalNumber='@nationalNum')
-                                PRINT 'Found'";
+            string query = @"select 1 from People where NationalNumber='@nationalNum'
+                                ";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@nationalNum", nationalNum);

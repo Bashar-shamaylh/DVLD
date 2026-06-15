@@ -211,6 +211,10 @@ namespace DVLDDataAccessLayer
         {
             bool wasFound = false;
             string query = @"select 1 from Users where PersonID=@personid";
+<<<<<<< HEAD
+=======
+                                ;
+>>>>>>> 98b3cebcbbbeb463f4d366998bd632700e99722f
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@personid", personid);
