@@ -22,7 +22,9 @@ namespace DVLD.Forms.Users
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            
             this.Close();
+
         }
 
         private void txtboxUserName_TextChanged(object sender, EventArgs e)

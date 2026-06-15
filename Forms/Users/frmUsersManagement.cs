@@ -30,8 +30,50 @@ namespace DVLD.Forms.Users
             cmbxFitlerItems.Items.Add("UserPassword");
             cmbxFitlerItems.Items.Add("PersonID");
             cmbxFitlerItems.Items.Add("isActive");
-           
+            cmbxIsActiveOptions.Items.Add("All");
+            cmbxIsActiveOptions.Items.Add("Yes");
+            cmbxIsActiveOptions.Items.Add("No");
         }
+        public void ApplyFilter()
+        {
+			string ColumnName = cmbxFitlerItems.Text.Trim();
+            if (ColumnName == "isActive")
+            {
+                if (cmbxIsActiveOptions.SelectedIndex == 1)
+                {
+                    _dvUsers.RowFilter = $"{ColumnName} = true";
+                }
+                else if (cmbxIsActiveOptions.SelectedIndex == 2)
+                {
+					_dvUsers.RowFilter = $"{ColumnName} = false";
+				}
+
+			}
+            else
+            {
+				string filterText = txtSearch.Text.Trim();
+
+				// If the box is empty, reset the filter and STOP
+				if (string.IsNullOrEmpty(filterText))
+				{
+					_dvUsers.RowFilter = "";
+					return;
+				}
+
+				if (ColumnName== "UserID"|| ColumnName=="PersonID") //UserID or PersonID
+					_dvUsers.RowFilter = $"{ColumnName} = {filterText}";
+				else if (ColumnName=="UserName" || ColumnName=="UserPassword")//password or username
+					_dvUsers.RowFilter = $"{ColumnName} Like '%{filterText}%'";
+				else
+					_dvUsers.RowFilter = "";
+			}
+			
+
+			grdvUsers.DataSource = _dvUsers;
+		}
+      
+
+
         private void frmUsersManagement_Load(object sender, EventArgs e)
         {
             LoadUsersDataIntoTheForm();
@@ -44,68 +86,76 @@ namespace DVLD.Forms.Users
 
         private void cmbxFitlerItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtSearch.Visible = true;
+            if (cmbxFitlerItems.SelectedIndex == 4)
+            {
+                cmbxIsActiveOptions.Visible = true;
+                txtSearch.Visible = false;
+            }
+            else
+            {
+                cmbxIsActiveOptions.Visible = false;
+                txtSearch.Visible = true;
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string filterText = txtSearch.Text.Trim();
-
-            // If the box is empty, reset the filter and STOP
-            if (string.IsNullOrEmpty(filterText))
-            {
-                _dvUsers.RowFilter = "";
-                return;
-            }
-            string ColumnName = cmbxFitlerItems.Text.Trim();
-            if (cmbxFitlerItems.SelectedIndex == 0)
-                _dvUsers.RowFilter = $"{ColumnName} = {filterText}";
-            else if (cmbxFitlerItems.SelectedIndex == 9)
-                _dvUsers.RowFilter = $"{ColumnName} = '{filterText}'";
-            else
-                _dvUsers.RowFilter = $"{ColumnName} LIKE '%{filterText}%'";
-
-            grdvUsers.DataSource = _dvUsers;
+            ApplyFilter();
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (cmbxFitlerItems.SelectedIndex == 0 || cmbxFitlerItems.SelectedIndex == 5 || cmbxFitlerItems.SelectedIndex == 6)
-            {
-                if (char.IsLetter(e.KeyChar))
-                {
-                    // Set Handled to true to "cancel" the event and block the character
-                    e.Handled = true;
-                }
 
-            }
-            else if (cmbxFitlerItems.SelectedIndex == 1 || cmbxFitlerItems.SelectedIndex == 2 || cmbxFitlerItems.SelectedIndex == 3 || cmbxFitlerItems.SelectedIndex == 4)
-            {
-                if (char.IsDigit(e.KeyChar))
-                {
+			if (cmbxFitlerItems.SelectedIndex == 0 || cmbxFitlerItems.SelectedIndex == 3)
+			{
+				if (char.IsLetter(e.KeyChar))
+				{
+					// Set Handled to true to "cancel" the event and block the character
+					e.Handled = true;
+				}
 
-                    e.Handled = true;
-                }
-            }
-            else if (cmbxFitlerItems.SelectedIndex == 9)
-            {
-                if (e.KeyChar != 'M' && e.KeyChar != 'm' && e.KeyChar != 'F' && e.KeyChar != 'f' && e.KeyChar != (char)Keys.Back)
-                {
+			}
+			else if (cmbxFitlerItems.SelectedIndex == 1)
+			{
+				if (char.IsDigit(e.KeyChar))
+				{
 
-                    e.Handled = true;
-                }
-            }
-        }
+					e.Handled = true;
+				}
+			}
+		}
 
         private void tsmAddUser_Click(object sender, EventArgs e)
         {
-            
-        }
+
+			frmAddNewUser frmaddnewuser = new frmAddNewUser();
+			frmaddnewuser.ShowDialog();
+			LoadUsersDataIntoTheForm();
+		}
 
         private void btnAddNewUser_Click(object sender, EventArgs e)
         {
              frmAddNewUser frmaddnewuser=new frmAddNewUser();
             frmaddnewuser.ShowDialog();
+            LoadUsersDataIntoTheForm();
+
+		}
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmUpdateUserInfo_Click(object sender, EventArgs e)
+        {
+			frmAddNewUser frmaddnewuser = new frmAddNewUser();
+			frmaddnewuser.ShowDialog();
+			LoadUsersDataIntoTheForm();
+		}
+
+        private void tsmDeleteUser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

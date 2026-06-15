@@ -47,6 +47,7 @@ namespace DVLD.Forms
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUsersManagement frmUsersManagement = new frmUsersManagement();
+            frmUsersManagement.MdiParent = this;
             frmUsersManagement.Show();
         }
 

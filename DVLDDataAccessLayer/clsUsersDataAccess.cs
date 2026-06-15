@@ -210,8 +210,7 @@ namespace DVLDDataAccessLayer
         static public bool isUserWithPersonIDExist(int personid)
         {
             bool wasFound = false;
-            string query = @"if exists(select 1 from Users where PersonID=@personid)
-                                PRINT 'Found'";
+            string query = @"select 1 from Users where PersonID=@personid";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@personid", personid);
