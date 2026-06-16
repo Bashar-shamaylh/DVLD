@@ -15,9 +15,36 @@ namespace DVLD.Forms.Users
     public partial class frmAddNewUser : Form
     {
         clsPerson person;
-        public frmAddNewUser()
+        clsUser user=new clsUser();
+        public frmAddNewUser(int Userid=-1)
         {
             InitializeComponent();
+            if (Userid != -1)
+            {
+                user = clsUser.Find(Userid);
+                person = clsPerson.Find(user.PersonID);
+                if (person != null)
+                {
+                    ctrlPersonInfo1.FillPersonInfoIntoTheForm(person);
+                }
+                if (user != null)
+                {
+                    _FillUserInfoIntoTheForm();
+                }
+            }
+        }
+        private void _FillUserInfoIntoTheForm()
+        {
+            txtboxUserName.Text = user.UserName;
+            txtboxPassword.Text = user.UserPassword;
+            lblUserIDResult.Text = user.UserID.ToString();
+            txtboxConfirmPassword.Visible = false;
+            if (user.isActive)
+                chkisActive.Checked = true;
+            else
+                chkisActive.Checked = false;
+
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -97,38 +124,70 @@ namespace DVLD.Forms.Users
 
         private void frmAddNewUser_Load(object sender, EventArgs e)
         {
-            chkisActive.Checked = true;
+            if(user.Mode==clsUser.enMode.AddMode)
+            {
+                chkisActive.Checked = true;
+            }
+          
+            ctrlFindPersonFilter1.DataBack += FindPerson;
+        }
+        public void FindPerson(Object sender, string SearchText, string SearchType)
+        {
+            if (SearchText == null)
+            {
+                MessageBox.Show("Invalid ID or National Number");
+            }
+            else if (SearchType == null)
+            {
+                MessageBox.Show("Invalid ID or National Number");
+            }
+            else
+            {
+
+                if (SearchType == "PersonID")
+                {
+                    person = clsPerson.Find(int.Parse(SearchText));
+
+                }
+                else
+                    person = clsPerson.FindPersonByNationnalNum(SearchText);
+                if (person != null)
+                {
+                    ctrlPersonInfo1.FillPersonInfoIntoTheForm(person);
+                }
+
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (person!=null)
             {
-                if (clsUser.IsUserWithPersonIDExist(person.ID))
-                {
-                    MessageBox.Show("This Person is Allready a User!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    clsUser user = new clsUser();
-                    if(!(string.IsNullOrEmpty(txtboxUserName.Text)||string.IsNullOrEmpty(txtboxPassword.Text)||string.IsNullOrEmpty(txtboxConfirmPassword.Text)))
+                if(user.Mode==clsUser.enMode.AddMode)
+                    if (clsUser.IsUserWithPersonIDExist(person.ID))
                     {
-                        user.UserName = txtboxUserName.Text;
-                        user.UserPassword = txtboxPassword.Text;
-                        if (chkisActive.Checked)
-                        {
-
-                            user.isActive = true;
-                        }
-                        else { user.isActive = false; }
-                        user.PersonID = person.ID;
-                        user.Save();
-                        lblUserIDResult.Text = user.UserID.ToString();
-
-
+                        MessageBox.Show("This Person is Allready a User!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
-                   
+
+
+                if (!(string.IsNullOrEmpty(txtboxUserName.Text) || string.IsNullOrEmpty(txtboxPassword.Text) || string.IsNullOrEmpty(txtboxConfirmPassword.Text)))
+                {
+                    user.UserName = txtboxUserName.Text;
+                    user.UserPassword = txtboxPassword.Text;
+                    if (chkisActive.Checked)
+                    {
+
+                        user.isActive = true;
+                    }
+                    else { user.isActive = false; }
+                    user.PersonID = person.ID;
+                    user.Save();
+                    lblUserIDResult.Text = user.UserID.ToString();
+
                 }
+            
+
 
             }
         }
@@ -140,21 +199,27 @@ namespace DVLD.Forms.Users
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-             person = ctrlPersonInfoWithFilter1.person;
+            
             if (person != null)
             {
+                if(user.Mode == clsUser.enMode.AddMode)
                 if(clsUser.IsUserWithPersonIDExist(person.ID)) 
                     {
                         MessageBox.Show("This Person is Allready a User!","",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                     }
-                else
-                {
+               
                     tabControl1.SelectedIndex = 1;
-                }
+                
 
                     
             }
             
+        }
+
+        private void tbpPersonalInfo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

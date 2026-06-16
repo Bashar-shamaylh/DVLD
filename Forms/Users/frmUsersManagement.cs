@@ -148,8 +148,13 @@ namespace DVLD.Forms.Users
 
         private void tsmUpdateUserInfo_Click(object sender, EventArgs e)
         {
-			frmAddNewUser frmaddnewuser = new frmAddNewUser();
-			frmaddnewuser.ShowDialog();
+            if (int.TryParse(grdvUsers.CurrentCell.Value.ToString(), out int id))
+            {
+                frmAddNewUser frmaddnewuser = new frmAddNewUser(id);
+                frmaddnewuser.ShowDialog();
+
+            }
+            
 			LoadUsersDataIntoTheForm();
 		}
 

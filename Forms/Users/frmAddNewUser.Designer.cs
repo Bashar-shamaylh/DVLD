@@ -32,7 +32,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbpPersonalInfo = new System.Windows.Forms.TabPage();
             this.btnNext = new System.Windows.Forms.Button();
-            this.ctrlPersonInfoWithFilter1 = new DVLD.user_Controls.ctrlPersonInfoWithFilter();
             this.tbpLoginInfo = new System.Windows.Forms.TabPage();
             this.lblConfirmPassword = new System.Windows.Forms.Label();
             this.txtboxConfirmPassword = new System.Windows.Forms.TextBox();
@@ -46,6 +45,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ctrlFindPersonFilter1 = new DVLD.user_Controls.ctrlFindPersonFilter();
+            this.ctrlPersonInfo1 = new DVLD.ctrlPersonInfo();
             this.tabControl1.SuspendLayout();
             this.tbpPersonalInfo.SuspendLayout();
             this.tbpLoginInfo.SuspendLayout();
@@ -64,8 +65,9 @@
             // 
             // tbpPersonalInfo
             // 
+            this.tbpPersonalInfo.Controls.Add(this.ctrlPersonInfo1);
+            this.tbpPersonalInfo.Controls.Add(this.ctrlFindPersonFilter1);
             this.tbpPersonalInfo.Controls.Add(this.btnNext);
-            this.tbpPersonalInfo.Controls.Add(this.ctrlPersonInfoWithFilter1);
             this.tbpPersonalInfo.Location = new System.Drawing.Point(4, 22);
             this.tbpPersonalInfo.Name = "tbpPersonalInfo";
             this.tbpPersonalInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -73,6 +75,7 @@
             this.tbpPersonalInfo.TabIndex = 0;
             this.tbpPersonalInfo.Text = "Personal Info";
             this.tbpPersonalInfo.UseVisualStyleBackColor = true;
+            this.tbpPersonalInfo.Click += new System.EventHandler(this.tbpPersonalInfo_Click);
             // 
             // btnNext
             // 
@@ -83,14 +86,6 @@
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // ctrlPersonInfoWithFilter1
-            // 
-            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(9, 3);
-            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
-            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(807, 428);
-            this.ctrlPersonInfoWithFilter1.TabIndex = 0;
-            this.ctrlPersonInfoWithFilter1.Load += new System.EventHandler(this.ctrlPersonInfoWithFilter1_Load);
             // 
             // tbpLoginInfo
             // 
@@ -223,6 +218,20 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // ctrlFindPersonFilter1
+            // 
+            this.ctrlFindPersonFilter1.Location = new System.Drawing.Point(0, 0);
+            this.ctrlFindPersonFilter1.Name = "ctrlFindPersonFilter1";
+            this.ctrlFindPersonFilter1.Size = new System.Drawing.Size(769, 77);
+            this.ctrlFindPersonFilter1.TabIndex = 4;
+            // 
+            // ctrlPersonInfo1
+            // 
+            this.ctrlPersonInfo1.Location = new System.Drawing.Point(-4, 72);
+            this.ctrlPersonInfo1.Name = "ctrlPersonInfo1";
+            this.ctrlPersonInfo1.Size = new System.Drawing.Size(791, 345);
+            this.ctrlPersonInfo1.TabIndex = 5;
+            // 
             // frmAddNewUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,7 +256,6 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tbpPersonalInfo;
-        private user_Controls.ctrlPersonInfoWithFilter ctrlPersonInfoWithFilter1;
         private System.Windows.Forms.TabPage tbpLoginInfo;
         private System.Windows.Forms.TextBox txtboxUserName;
         private System.Windows.Forms.CheckBox chkisActive;
@@ -262,5 +270,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button btnNext;
+        private user_Controls.ctrlFindPersonFilter ctrlFindPersonFilter1;
+        private ctrlPersonInfo ctrlPersonInfo1;
     }
 }
