@@ -167,6 +167,7 @@
             // 
             this.lblFilterBy.AutoSize = true;
             this.lblFilterBy.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblFilterBy.ForeColor = System.Drawing.Color.Black;
             this.lblFilterBy.Location = new System.Drawing.Point(3, 120);
             this.lblFilterBy.Name = "lblFilterBy";
             this.lblFilterBy.Size = new System.Drawing.Size(81, 23);

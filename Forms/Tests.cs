@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DVLDBussnissLayer;
+using DVLD.Forms.Users;
 namespace DVLD.Forms
 {
     public partial class Tests : Form
@@ -19,8 +20,8 @@ namespace DVLD.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-           PeopleUI peopleUI = new PeopleUI();
-            peopleUI.Show();
+            frmUsersManagement frmUsersManagement = new frmUsersManagement();
+            frmUsersManagement.Show();
         }
     }
 }

@@ -155,7 +155,37 @@ namespace DVLD.Forms.Users
 
         private void tsmDeleteUser_Click(object sender, EventArgs e)
         {
+            if (int.TryParse(grdvUsers.CurrentCell.Value.ToString(), out int id))
+            {
+                clsUser.DeleteUser(id);
 
+            }
+            LoadUsersDataIntoTheForm();
+        }
+
+        private void grdvUsers_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+            if (e.Button == MouseButtons.Right)
+            {
+
+
+                grdvUsers.CurrentCell = grdvUsers.Rows[e.RowIndex].Cells[0];
+                contextMenuStrip1.Show(Cursor.Position);
+
+            }
+        }
+
+        private void tsmViewDetails_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(grdvUsers.CurrentCell.Value.ToString(), out int id))
+            {
+                frmUserInfo frmUserInfo = new frmUserInfo(id);
+                frmUserInfo.ShowDialog();
+
+            }
+           
         }
     }
 }
