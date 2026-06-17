@@ -7,22 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DVLDBussnissLayer;
-using DVLD.Forms.Users;
 
-namespace DVLD.Forms
+namespace DVLD.Forms.Users
 {
-    public partial class Tests : Form
+    public partial class frmChangeUserPassword : Form
     {
-        public Tests()
+        public frmChangeUserPassword()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Main main = new Main();
-            main.Show();
         }
     }
 }

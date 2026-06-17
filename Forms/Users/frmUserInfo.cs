@@ -17,11 +17,19 @@ namespace DVLD.Forms.Users
         {
             InitializeComponent();
             clsUser user = clsUser.Find(UserID);
-            ctrlPersonInfo1.ctrlPersonInfo_Load(clsPerson.Find(user.PersonID));
-            ctrlUserInfo1.ctrlUserInfo_Load(user);
+            if (user != null)
+            {
+                ctrlPersonInfo1.ctrlPersonInfo_Load(clsPerson.Find(user.PersonID));
+                ctrlUserInfo1.ctrlUserInfo_Load(user);
+            }
         }
 
         private void frmUserInfo_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ctrlPersonInfo1_Load(object sender, EventArgs e)
         {
 
         }

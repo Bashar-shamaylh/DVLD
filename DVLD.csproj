@@ -46,11 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsGlobalProjectSettings.cs" />
     <Compile Include="Forms\Users\frmAddNewUser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Users\frmAddNewUser.Designer.cs">
       <DependentUpon>frmAddNewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Users\frmChangeUserPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Users\frmChangeUserPassword.Designer.cs">
+      <DependentUpon>frmChangeUserPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Users\frmUserInfo.cs">
       <SubType>Form</SubType>
@@ -128,6 +135,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\Users\frmAddNewUser.resx">
       <DependentUpon>frmAddNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Users\frmChangeUserPassword.resx">
+      <DependentUpon>frmChangeUserPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users\frmUserInfo.resx">
       <DependentUpon>frmUserInfo.cs</DependentUpon>

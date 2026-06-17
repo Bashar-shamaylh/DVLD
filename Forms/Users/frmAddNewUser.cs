@@ -35,6 +35,7 @@ namespace DVLD.Forms.Users
         }
         private void _FillUserInfoIntoTheForm()
         {
+            
             txtboxUserName.Text = user.UserName;
             txtboxPassword.Text = user.UserPassword;
             lblUserIDResult.Text = user.UserID.ToString();

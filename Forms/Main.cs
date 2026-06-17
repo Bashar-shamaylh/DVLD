@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace DVLD.Forms
 {
     public partial class Main : Form
@@ -51,5 +52,15 @@ namespace DVLD.Forms
             frmUsersManagement.Show();
         }
 
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUserInfo personinfo = new frmUserInfo(clsGlobalProjectSettings.CurrentUserId);
+            personinfo.ShowDialog();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
