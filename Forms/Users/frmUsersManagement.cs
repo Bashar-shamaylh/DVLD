@@ -192,5 +192,10 @@ namespace DVLD.Forms.Users
             }
            
         }
+
+        private void grdvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

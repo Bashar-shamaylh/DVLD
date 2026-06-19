@@ -149,6 +149,7 @@
             this.grdvUsers.Size = new System.Drawing.Size(751, 355);
             this.grdvUsers.StandardTab = true;
             this.grdvUsers.TabIndex = 10;
+            this.grdvUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdvUsers_CellContentClick);
             this.grdvUsers.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdvUsers_CellMouseClick);
             // 
             // contextMenuStrip1

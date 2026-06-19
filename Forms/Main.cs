@@ -1,4 +1,5 @@
-﻿using DVLD.Forms.Users;
+﻿using DVLD.Forms.Applictaion_Types;
+using DVLD.Forms.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,6 +63,13 @@ namespace DVLD.Forms
         {
             frmChangeUserPassword frmChangePassword = new frmChangeUserPassword(clsGlobalProjectSettings.CurrentUserId);
             frmChangePassword.ShowDialog();
+        }
+
+        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageApplicationTypes frmManageApplicationTypes = new frmManageApplicationTypes();
+            frmManageApplicationTypes.MdiParent = this;
+            frmManageApplicationTypes.Show();
         }
     }
 }
