@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ctrlPersonInfo1 = new DVLD.ctrlPersonInfo();
             this.ctrlUserInfo1 = new DVLD.user_Controls.ctrlUserInfo();
             this.txtboxCurrentPassowrd = new System.Windows.Forms.TextBox();
@@ -38,6 +39,8 @@
             this.txtboxConfirmPassword = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrlPersonInfo1
@@ -46,6 +49,7 @@
             this.ctrlPersonInfo1.Name = "ctrlPersonInfo1";
             this.ctrlPersonInfo1.Size = new System.Drawing.Size(791, 368);
             this.ctrlPersonInfo1.TabIndex = 0;
+            this.ctrlPersonInfo1.Load += new System.EventHandler(this.ctrlPersonInfo1_Load);
             // 
             // ctrlUserInfo1
             // 
@@ -60,6 +64,8 @@
             this.txtboxCurrentPassowrd.Name = "txtboxCurrentPassowrd";
             this.txtboxCurrentPassowrd.Size = new System.Drawing.Size(223, 20);
             this.txtboxCurrentPassowrd.TabIndex = 2;
+            this.txtboxCurrentPassowrd.TextChanged += new System.EventHandler(this.txtboxCurrentPassowrd_TextChanged);
+            this.txtboxCurrentPassowrd.Leave += new System.EventHandler(this.txtboxCurrentPassowrd_Leave);
             // 
             // txtboxNewPassword
             // 
@@ -67,6 +73,8 @@
             this.txtboxNewPassword.Name = "txtboxNewPassword";
             this.txtboxNewPassword.Size = new System.Drawing.Size(223, 20);
             this.txtboxNewPassword.TabIndex = 3;
+            this.txtboxNewPassword.TextChanged += new System.EventHandler(this.txtboxNewPassword_TextChanged);
+            this.txtboxNewPassword.Leave += new System.EventHandler(this.txtboxNewPassword_Leave);
             // 
             // lblCurrentPassword
             // 
@@ -104,6 +112,8 @@
             this.txtboxConfirmPassword.Name = "txtboxConfirmPassword";
             this.txtboxConfirmPassword.Size = new System.Drawing.Size(223, 20);
             this.txtboxConfirmPassword.TabIndex = 7;
+            this.txtboxConfirmPassword.TextChanged += new System.EventHandler(this.txtboxConfirmPassword_TextChanged);
+            this.txtboxConfirmPassword.Leave += new System.EventHandler(this.txtboxConfirmPassword_Leave);
             // 
             // btnClose
             // 
@@ -113,6 +123,7 @@
             this.btnClose.TabIndex = 8;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
@@ -122,6 +133,11 @@
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmChangeUserPassword
             // 
@@ -140,6 +156,8 @@
             this.Controls.Add(this.ctrlPersonInfo1);
             this.Name = "frmChangeUserPassword";
             this.Text = "frmChangeUserPassword";
+            this.Load += new System.EventHandler(this.frmChangeUserPassword_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,5 +175,6 @@
         private System.Windows.Forms.TextBox txtboxConfirmPassword;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

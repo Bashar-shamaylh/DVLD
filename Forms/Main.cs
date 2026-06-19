@@ -60,7 +60,8 @@ namespace DVLD.Forms
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmChangeUserPassword frmChangePassword = new frmChangeUserPassword(clsGlobalProjectSettings.CurrentUserId);
+            frmChangePassword.ShowDialog();
         }
     }
 }

@@ -88,7 +88,7 @@ namespace DVLDDataAccessLayer
                                             UserName=@username,
                                             UserPassword=@userpassword,
                                             PersonID=@personid,
-                                            isActive=@isactive,
+                                            isActive=@isactive
                                            
                                             where UserID=@userid;";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
@@ -176,7 +176,7 @@ namespace DVLDDataAccessLayer
         }
 
         //function FindUserByUserNameAndUserPassword
-        static public bool FindUserByUserNameAndUserPassword(string username, string userpassword, ref bool isactive)
+        static public bool FindUserByUserNameAndUserPassword(string username, string userpassword, ref bool isactive,ref int userid)
         {
             bool isFound = false;
             string query = "select * from Users where UserName=@username and UserPassword=@userpassword";
@@ -193,6 +193,7 @@ namespace DVLDDataAccessLayer
                 {
 
                     isactive =(bool)reader["isActive"];
+                    userid = (int)reader["UserID"];
                     isFound = true;
                 }
 

@@ -46,7 +46,7 @@ namespace DVLD.Forms
         private void btnLogin_Click(object sender, EventArgs e)
         {
             bool isactive = false;
-        
+            int userid = -1;
              if (string.IsNullOrEmpty(txtUserName.Text))
             {
                 errorProvider1.SetError(txtUserName, "User Name Cannot be Empty!");
@@ -55,7 +55,7 @@ namespace DVLD.Forms
             {
                 errorProvider1.SetError(txtPassword, "Password Cannot be Empty!");
             }
-            else if (clsUser.FindUserByUserNameAndUserPassword(txtUserName.Text, txtPassword.Text, ref isactive))
+            else if (clsUser.FindUserByUserNameAndUserPassword(txtUserName.Text, txtPassword.Text, ref isactive,ref userid))
             {
                 if (!isactive)
                 {
@@ -64,6 +64,7 @@ namespace DVLD.Forms
                 }
                 else
                 {
+                   
                     if (chkbRememberMe.Checked)
                     {
                                                 
@@ -73,6 +74,7 @@ namespace DVLD.Forms
 
                     }
 
+                    clsGlobalProjectSettings.CurrentUserId = userid;
                     Main main = new Main();
                     main.Show();
                     

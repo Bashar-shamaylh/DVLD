@@ -88,9 +88,9 @@ namespace DVLDBussnissLayer
         {
             return clsUsersDataAccess.GetUsersInfo();
         }
-        public static bool FindUserByUserNameAndUserPassword(string userName,string userpassword,ref bool isactive)
+        public static bool FindUserByUserNameAndUserPassword(string userName,string userpassword,ref bool isactive,ref int userid)
         {
-            return clsUsersDataAccess.FindUserByUserNameAndUserPassword(userName,userpassword,ref isactive);
+            return clsUsersDataAccess.FindUserByUserNameAndUserPassword(userName,userpassword,ref isactive,ref userid);
         }
         public static bool IsUserWithPersonIDExist(int personid)
         {
