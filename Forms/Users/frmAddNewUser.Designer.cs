@@ -45,8 +45,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ctrlFindPersonFilter1 = new DVLD.user_Controls.ctrlFindPersonFilter();
-            this.ctrlPersonInfo1 = new DVLD.ctrlPersonInfo();
+            this.ctrlPersonInfoWithFilter1 = new DVLD.user_Controls.ctrlPersonInfoWithFilter();
             this.tabControl1.SuspendLayout();
             this.tbpPersonalInfo.SuspendLayout();
             this.tbpLoginInfo.SuspendLayout();
@@ -65,8 +64,7 @@
             // 
             // tbpPersonalInfo
             // 
-            this.tbpPersonalInfo.Controls.Add(this.ctrlPersonInfo1);
-            this.tbpPersonalInfo.Controls.Add(this.ctrlFindPersonFilter1);
+            this.tbpPersonalInfo.Controls.Add(this.ctrlPersonInfoWithFilter1);
             this.tbpPersonalInfo.Controls.Add(this.btnNext);
             this.tbpPersonalInfo.Location = new System.Drawing.Point(4, 22);
             this.tbpPersonalInfo.Name = "tbpPersonalInfo";
@@ -218,25 +216,19 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // ctrlFindPersonFilter1
+            // ctrlPersonInfoWithFilter1
             // 
-            this.ctrlFindPersonFilter1.Location = new System.Drawing.Point(0, 0);
-            this.ctrlFindPersonFilter1.Name = "ctrlFindPersonFilter1";
-            this.ctrlFindPersonFilter1.Size = new System.Drawing.Size(769, 77);
-            this.ctrlFindPersonFilter1.TabIndex = 4;
-            // 
-            // ctrlPersonInfo1
-            // 
-            this.ctrlPersonInfo1.Location = new System.Drawing.Point(-4, 72);
-            this.ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            this.ctrlPersonInfo1.Size = new System.Drawing.Size(791, 345);
-            this.ctrlPersonInfo1.TabIndex = 5;
+            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(3, 6);
+            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
+            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(810, 428);
+            this.ctrlPersonInfoWithFilter1.TabIndex = 4;
+            this.ctrlPersonInfoWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonInfoWithFilter1_OnPersonSelected);
             // 
             // frmAddNewUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 603);
+            this.ClientSize = new System.Drawing.Size(844, 662);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tabControl1);
@@ -270,7 +262,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button btnNext;
-        private user_Controls.ctrlFindPersonFilter ctrlFindPersonFilter1;
-        private ctrlPersonInfo ctrlPersonInfo1;
+        private user_Controls.ctrlPersonInfoWithFilter ctrlPersonInfoWithFilter1;
     }
 }

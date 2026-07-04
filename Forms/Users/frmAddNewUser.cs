@@ -22,11 +22,10 @@ namespace DVLD.Forms.Users
             if (Userid != -1)
             {
                 user = clsUser.Find(Userid);
-                person = clsPerson.Find(user.PersonID);
-                if (person != null)
-                {
-                    ctrlPersonInfo1.FillPersonInfoIntoTheForm(person);
-                }
+
+
+                ctrlPersonInfoWithFilter1.ctrlFindPersonFilter1_Load(user.PersonID);
+                
                 if (user != null)
                 {
                     _FillUserInfoIntoTheForm();
@@ -130,35 +129,9 @@ namespace DVLD.Forms.Users
                 chkisActive.Checked = true;
             }
           
-            ctrlFindPersonFilter1.DataBack += FindPerson;
+            
         }
-        public void FindPerson(Object sender, string SearchText, string SearchType)
-        {
-            if (SearchText == null)
-            {
-                MessageBox.Show("Invalid ID or National Number");
-            }
-            else if (SearchType == null)
-            {
-                MessageBox.Show("Invalid ID or National Number");
-            }
-            else
-            {
-
-                if (SearchType == "PersonID")
-                {
-                    person = clsPerson.Find(int.Parse(SearchText));
-
-                }
-                else
-                    person = clsPerson.FindPersonByNationnalNum(SearchText);
-                if (person != null)
-                {
-                    ctrlPersonInfo1.FillPersonInfoIntoTheForm(person);
-                }
-
-            }
-        }
+        
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -219,6 +192,11 @@ namespace DVLD.Forms.Users
         }
 
         private void tbpPersonalInfo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ctrlPersonInfoWithFilter1_OnPersonSelected(int obj)
         {
 
         }

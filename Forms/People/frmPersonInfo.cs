@@ -16,7 +16,7 @@ namespace DVLD.Forms
         public frmPersonInfo(int id)
         {
             InitializeComponent();
-            ctrlPersonInfo1.ctrlPersonInfo_Load(clsPerson.Find(id));
+            ctrlPersonInfo1.ctrlPersonInfo_Load((id));
         }
 
         private void frmPersonInfo_Load(object sender, EventArgs e)

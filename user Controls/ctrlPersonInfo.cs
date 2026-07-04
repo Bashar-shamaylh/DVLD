@@ -15,6 +15,7 @@ namespace DVLD
 {
     public partial class ctrlPersonInfo : UserControl
     {
+        public int personID=-1;
         public ctrlPersonInfo()
         {
             InitializeComponent();
@@ -25,13 +26,13 @@ namespace DVLD
             pcbPersonalImage.Image = Properties.Resources.Male_512;
         }
      
-        public void FillPersonInfoIntoTheForm(clsPerson person)
+        private void _FillPersonInfoIntoTheForm(clsPerson person)
         {
             try
             {
-               
+                
                 if (person != null)
-                {
+                {personID=person.ID;
                     lblPersonIdResult.Text = person.ID.ToString();
                     lblNameResult.Text = person.FirstName + " " + person.SecondName + " " + person.ThirdName + " " + person.LastName;
                     lblNationalNoResult.Text = person.NationnalNumber.ToString();
@@ -82,9 +83,15 @@ namespace DVLD
             }
         }
      
-        public void ctrlPersonInfo_Load(clsPerson person)
+        public void ctrlPersonInfo_Load(int PersonID)
         {
-            FillPersonInfoIntoTheForm(person);
+            clsPerson person=clsPerson.Find(PersonID);
+            _FillPersonInfoIntoTheForm(person);
+        }
+        public void ctrlPersonInfo_Load(string PersonNationalNum)
+        {
+            clsPerson person = clsPerson.FindPersonByNationnalNum(PersonNationalNum);
+            _FillPersonInfoIntoTheForm(person);
         }
 
         private void grbUserInfo_Enter(object sender, EventArgs e)

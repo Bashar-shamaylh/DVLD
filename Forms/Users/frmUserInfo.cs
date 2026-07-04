@@ -19,7 +19,7 @@ namespace DVLD.Forms.Users
             clsUser user = clsUser.Find(UserID);
             if (user != null)
             {
-                ctrlPersonInfo1.ctrlPersonInfo_Load(clsPerson.Find(user.PersonID));
+                ctrlPersonInfo1.ctrlPersonInfo_Load(user.PersonID);
                 ctrlUserInfo1.ctrlUserInfo_Load(user);
             }
         }
