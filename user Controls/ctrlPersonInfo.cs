@@ -55,7 +55,7 @@ namespace DVLD
                     lblCountryResult.Text = person.Nationality.ToString();
                     if (person.PersonalImage != null)
                     {
-                        string path = Path.Combine(Application.StartupPath, "DVLDImages");
+                        string path = Path.Combine(Application.StartupPath, "DVLDImages"); //insted of compining the path each time,add the path into the global settings
 
                         path = Path.Combine(path, person.PersonalImage);
                         if (File.Exists(path))

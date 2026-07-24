@@ -130,13 +130,15 @@ namespace DVLD.Forms
         {
             InitializeComponent();
 
+
+            //since i got the id from the manage people form the id must be in the database so no need to check if find return a null or not
             if (id != -1)
             {
-                person = clsPerson.Find(id);
-                
+                person = clsPerson.Find(id); //Update Mode
+
                 if (person == null)
                 {
-                    person = new clsPerson();   //Update Mode
+                    person = new clsPerson();
                 }
             }
             else

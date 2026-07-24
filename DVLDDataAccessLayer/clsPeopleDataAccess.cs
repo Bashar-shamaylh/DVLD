@@ -345,7 +345,61 @@ namespace DVLDDataAccessLayer
             finally { connection.Close(); }
             return wasFound;
         }
+        static public bool isPersonExist(int id)
+        {
+            bool wasFound = false;
+            string query = @"select 1 from People where PersonID='@id'
+                                ";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id", id);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                    wasFound = true;
+                else
+                    wasFound = false;
 
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { connection.Close(); }
+            return wasFound;
+        }
+        static public DataTable GetAllPeople()
+        {
+            DataTable dt = new DataTable();
+            string query = @"select People.PersonID,People.NationalNumber,People.FirstName,
+People.SecondName,People.ThirdName,People.LastName,People.Gender,
+Case When People.Gender=0 then 'Male' Else 'Female' End as GenderCatption 
+,People.Address,People.Phone,People.Email,People.PersonalPicturePath,People.CountryName from People innner join Countries On People.NationalityCountryID=Countries.CountryID Order by People.FirstName;";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+
+                }
+                reader.Close();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { connection.Close(); }
+            return dt;
+        }
 
     }
 }

@@ -21,6 +21,8 @@ namespace DVLD.Forms
             _dvPeople = new DataView(_dtPeople);
             grdvPeople.DataSource = _dtPeople;
             lblNumberOfRecordsResult.Text = _dtPeople.Rows.Count.ToString();
+            //            cmbxFitlerItems.Items.Add("None");
+
             cmbxFitlerItems.Items.Add("PersonID");
             cmbxFitlerItems.Items.Add("FirstName");
             cmbxFitlerItems.Items.Add("SecondName");
@@ -53,6 +55,7 @@ namespace DVLD.Forms
 
         private void cmbxFitlerItems_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //if(cmbxFitlerItems.Items.Add("None"); if(!=None) then visible
             txtSearch.Visible = true;
 
         }
