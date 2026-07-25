@@ -27,6 +27,13 @@ namespace DVLDBussnissLayer
         public string Email {  get; set; }
         public DateTime DateOfBirth { get; set; }
         public int Nationality {  get; set; }
+        public clsCountry CountryInfo;
+        private string _imagePath;
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set { _imagePath = value; }
+        }
         public string PersonalImage { get; set; }
 
        public clsPerson() {
@@ -43,6 +50,8 @@ namespace DVLDBussnissLayer
             DateOfBirth = DateTime.Now;
             Nationality = -1;
             PersonalImage = null;
+            ImagePath = "";
+            Mode=enMode.AddMode;
         }
         clsPerson(int id,string firstname, string secondname, string thirrdname, string lastname, string nationalnumber, DateTime dateofbirth, string address,string phone,string email,int nationality, string personalimage,char gender)
         {
@@ -58,6 +67,8 @@ namespace DVLDBussnissLayer
             DateOfBirth = dateofbirth;
             Nationality = nationality;
             PersonalImage = personalimage;
+            ImagePath=personalimage;
+            CountryInfo = clsCountry.Find(Nationality);
             Gender=gender;
             Mode=enMode.UpdateMode;
         }
@@ -82,7 +93,27 @@ namespace DVLDBussnissLayer
                return new clsPerson(id,firstName,secondName,thirdName,lastName,nationnalNumber,dateOfBirth,address,phone,email, nationality, personalImage,gender);
             return null;        
         }
-         public static clsPerson FindPersonByNationnalNum(string nationalNumber)
+        public static clsPerson Find(string nationalNumber)
+        {
+            int id = -1;
+            string firstName = "";
+            string secondName = "";
+            string thirdName = "";
+            string lastName = "";
+
+            string address = "";
+            string phone = "";
+            string email = "";
+            DateTime dateOfBirth = DateTime.Now;
+            char gender = 'M';
+            int nationality = -1;
+            string personalImage = null;
+
+            if (clsPeopleDataAccess.GetPersonByNationalNum(ref id, ref firstName, ref secondName, ref thirdName, ref lastName, nationalNumber, ref dateOfBirth, ref address, ref phone, ref email, ref nationality, ref personalImage, ref gender))
+                return new clsPerson(id, firstName, secondName, thirdName, lastName, nationalNumber, dateOfBirth, address, phone, email, nationality, personalImage, gender);
+            return null;
+        }
+        public static clsPerson FindPersonByNationnalNum(string nationalNumber)
         {
             int id = -1;
             string firstName = "";
@@ -136,11 +167,19 @@ namespace DVLDBussnissLayer
         }
         public static DataTable GetPeopleInfo()
         {
-            return clsPeopleDataAccess.GetPeopleInfo();
+            return clsPeopleDataAccess.GetAllPeople();
         }
         public static bool isNationalNumberExist(string nationalnumber)
         {
             return clsPeopleDataAccess.IsNationalNumExist(nationalnumber);
+        }
+        public static bool isPersonExist(int id)
+        {
+            return clsPeopleDataAccess.isPersonExist(id);
+        }
+        public static bool isPersonExist(string NationalNum)
+        {
+            return clsPeopleDataAccess.isPersonExist(NationalNum);
         }
      
 

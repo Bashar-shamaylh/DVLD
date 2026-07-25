@@ -21,8 +21,13 @@ namespace DVLD.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Main main = new Main();
-            main.Show();
+           PeopleUI peopleUI = new PeopleUI();
+            peopleUI.Show();
+        }
+
+        private void Tests_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

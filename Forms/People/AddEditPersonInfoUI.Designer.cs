@@ -165,6 +165,7 @@
             // 
             // btnClose
             // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Location = new System.Drawing.Point(272, 325);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(130, 31);
@@ -459,8 +460,11 @@
             // 
             // AddEditPersonInfoUI
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(989, 487);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblNationalNumResult);
@@ -468,6 +472,7 @@
             this.Controls.Add(this.grbBoxPerson);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddEditPersonInfoUI";
             this.Text = "Add/Edit Person Info";
             this.Load += new System.EventHandler(this.AddEditPersonInfoUI_Load);

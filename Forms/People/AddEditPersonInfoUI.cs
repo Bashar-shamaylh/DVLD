@@ -18,6 +18,42 @@ namespace DVLD.Forms
 {
     public partial class AddEditPersonInfoUI : Form
     {
+        //public AddEditPersonInfoUI(int id = -1)
+        //{
+        //    InitializeComponent();
+
+
+        //    //since i got the id from the manage people form the id must be in the database so no need to check if find return a null or not
+        //    if (id != -1)
+        //    {
+        //        person = clsPerson.Find(id); //Update Mode
+
+        //        if (person == null)
+        //        {
+        //            person = new clsPerson();
+        //        }
+        //    }
+        //    else
+        //        person = new clsPerson();    //Add new mode
+
+        //}
+        public AddEditPersonInfoUI(int id)
+        {
+            InitializeComponent();
+                person = clsPerson.Find(id); //Update Mode
+
+                if (person == null)
+                {
+                    person = new clsPerson();
+                }
+
+        }
+        public AddEditPersonInfoUI()
+        {
+            InitializeComponent();
+                person = new clsPerson();    //Add new mode
+        }
+
         clsPerson person;
         string imagePath = "";
         private bool _IsNationalNumExist(string nationalNum)
@@ -126,25 +162,7 @@ namespace DVLD.Forms
                     errorProvider1.SetError(txtBoxEmail, "");
             }
         }
-        public AddEditPersonInfoUI(int id = -1)
-        {
-            InitializeComponent();
-
-
-            //since i got the id from the manage people form the id must be in the database so no need to check if find return a null or not
-            if (id != -1)
-            {
-                person = clsPerson.Find(id); //Update Mode
-
-                if (person == null)
-                {
-                    person = new clsPerson();
-                }
-            }
-            else
-                person = new clsPerson();    //Add new mode
-
-        }
+       
 
         private void AddEditPersonInfoUI_Load(object sender, EventArgs e)
         {

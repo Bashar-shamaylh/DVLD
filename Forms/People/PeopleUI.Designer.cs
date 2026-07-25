@@ -123,7 +123,7 @@
             this.lblManagePeople.BackColor = System.Drawing.Color.Transparent;
             this.lblManagePeople.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblManagePeople.ForeColor = System.Drawing.Color.Red;
-            this.lblManagePeople.Location = new System.Drawing.Point(335, 44);
+            this.lblManagePeople.Location = new System.Drawing.Point(401, 45);
             this.lblManagePeople.Name = "lblManagePeople";
             this.lblManagePeople.Size = new System.Drawing.Size(241, 43);
             this.lblManagePeople.TabIndex = 1;
