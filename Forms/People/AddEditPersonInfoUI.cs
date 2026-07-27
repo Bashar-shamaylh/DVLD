@@ -13,11 +13,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using DVLD.Properties;
 
 namespace DVLD.Forms
 {
     public partial class AddEditPersonInfoUI : Form
     {
+
+        public enum enMode { AddNew=0,Update=1}
+        public enum enGender { Male = 0, Female = 1 }
+        private enMode _Mode;
+        private int _PersonID = -1;
+        
+        clsPerson _Person;
+        string imagePath = "";
         //public AddEditPersonInfoUI(int id = -1)
         //{
         //    InitializeComponent();
@@ -40,56 +49,70 @@ namespace DVLD.Forms
         public AddEditPersonInfoUI(int id)
         {
             InitializeComponent();
-                person = clsPerson.Find(id); //Update Mode
-
-                if (person == null)
-                {
-                    person = new clsPerson();
-                }
-
+            _Mode = enMode.Update;
+            _PersonID = id;
         }
         public AddEditPersonInfoUI()
         {
             InitializeComponent();
                 person = new clsPerson();    //Add new mode
+            _Mode = enMode.AddNew;
         }
 
-        clsPerson person;
-        string imagePath = "";
+        
         private bool _IsNationalNumExist(string nationalNum)
         {
             //Function to Check if the  National Number does exist in the database or not
             return clsPerson.isNationalNumberExist(nationalNum);
             
         }
-        private void _PrepareTheFormComponents()
+        private void _PrepareTheFormComponents()// ResetDefultValues();
         {
-            //Prevent the user to enter a Date Less than 18 years
-            dtpDateOfBirth.MaxDate = DateTime.Now.AddYears(-18);
-
             //Load all the Countries
             _LoadCountriesIntoTheForm();
-            rdoMale.Checked = true;
-            if (person.Mode == clsPerson.enMode.UpdateMode)
+            //Prevent the user to enter a Date Less than 18 years
+            if(_Mode==enMode.AddNew)
             {
-                lblTitle.Text = "Update Person";
-                _FillPersonInfoIntoTheForm();  //fill all the Controls with Person info(Update Mode)
+                lblTitle.Text = "Add New Person";
             }
+            else
+            {
+                lblTitle.Text = "Update";
+            }
+            if (rdoMale.Checked)
+            {
+                PersonalImage.Image = Resources.Male_512;
+            }
+            else
+                PersonalImage.Image = Resources.Female_512;
+
+
+            linkRemove.Visible = (PersonalImage.ImageLocation != null);
+            dtpDateOfBirth.MaxDate = DateTime.Now.AddYears(-18);
+            dtpDateOfBirth.MinDate = DateTime.Now.AddYears(-120);
+            
         }
-        private void _FillPersonInfoIntoTheForm()     //fill all the Controls with Person info(Update Mode)
+        private void _FillPersonInfoIntoTheForm()   // _LoadData //fill all the Controls with Person info(Update Mode)
         {
-            lblPersonIDResult.Text = person.ID.ToString();
-            lblNationalNumResult.Text = person.NationnalNumber;
+            _Person = clsPerson.Find(_PersonID);
+            if(_Person==null)
+            {
+                MessageBox.Show("No Person With ID = " + _PersonID, "Person Not Found !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+            lblPersonIDResult.Text = _Person.ID.ToString();
+            lblNationalNumResult.Text = _Person.NationnalNumber;
 
-            txtBoxFirstName.Text = person.FirstName;
-            txtBoxSecondName.Text = person.SecondName;
-            txtBoxThirdName.Text = person.ThirdName;
-            txtBoxLastName.Text = person.LastName;
-            txtBoxNationalNum.Text = person.NationnalNumber;
+            txtBoxFirstName.Text = _Person.FirstName;
+            txtBoxSecondName.Text = _Person.SecondName;
+            txtBoxThirdName.Text = _Person.ThirdName;
+            txtBoxLastName.Text = _Person.LastName;
+            txtBoxNationalNum.Text = _Person.NationnalNumber;
 
-            dtpDateOfBirth.Value = person.DateOfBirth;
+            dtpDateOfBirth.Value = _Person.DateOfBirth;
 
-            if (person.Gender == 'M' || person.Gender == 'm')
+            if (_Person.Gender == 0)
             {
                 rdoMale.Checked = true;
             }
@@ -97,35 +120,25 @@ namespace DVLD.Forms
             {
                 rdoFemale.Checked = true;
             }
-            if (person.Phone != null)
+            if (_Person.Phone != null)
 
-                txtBoxPhone.Text = person.Phone;
+                txtBoxPhone.Text = _Person.Phone;
 
-            if (person.Email != null)
-                txtBoxEmail.Text = person.Email;
-            if (person.Address != null)
-                txtBoxAddress.Text = person.Address;
-            int index = person.Nationality;
+            if (_Person.Email != null)
+                txtBoxEmail.Text = _Person.Email;
+            if (_Person.Address != null)
+                txtBoxAddress.Text = _Person.Address;
+            cmbCountries.SelectedValue = _Person.Nationality;
 
-            // 3. If found, make it the default selection
-            if (index != -1)
+           
+            if (_Person.Address != null)
+                txtBoxAddress.Text = _Person.Address;
+            if(!string.IsNullOrEmpty(_Person.PersonalImage))
             {
-                cmbCountries.SelectedIndex = index;
-            }
-            if (person.Address != null)
-                txtBoxAddress.Text = person.Address;
-            if(person.PersonalImage != null)
-            {
-                string path = Path.Combine(Application.StartupPath, "DVLDImages");
-
-                path = Path.Combine(path, person.PersonalImage);
-                if (File.Exists(path))
-                {
-
-                    PersonalImage.Image = Image.FromFile(path);
-                }
+                PersonalImage.ImageLocation = _Person.PersonalImage;
                 
             }
+            linkRemove.Visible = (!string.IsNullOrEmpty(_Person.PersonalImage));
             
         }
         private void _LoadCountriesIntoTheForm() //Get  all the Countries from the database and Set Jordan to defult
@@ -133,7 +146,7 @@ namespace DVLD.Forms
             cmbCountries.DataSource = clsCountry.GetCountriesInfo();
             cmbCountries.DisplayMember = "CountryName";
             cmbCountries.ValueMember = "CountryID";
-            cmbCountries.SelectedIndex = 183;   //jordan id
+            cmbCountries.SelectedValue = 183;   //jordan id
         }
         
         private void _SetImage(string ImagePath="")
@@ -167,6 +180,8 @@ namespace DVLD.Forms
         private void AddEditPersonInfoUI_Load(object sender, EventArgs e)
         {
             _PrepareTheFormComponents();
+            if (_Mode == enMode.Update)
+                _LoadData();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
