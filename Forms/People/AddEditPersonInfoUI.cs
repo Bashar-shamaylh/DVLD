@@ -12,13 +12,15 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using DVLD.Properties;
+using System.Runtime.CompilerServices;
 
 namespace DVLD.Forms
 {
     public partial class AddEditPersonInfoUI : Form
     {
+        public delegate void DataBackEventHandler(object sender, int PersonID);
+        public event DataBackEventHandler DataBack;
 
         public enum enMode { AddNew=0,Update=1}
         public enum enGender { Male = 0, Female = 1 }
@@ -55,7 +57,7 @@ namespace DVLD.Forms
         public AddEditPersonInfoUI()
         {
             InitializeComponent();
-                person = new clsPerson();    //Add new mode
+            _Person = new clsPerson();    //Add new mode
             _Mode = enMode.AddNew;
         }
 
@@ -151,7 +153,7 @@ namespace DVLD.Forms
         
         private void _SetImage(string ImagePath="")
         {
-            if (person.PersonalImage == null && imagePath == "")
+            if (_Person.PersonalImage == null && imagePath == "")
             {
                 if (rdoMale.Checked)
                 {
@@ -163,16 +165,16 @@ namespace DVLD.Forms
                 }
             }
         }
-        private void _EmailFilter()
+        private bool _EmailFilter(string txt)
         {
-            if (!string.IsNullOrWhiteSpace(txtBoxEmail.Text))
+            if (!string.IsNullOrWhiteSpace(txt))
             {
-                if (!Regex.IsMatch(txtBoxEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                if (!Regex.IsMatch(txt, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
                 {
-                    errorProvider1.SetError(txtBoxEmail, "This isn't a valid email");
+                    return false;
                 }
                 else
-                    errorProvider1.SetError(txtBoxEmail, "");
+                    return true;
             }
         }
        
@@ -181,7 +183,8 @@ namespace DVLD.Forms
         {
             _PrepareTheFormComponents();
             if (_Mode == enMode.Update)
-                _LoadData();
+                _FillPersonInfoIntoTheForm();//LoadData();
+            this.ValidateChildren();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -197,21 +200,8 @@ namespace DVLD.Forms
                 
         }
 
-        private void rdoMale_CheckedChanged(object sender, EventArgs e)
-        {
-            _SetImage();
-
-        }
-
-        private void rdoFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            _SetImage();
-        }
-
-        private void txtBoxEmail_Leave(object sender, EventArgs e)
-        {
-            _EmailFilter();
-        }
+   
+     
 
         private void linklblSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -229,52 +219,48 @@ namespace DVLD.Forms
             }
            
 
+
         }
         private void _Save()
         {
-           
-            person.FirstName = txtBoxFirstName.Text;
-            person.SecondName = txtBoxSecondName.Text;
-            person.ThirdName = txtBoxThirdName.Text;
-            person.LastName = txtBoxLastName.Text;
-            person.NationnalNumber = txtBoxNationalNum.Text;
-            person.Address = txtBoxAddress.Text;
-            person.Email = txtBoxEmail.Text;
-            person.Phone = txtBoxPhone.Text;
-            person.Nationality = Convert.ToInt32(cmbCountries.SelectedIndex);
-            person.DateOfBirth = dtpDateOfBirth.Value;
+            if (!this.ValidateChildren()) 
+                return;
+            if (!_HandlePersonImage())
+                return;
+            _Person.FirstName = txtBoxFirstName.Text;
+            _Person.SecondName = txtBoxSecondName.Text;
+            _Person.ThirdName = txtBoxThirdName.Text;
+            _Person.LastName = txtBoxLastName.Text;
+            _Person.NationnalNumber = txtBoxNationalNum.Text;
+            _Person.Address = txtBoxAddress.Text;
+            _Person.Email = txtBoxEmail.Text;
+            _Person.Phone = txtBoxPhone.Text;
+            _Person.Nationality = Convert.ToInt32(cmbCountries.SelectedValue);
+            _Person.DateOfBirth = dtpDateOfBirth.Value;
             if (rdoMale.Checked)
             {
-                person.Gender = 'M';
+                _Person.Gender = (short) enGender.Male;
             }
             else
             {
-                person.Gender = 'F';
+                _Person.Gender = (short)enGender.Female;
             }
 
-            if (imagePath != "")
+            if (PersonalImage.Location !=null)
             {
-                string path = Path.Combine(Application.StartupPath, "DVLDImages");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                string newName = Guid.NewGuid().ToString() + Path.GetExtension(imagePath);
-                person.PersonalImage = newName;
-                if (person.Mode == clsPerson.enMode.UpdateMode)
-                {
-                    string destPath = Path.Combine(path, newName);
-                    File.Copy(imagePath, destPath, true);
-                }
-
-
+                _Person.ImagePath=PersonalImage.Location.ToString();
             }
-            person.Save();
-            lblPersonIDResult.Text = person.ID.ToString();
-            lblPersonIDResult.Visible = true;
-            lblNationalNumResult.Text = person.NationnalNumber.ToString();
-            lblNationalNumResult.Visible = true;
-            lblTitle.Text = "Update Mode";
+            if(_Person.Save())
+            {
+                _Mode = enMode.Update;
+                lblPersonIDResult.Text = _Person.ID.ToString();
+                lblPersonIDResult.Visible = true;
+                lblNationalNumResult.Text = _Person.NationnalNumber.ToString();
+                lblNationalNumResult.Visible = true;
+                lblTitle.Text = "Update Mode";
+                DataBack?.Invoke(this,_Person.ID);
+            }
+           
         }    //Collect the info from the input Controls into Person object and call person.Save at the end
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -305,31 +291,8 @@ namespace DVLD.Forms
             
         }
 
-        private void txtBoxFirstName_TextChanged(object sender, EventArgs e)
-        {
-         
-                errorProvider1.SetError(txtBoxFirstName, "");
-        }
-
-        private void txtBoxSecondName_TextChanged(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(txtBoxSecondName, "");
-        }
-
-        private void txtBoxThirdName_TextChanged(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(txtBoxThirdName, "");
-        }
-
-        private void txtBoxLastName_TextChanged(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(txtBoxLastName, "");
-        }
-
-        private void txtBoxNationalNum_TextChanged(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(txtBoxNationalNum, "");
-        }
+       
+      
 
         private void linkRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -346,44 +309,78 @@ namespace DVLD.Forms
 
             }
         }
-
-        private void txtBoxFirstName_Leave(object sender, EventArgs e)
+        private void txtBoxNationalNum_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtBoxFirstName.Text))
+            if (string.IsNullOrEmpty(txtBoxNationalNum.Text.Trim()))
             {
-                errorProvider1.SetError(txtBoxFirstName, "Plese enter a valid first name");
+                e.Cancel = true;
+                errorProvider1.SetError(txtBoxNationalNum, "this feild is requierd");
+            }
+            else
+                errorProvider1.SetError(txtBoxNationalNum, null);
+
+            if (txtBoxNationalNum.Text.Trim() != _Person.NationnalNumber && clsPerson.isPersonExist(txtBoxNationalNum.Text.Trim())
+                {
+                e.Cancel = true;
+                errorProvider1.SetError(txtBoxNationalNum, "this National Number is already used by another person");
+
+            }
+            else
+                errorProvider1.SetError(txtBoxNationalNum, null);
+
+
+            
+        }
+
+        
+
+        private void txtBoxEmail_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtBoxEmail.Text.Trim() == "")
+                return;
+            if(!_EmailFilter(txtBoxEmail.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtBoxEmail, "this isn't a valid email");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(txtBoxEmail, null);
+            }    
+        }
+
+     
+
+     
+        private void ValidateEmptyTextBox(object sender,CancelEventArgs e)
+        {
+            TextBox temp = ((TextBox)sender);
+            if(string.IsNullOrEmpty(temp.Text.Trim()) 
+                {
+                e.Cancel = true;
+                errorProvider1.SetError(temp, "this feild is required");
+                }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(temp, null);
             }
         }
 
-        private void txtBoxSecondName_Leave(object sender, EventArgs e)
+        private void rdoMale_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtBoxSecondName.Text))
+            if (PersonalImage.Location == null)
             {
-                errorProvider1.SetError(txtBoxSecondName, "Plese enter a valid second name");
+                PersonalImage.Image=Resources.Male_512;
             }
         }
 
-        private void txtBoxThirdName_Leave(object sender, EventArgs e)
+        private void rdoFemale_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtBoxThirdName.Text))
+            if (PersonalImage.Location == null)
             {
-                errorProvider1.SetError(txtBoxThirdName, "Plese enter a valid Third name");
-            }
-        }
-
-        private void txtBoxLastName_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtBoxLastName.Text))
-            {
-                errorProvider1.SetError(txtBoxLastName, "Plese enter a valid Last name");
-            }
-        }
-
-        private void txtBoxNationalNum_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtBoxNationalNum.Text))
-            {
-                errorProvider1.SetError(txtBoxLastName, "Plese enter a valid Last name");
+                PersonalImage.Image = Resources.Female_512;
             }
         }
     }

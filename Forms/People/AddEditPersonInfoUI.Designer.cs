@@ -266,7 +266,7 @@
             this.rdoFemale.TabStop = true;
             this.rdoFemale.Text = "Female";
             this.rdoFemale.UseVisualStyleBackColor = true;
-            this.rdoFemale.CheckedChanged += new System.EventHandler(this.rdoFemale_CheckedChanged);
+            this.rdoFemale.Click += new System.EventHandler(this.rdoFemale_Click);
             // 
             // rdoMale
             // 
@@ -278,7 +278,7 @@
             this.rdoMale.TabStop = true;
             this.rdoMale.Text = "Male";
             this.rdoMale.UseVisualStyleBackColor = true;
-            this.rdoMale.CheckedChanged += new System.EventHandler(this.rdoMale_CheckedChanged);
+            this.rdoMale.Click += new System.EventHandler(this.rdoMale_Click);
             // 
             // lblEmail
             // 
@@ -297,7 +297,7 @@
             this.txtBoxEmail.Name = "txtBoxEmail";
             this.txtBoxEmail.Size = new System.Drawing.Size(161, 20);
             this.txtBoxEmail.TabIndex = 39;
-            this.txtBoxEmail.Leave += new System.EventHandler(this.txtBoxEmail_Leave);
+            this.txtBoxEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxEmail_Validating);
             // 
             // lblGender
             // 
@@ -316,9 +316,8 @@
             this.txtBoxNationalNum.Name = "txtBoxNationalNum";
             this.txtBoxNationalNum.Size = new System.Drawing.Size(161, 20);
             this.txtBoxNationalNum.TabIndex = 37;
-            this.txtBoxNationalNum.TextChanged += new System.EventHandler(this.txtBoxNationalNum_TextChanged);
-            this.txtBoxNationalNum.Leave += new System.EventHandler(this.txtBoxNationalNum_Leave);
             this.txtBoxNationalNum.MouseLeave += new System.EventHandler(this.txtBoxNationalNum_MouseLeave);
+            this.txtBoxNationalNum.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxNationalNum_Validating);
             // 
             // lblNationalNum
             // 
@@ -377,8 +376,7 @@
             this.txtBoxLastName.Name = "txtBoxLastName";
             this.txtBoxLastName.Size = new System.Drawing.Size(161, 20);
             this.txtBoxLastName.TabIndex = 31;
-            this.txtBoxLastName.TextChanged += new System.EventHandler(this.txtBoxLastName_TextChanged);
-            this.txtBoxLastName.Leave += new System.EventHandler(this.txtBoxLastName_Leave);
+            this.txtBoxLastName.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // txtBoxThirdName
             // 
@@ -387,8 +385,7 @@
             this.txtBoxThirdName.Name = "txtBoxThirdName";
             this.txtBoxThirdName.Size = new System.Drawing.Size(161, 20);
             this.txtBoxThirdName.TabIndex = 30;
-            this.txtBoxThirdName.TextChanged += new System.EventHandler(this.txtBoxThirdName_TextChanged);
-            this.txtBoxThirdName.Leave += new System.EventHandler(this.txtBoxThirdName_Leave);
+            this.txtBoxThirdName.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // txtBoxSecondName
             // 
@@ -397,8 +394,7 @@
             this.txtBoxSecondName.Name = "txtBoxSecondName";
             this.txtBoxSecondName.Size = new System.Drawing.Size(161, 20);
             this.txtBoxSecondName.TabIndex = 29;
-            this.txtBoxSecondName.TextChanged += new System.EventHandler(this.txtBoxSecondName_TextChanged);
-            this.txtBoxSecondName.Leave += new System.EventHandler(this.txtBoxSecondName_Leave);
+            this.txtBoxSecondName.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // txtBoxFirstName
             // 
@@ -407,8 +403,7 @@
             this.txtBoxFirstName.Name = "txtBoxFirstName";
             this.txtBoxFirstName.Size = new System.Drawing.Size(161, 20);
             this.txtBoxFirstName.TabIndex = 28;
-            this.txtBoxFirstName.TextChanged += new System.EventHandler(this.txtBoxFirstName_TextChanged);
-            this.txtBoxFirstName.Leave += new System.EventHandler(this.txtBoxFirstName_Leave);
+            this.txtBoxFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // label3
             // 
@@ -463,6 +458,7 @@
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(989, 487);
