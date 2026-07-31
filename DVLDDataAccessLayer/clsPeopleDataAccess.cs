@@ -19,7 +19,7 @@ namespace DVLDDataAccessLayer
         //Update(UpdatePearsonInfo)                  done
         //Delete(DeletePearson)                      soon
         //Read All People(GetPeopleData)             soon
-        static public bool GetPersonByID(int id,ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName, ref string NationalNumber,ref DateTime DateOfBirth,ref string Address,ref string Phone,ref string Email,ref int Nationality, ref string PearsonPicturePath,ref char Gender)
+        static public bool GetPersonByID(int id,ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName, ref string NationalNumber,ref DateTime DateOfBirth,ref string Address,ref string Phone,ref string Email,ref int Nationality, ref string PearsonPicturePath,ref short Gender)
         {
             bool isFound = false;
             string query = "select * from People where PersonID=@id";
@@ -39,7 +39,7 @@ namespace DVLDDataAccessLayer
                     LastName = (string)reader["LastName"];
                     NationalNumber = (string)reader["NationalNumber"];
                     DateOfBirth = (DateTime)reader["DateOfBirth"];
-                    Gender  = reader["Gender"].ToString()[0];
+                    Gender  = (byte)reader["Gender"];
                     if (reader["Address"] != DBNull.Value)
                         Address = (string)reader["Address"];
                     else
@@ -71,7 +71,7 @@ namespace DVLDDataAccessLayer
             return isFound;
             
         }
-        static public bool GetPersonByNationalNum(ref int  id, ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName,  string NationalNumber, ref DateTime DateOfBirth, ref string Address, ref string Phone, ref string Email, ref int Nationality, ref string PearsonPicturePath, ref char Gender)
+        static public bool GetPersonByNationalNum(ref int  id, ref string FirstName, ref string SecondName, ref string ThirdName, ref string LastName,  string NationalNumber, ref DateTime DateOfBirth, ref string Address, ref string Phone, ref string Email, ref int Nationality, ref string PearsonPicturePath, ref short Gender)
         {
             bool isFound = false;
             string query = "select * from People where NationalNumber=@NationalNumber";
@@ -91,7 +91,7 @@ namespace DVLDDataAccessLayer
                     LastName = (string)reader["LastName"];
                     id = (int)reader["PersonID"];
                     DateOfBirth = (DateTime)reader["DateOfBirth"];
-                    Gender = reader["Gender"].ToString()[0];
+                    Gender = (byte)reader["Gender"];
                     if (reader["Address"] != DBNull.Value)
                         Address = (string)reader["Address"];
                     else
@@ -123,7 +123,7 @@ namespace DVLDDataAccessLayer
             return isFound;
 
         }
-        static public int AddNewPerson(string nationnalNumber, string firstname, string secondname, string thirdname, string lastname, DateTime dateOfBirth,string address,string phone,string email,int nationality, string personImagePath,char gender)
+        static public int AddNewPerson(string nationnalNumber, string firstname, string secondname, string thirdname, string lastname, DateTime dateOfBirth,string address,string phone,string email,int nationality, string personImagePath,short gender)
         {
             int id = -1;
             string query = @"insert into People (NationalNumber,DateOfBirth,Address,Phone,Email,Nationality,PersonalPicturePath,FirstName,SecondName,ThirdName,LastName,Gender) Values  (@nationnalNumber,@dateOfBirth,@address,@phone,@email,@nationality,@personImagePath,@firstname,@secondname,@thirdname,@lastname,@gender) ;
@@ -176,7 +176,7 @@ namespace DVLDDataAccessLayer
             return id;
         }
 
-        static public bool UpdatePersonInfo(int id,string nationnalNumber, string firstname, string secondname, string thirdname, string lastname, DateTime dateOfBirth, string address, string phone, string email, int nationality, string personImagePath,char gender)
+        static public bool UpdatePersonInfo(int id,string nationnalNumber, string firstname, string secondname, string thirdname, string lastname, DateTime dateOfBirth, string address, string phone, string email, int nationality, string personImagePath,short gender)
         {
             bool ChangeWasMade = false;
             

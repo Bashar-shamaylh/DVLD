@@ -28,26 +28,7 @@ namespace DVLD.Forms
         private int _PersonID = -1;
         
         clsPerson _Person;
-        string imagePath = "";
-        //public AddEditPersonInfoUI(int id = -1)
-        //{
-        //    InitializeComponent();
-
-
-        //    //since i got the id from the manage people form the id must be in the database so no need to check if find return a null or not
-        //    if (id != -1)
-        //    {
-        //        person = clsPerson.Find(id); //Update Mode
-
-        //        if (person == null)
-        //        {
-        //            person = new clsPerson();
-        //        }
-        //    }
-        //    else
-        //        person = new clsPerson();    //Add new mode
-
-        //}
+      
         public AddEditPersonInfoUI(int id)
         {
             InitializeComponent();
@@ -57,7 +38,7 @@ namespace DVLD.Forms
         public AddEditPersonInfoUI()
         {
             InitializeComponent();
-            _Person = new clsPerson();    //Add new mode
+            
             _Mode = enMode.AddNew;
         }
 
@@ -72,10 +53,10 @@ namespace DVLD.Forms
         {
             //Load all the Countries
             _LoadCountriesIntoTheForm();
-            //Prevent the user to enter a Date Less than 18 years
             if(_Mode==enMode.AddNew)
             {
                 lblTitle.Text = "Add New Person";
+                _Person=new clsPerson();
             }
             else
             {
@@ -92,6 +73,15 @@ namespace DVLD.Forms
             linkRemove.Visible = (PersonalImage.ImageLocation != null);
             dtpDateOfBirth.MaxDate = DateTime.Now.AddYears(-18);
             dtpDateOfBirth.MinDate = DateTime.Now.AddYears(-120);
+            txtBoxFirstName.Text = "";
+            txtBoxSecondName.Text = "";
+            txtBoxThirdName.Text = "";
+            txtBoxLastName.Text = "";
+            txtBoxNationalNum.Text = "";
+            rdoMale.Checked = true;
+            txtBoxPhone.Text = "";
+            txtBoxAddress.Text = "";
+            txtBoxEmail.Text = "";
             
         }
         private void _FillPersonInfoIntoTheForm()   // _LoadData //fill all the Controls with Person info(Update Mode)
@@ -104,7 +94,7 @@ namespace DVLD.Forms
                 return;
             }
             lblPersonIDResult.Text = _Person.ID.ToString();
-            lblNationalNumResult.Text = _Person.NationnalNumber;
+            lblNationalNumResult.Text = _Person.NationnalNumber.ToString();
 
             txtBoxFirstName.Text = _Person.FirstName;
             txtBoxSecondName.Text = _Person.SecondName;
@@ -135,12 +125,12 @@ namespace DVLD.Forms
            
             if (_Person.Address != null)
                 txtBoxAddress.Text = _Person.Address;
-            if(!string.IsNullOrEmpty(_Person.PersonalImage))
+            if(_Person.PersonalImage!="")
             {
                 PersonalImage.ImageLocation = _Person.PersonalImage;
                 
             }
-            linkRemove.Visible = (!string.IsNullOrEmpty(_Person.PersonalImage));
+            linkRemove.Visible = (_Person.PersonalImage != "");
             
         }
         private void _LoadCountriesIntoTheForm() //Get  all the Countries from the database and Set Jordan to defult
@@ -148,23 +138,10 @@ namespace DVLD.Forms
             cmbCountries.DataSource = clsCountry.GetCountriesInfo();
             cmbCountries.DisplayMember = "CountryName";
             cmbCountries.ValueMember = "CountryID";
-            cmbCountries.SelectedValue = 183;   //jordan id
+            cmbCountries.SelectedValue = 90;   //jordan id
         }
         
-        private void _SetImage(string ImagePath="")
-        {
-            if (_Person.PersonalImage == null && imagePath == "")
-            {
-                if (rdoMale.Checked)
-                {
-                    PersonalImage.Image = Properties.Resources.Male_512;
-                }
-                else
-                {
-                    PersonalImage.Image = Properties.Resources.Female_512;
-                }
-            }
-        }
+       
         private bool _EmailFilter(string txt)
         {
             if (!string.IsNullOrWhiteSpace(txt))
@@ -176,6 +153,7 @@ namespace DVLD.Forms
                 else
                     return true;
             }
+            return false;
         }
        
 
@@ -184,7 +162,6 @@ namespace DVLD.Forms
             _PrepareTheFormComponents();
             if (_Mode == enMode.Update)
                 _FillPersonInfoIntoTheForm();//LoadData();
-            this.ValidateChildren();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -211,46 +188,48 @@ namespace DVLD.Forms
             openFileDialog1.Filter =
                                     "Image Files (*.jpg;*.jpeg;*.png;*.bmp;*.gif)|*.jpg;*.jpeg;*.png;*.bmp;*.gif|" +
                                     "All Files (*.*)|*.*";
+            openFileDialog1.RestoreDirectory = true;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                imagePath = openFileDialog1.FileName;
+                string SelectedImagePath = openFileDialog1.FileName;
                 linkRemove.Visible = true;
-                PersonalImage.Image = Image.FromFile(imagePath);
+                PersonalImage.Load ( SelectedImagePath);
             }
            
 
 
         }
-        private void _Save()
+      
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!this.ValidateChildren()) 
+            if (!this.ValidateChildren())
                 return;
             if (!_HandlePersonImage())
                 return;
-            _Person.FirstName = txtBoxFirstName.Text;
-            _Person.SecondName = txtBoxSecondName.Text;
-            _Person.ThirdName = txtBoxThirdName.Text;
-            _Person.LastName = txtBoxLastName.Text;
-            _Person.NationnalNumber = txtBoxNationalNum.Text;
-            _Person.Address = txtBoxAddress.Text;
-            _Person.Email = txtBoxEmail.Text;
-            _Person.Phone = txtBoxPhone.Text;
+            _Person.FirstName = txtBoxFirstName.Text.Trim();
+            _Person.SecondName = txtBoxSecondName.Text.Trim();
+            _Person.ThirdName = txtBoxThirdName.Text.Trim();
+            _Person.LastName = txtBoxLastName.Text.Trim();
+            _Person.NationnalNumber = txtBoxNationalNum.Text.Trim();
+            _Person.Address = txtBoxAddress.Text.Trim();
+            _Person.Email = txtBoxEmail.Text.Trim();
+            _Person.Phone = txtBoxPhone.Text.Trim();
             _Person.Nationality = Convert.ToInt32(cmbCountries.SelectedValue);
             _Person.DateOfBirth = dtpDateOfBirth.Value;
             if (rdoMale.Checked)
             {
-                _Person.Gender = (short) enGender.Male;
+                _Person.Gender = (short)enGender.Male;
             }
             else
             {
                 _Person.Gender = (short)enGender.Female;
             }
 
-            if (PersonalImage.Location !=null)
+            if (PersonalImage.Location != null)
             {
-                _Person.ImagePath=PersonalImage.Location.ToString();
+                _Person.ImagePath = PersonalImage.Location.ToString();
             }
-            if(_Person.Save())
+            if (_Person.Save())
             {
                 _Mode = enMode.Update;
                 lblPersonIDResult.Text = _Person.ID.ToString();
@@ -258,37 +237,13 @@ namespace DVLD.Forms
                 lblNationalNumResult.Text = _Person.NationnalNumber.ToString();
                 lblNationalNumResult.Visible = true;
                 lblTitle.Text = "Update Mode";
-                DataBack?.Invoke(this,_Person.ID);
-            }
-           
-        }    //Collect the info from the input Controls into Person object and call person.Save at the end
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-           
-             if(string.IsNullOrEmpty(txtBoxFirstName.Text) ||
-                string.IsNullOrEmpty(txtBoxSecondName.Text)||
-                string.IsNullOrEmpty(txtBoxThirdName.Text) || 
-                string.IsNullOrEmpty(txtBoxLastName.Text)  ||
-                string.IsNullOrEmpty(txtBoxNationalNum.Text))
-            {
-                MessageBox.Show("Full Name And National Number Cannot Be Empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DataBack?.Invoke(this, _Person.ID);
             }
             else
-            {
-                try
-                {
-                    _Save();
-                    MessageBox.Show("Data Saved Successfuly");
-                }
-                catch (Exception)
-                {
+                MessageBox.Show("Unexpected Error Has Occored", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    MessageBox.Show("Unexpected Error Has Occored", "Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                }
+           
 
-                
-            }
-            
         }
 
        
@@ -296,18 +251,19 @@ namespace DVLD.Forms
 
         private void linkRemove_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            imagePath = "";
-            _SetImage();
-            if (person.PersonalImage != null)
+            PersonalImage.ImageLocation = null;
+            if (rdoMale.Checked)
             {
-                string path = Path.Combine(Application.StartupPath, "DVLDImages");
-                if (File.Exists(path))
-                {
-                    File.Delete(Path.Combine(path,person.PersonalImage));
-                    person.PersonalImage = null;
-                }
+                PersonalImage.Image = Resources.Male_512;
 
             }
+            else
+                PersonalImage.Image = Resources.Female_512;
+            linkRemove.Visible= false; 
+        }
+        private bool _HandlePersonImage()
+        {
+            return true;
         }
         private void txtBoxNationalNum_Validating(object sender, CancelEventArgs e)
         {
@@ -319,7 +275,7 @@ namespace DVLD.Forms
             else
                 errorProvider1.SetError(txtBoxNationalNum, null);
 
-            if (txtBoxNationalNum.Text.Trim() != _Person.NationnalNumber && clsPerson.isPersonExist(txtBoxNationalNum.Text.Trim())
+            if (txtBoxNationalNum.Text.Trim() != _Person.NationnalNumber && clsPerson.isPersonExist(txtBoxNationalNum.Text.Trim()))
                 {
                 e.Cancel = true;
                 errorProvider1.SetError(txtBoxNationalNum, "this National Number is already used by another person");
@@ -356,7 +312,7 @@ namespace DVLD.Forms
         private void ValidateEmptyTextBox(object sender,CancelEventArgs e)
         {
             TextBox temp = ((TextBox)sender);
-            if(string.IsNullOrEmpty(temp.Text.Trim()) 
+            if(string.IsNullOrEmpty(temp.Text.Trim())) 
                 {
                 e.Cancel = true;
                 errorProvider1.SetError(temp, "this feild is required");
