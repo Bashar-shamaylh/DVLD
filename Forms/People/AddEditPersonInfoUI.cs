@@ -263,6 +263,35 @@ namespace DVLD.Forms
         }
         private bool _HandlePersonImage()
         {
+             if(_Person.ImagePath!=PersonalImage.ImageLocation)
+            {
+                if(_Person.ImagePath != ""&&_Person.ImagePath!=null)
+                {
+                    try
+                    {
+                        File.Delete(_Person.ImagePath);   //delete the old image in case that the image was changed
+                    }
+                    catch (IOException)
+                    {
+
+                        throw;
+                    }
+                }
+                if(PersonalImage.ImageLocation!=null)
+                {
+                    string SourceImageFile=PersonalImage.ImageLocation.ToString(); 
+                        if(clsUtil.CopyImageToProjectImagesFolder(ref SourceImageFile))
+                    {
+                        PersonalImage.ImageLocation=SourceImageFile;
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error,Adding Image was faild","Error",MessageBoxButtons.OK, MessageBoxIcon.Error)  
+                            ;return false;  
+                    }
+                }
+            }
             return true;
         }
         private void txtBoxNationalNum_Validating(object sender, CancelEventArgs e)
