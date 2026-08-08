@@ -81,13 +81,14 @@
             this.grbUserInfo.TabIndex = 2;
             this.grbUserInfo.TabStop = false;
             this.grbUserInfo.Text = "Person Information";
-            this.grbUserInfo.Enter += new System.EventHandler(this.grbUserInfo_Enter_1);
+            this.grbUserInfo.Enter += new System.EventHandler(this.grbUserInfo_Enter);
             // 
             // linklblEditPersonInfo
             // 
             this.linklblEditPersonInfo.AutoSize = true;
+            this.linklblEditPersonInfo.Enabled = false;
             this.linklblEditPersonInfo.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.linklblEditPersonInfo.Location = new System.Drawing.Point(608, 32);
+            this.linklblEditPersonInfo.Location = new System.Drawing.Point(585, 16);
             this.linklblEditPersonInfo.Name = "linklblEditPersonInfo";
             this.linklblEditPersonInfo.Size = new System.Drawing.Size(130, 23);
             this.linklblEditPersonInfo.TabIndex = 19;
@@ -97,12 +98,11 @@
             // 
             // pcbPersonalImage
             // 
-            this.pcbPersonalImage.Location = new System.Drawing.Point(588, 58);
+            this.pcbPersonalImage.Location = new System.Drawing.Point(568, 58);
             this.pcbPersonalImage.Name = "pcbPersonalImage";
             this.pcbPersonalImage.Size = new System.Drawing.Size(170, 220);
             this.pcbPersonalImage.TabIndex = 18;
             this.pcbPersonalImage.TabStop = false;
-            this.pcbPersonalImage.Click += new System.EventHandler(this.pcbPersonalImage_Click);
             // 
             // lblCountryResult
             // 

@@ -22,7 +22,7 @@ namespace DVLD.user_Controls
         public void ctrlFindPersonFilter1_Load(int PersonID = -1)
         {
             if (PersonID != -1)
-                ctrlPersonInfo1.ctrlPersonInfo_Load(PersonID);
+                ctrlPersonInfo1.LoadPersonInfo(PersonID);
         }
         //this is my first attempt
         //this is my first attempt
@@ -64,14 +64,14 @@ namespace DVLD.user_Controls
                 
                 if (SearchType == "PersonID")
                 {
-                    ctrlPersonInfo1.ctrlPersonInfo_Load(int.Parse(SearchText));
+                    ctrlPersonInfo1.LoadPersonInfo(int.Parse(SearchText));
 
                 }
                 else
-                    ctrlPersonInfo1.ctrlPersonInfo_Load(SearchText);
+                    ctrlPersonInfo1.LoadPersonInfo(SearchText);
                 if (OnPersonSelected!=null)
                 {
-                    OnPersonSelected(ctrlPersonInfo1.personID);
+                    OnPersonSelected(ctrlPersonInfo1.PersonID);
                 }
 
             }

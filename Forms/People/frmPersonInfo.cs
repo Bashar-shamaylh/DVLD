@@ -16,7 +16,12 @@ namespace DVLD.Forms
         public frmPersonInfo(int id)
         {
             InitializeComponent();
-            ctrlPersonInfo1.ctrlPersonInfo_Load((id));
+            ctrlPersonInfo1.LoadPersonInfo((id));
+        }
+        public frmPersonInfo(string NationnalNum)
+        {
+            InitializeComponent();
+            ctrlPersonInfo1.LoadPersonInfo((NationnalNum));
         }
 
         private void frmPersonInfo_Load(object sender, EventArgs e)
