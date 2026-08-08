@@ -46,14 +46,14 @@ namespace DVLDBussnissLayer
             Address = "";
             Phone = "";
             Email = "";
-            Gender = 0;
+            Gender = 'M';
             DateOfBirth = DateTime.Now;
             Nationality = -1;
             PersonalImage = null;
             ImagePath = "";
             Mode=enMode.AddMode;
         }
-        clsPerson(int id,string firstname, string secondname, string thirrdname, string lastname, string nationalnumber, DateTime dateofbirth, string address,string phone,string email,int nationality, string personalimage,short gender)
+        clsPerson(int id,string firstname, string secondname, string thirrdname, string lastname, string nationalnumber, DateTime dateofbirth, string address,string phone,string email,int nationality, string personalimage,char gender)
         {
             ID = id;
              FirstName = firstname;
@@ -85,7 +85,7 @@ namespace DVLDBussnissLayer
             string phone = "";
             string email = "";
            DateTime dateOfBirth = DateTime.Now;
-            short gender = 0;
+            char gender = 'M';
            int nationality = -1;
             string personalImage = null;
             
@@ -105,7 +105,7 @@ namespace DVLDBussnissLayer
             string phone = "";
             string email = "";
             DateTime dateOfBirth = DateTime.Now;
-            short gender = 0;
+            char gender = 'M';
             int nationality = -1;
             string personalImage = null;
 
@@ -125,7 +125,7 @@ namespace DVLDBussnissLayer
             string phone = "";
             string email = "";
             DateTime dateOfBirth = DateTime.Now;
-            short gender = 0;
+            char gender = 'M';
             int nationality = -1;
             string personalImage = null;
 
