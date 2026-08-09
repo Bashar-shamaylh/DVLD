@@ -62,6 +62,7 @@ namespace DVLD.Forms
             {
                 lblTitle.Text = "Update";
             }
+            rdoMale.Checked = true;
             if (rdoMale.Checked)
             {
                 PersonalImage.Image = Resources.Male_512;
@@ -225,9 +226,9 @@ namespace DVLD.Forms
                 _Person.Gender = (short)enGender.Female;
             }
 
-            if (PersonalImage.Location != null)
+            if (PersonalImage.ImageLocation != null)
             {
-                _Person.ImagePath = PersonalImage.Location.ToString();
+                _Person.ImagePath=_Person.PersonalImage = PersonalImage.ImageLocation.ToString();
             }
             if (_Person.Save())
             {
@@ -355,7 +356,7 @@ namespace DVLD.Forms
 
         private void rdoMale_Click(object sender, EventArgs e)
         {
-            if (PersonalImage.Location == null)
+            if (PersonalImage.ImageLocation == null)
             {
                 PersonalImage.Image=Resources.Male_512;
             }
@@ -363,7 +364,7 @@ namespace DVLD.Forms
 
         private void rdoFemale_Click(object sender, EventArgs e)
         {
-            if (PersonalImage.Location == null)
+            if (PersonalImage.ImageLocation == null)
             {
                 PersonalImage.Image = Resources.Female_512;
             }

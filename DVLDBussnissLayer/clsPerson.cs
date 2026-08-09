@@ -46,14 +46,14 @@ namespace DVLDBussnissLayer
             Address = "";
             Phone = "";
             Email = "";
-            Gender = 'M';
+            Gender = 0;
             DateOfBirth = DateTime.Now;
             Nationality = -1;
             PersonalImage = null;
             ImagePath = "";
             Mode=enMode.AddMode;
         }
-        clsPerson(int id,string firstname, string secondname, string thirrdname, string lastname, string nationalnumber, DateTime dateofbirth, string address,string phone,string email,int nationality, string personalimage,char gender)
+        clsPerson(int id,string firstname, string secondname, string thirrdname, string lastname, string nationalnumber, DateTime dateofbirth, string address,string phone,string email,int nationality, string personalimage,short gender)
         {
             ID = id;
              FirstName = firstname;
@@ -85,7 +85,7 @@ namespace DVLDBussnissLayer
             string phone = "";
             string email = "";
            DateTime dateOfBirth = DateTime.Now;
-            char gender = 'M';
+            short gender = 0;
            int nationality = -1;
             string personalImage = null;
             
@@ -105,7 +105,7 @@ namespace DVLDBussnissLayer
             string phone = "";
             string email = "";
             DateTime dateOfBirth = DateTime.Now;
-            char gender = 'M';
+            short gender =0;
             int nationality = -1;
             string personalImage = null;
 
@@ -125,7 +125,7 @@ namespace DVLDBussnissLayer
             string phone = "";
             string email = "";
             DateTime dateOfBirth = DateTime.Now;
-            char gender = 'M';
+            short gender = 0;
             int nationality = -1;
             string personalImage = null;
 
@@ -135,7 +135,7 @@ namespace DVLDBussnissLayer
         }
         private bool _AddNewPerson()
         {
-            this.ID=clsPeopleDataAccess.AddNewPerson(NationnalNumber,FirstName,SecondName,ThirdName,LastName,DateOfBirth, Address,Phone,Email, Nationality, PersonalImage,Gender);
+            this.ID=clsPeopleDataAccess.AddNewPerson(NationnalNumber,FirstName,SecondName,ThirdName,LastName,DateOfBirth, Address,Phone,Email, Nationality, ImagePath,Gender);
             return this.ID!=-1;
         }
         private bool _UpdatePersonInfo()

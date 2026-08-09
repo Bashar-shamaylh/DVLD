@@ -223,7 +223,7 @@ namespace DVLDDataAccessLayer
             else { command.Parameters.AddWithValue("@email", email); }
 
             command.Parameters.AddWithValue("@nationality", nationality);
-            if (personImagePath == "")
+            if (personImagePath == ""||personImagePath==null)
             {
                 command.Parameters.AddWithValue("@personImagePath", System.DBNull.Value);
             }

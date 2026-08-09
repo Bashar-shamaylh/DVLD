@@ -57,24 +57,24 @@ namespace DVLD
             linklblEditPersonInfo.Enabled = true;
             try
             {
-                
-                
-                    
-                    lblPersonIdResult.Text = _Person.ID.ToString();
-                    lblNameResult.Text = _Person.FirstName + " " + _Person.SecondName + " " + _Person.ThirdName + " " + _Person.LastName;
-                    lblNationalNoResult.Text = _Person.NationnalNumber.ToString();
-                    lblGendorResult.Text = _Person.Gender.ToString();
 
-                   
-                        lblEmailResult.Text = _Person.Email.ToString();
+
+
+                lblPersonIdResult.Text = _Person.ID.ToString();
+                lblNameResult.Text = _Person.FirstName + " " + _Person.SecondName + " " + _Person.ThirdName + " " + _Person.LastName;
+                lblNationalNoResult.Text = _Person.NationnalNumber.ToString();
+                lblGendorResult.Text = _Person.Gender.ToString();
+
+                if (_Person.Email != null) { lblEmailResult.Text = _Person.Email.ToString(); }
                     
-                 
-                        lblAddressResult.Text = _Person.Address.ToString();
+            
+                 if(_Person.Address !=null) { lblAddressResult.Text = _Person.Address.ToString(); }
+                      
                     
                     lblDateOfBirthResult.Text = _Person.DateOfBirth.ToString();
-                    
-                        lblPhoneResult.Text = _Person.Phone.ToString();
-                    
+              if(_Person.Phone!=null)
+                    lblPhoneResult.Text = _Person.Phone.ToString();
+                
 
                     lblCountryResult.Text = _Person.Nationality.ToString();
                 lblGendor.Text = _Person.Gender == 0 ? "Male" : "Female";
@@ -99,7 +99,7 @@ namespace DVLD
                 pcbPersonalImage.Image = Resources.Female_512;
             }
             string imagepath = _Person.ImagePath;
-            if (imagepath != ""||imagepath==null)
+            if (imagepath != ""&&imagepath!=null)
             {
                 if (File.Exists(imagepath))
                 {
