@@ -1,6 +1,6 @@
-﻿namespace DVLD.Forms
+﻿namespace DVLD.Forms.People
 {
-    partial class frmPersonInfo
+    partial class frmFindPerson
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlPersonInfo1 = new DVLD.ctrlPersonInfo();
+            this.ctrlPersonInfoWithFilter1 = new DVLD.user_Controls.ctrlPersonInfoWithFilter();
+            this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // ctrlPersonInfo1
+            // ctrlPersonInfoWithFilter1
             // 
-            this.ctrlPersonInfo1.Location = new System.Drawing.Point(12, 57);
-            this.ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            this.ctrlPersonInfo1.Size = new System.Drawing.Size(832, 371);
-            this.ctrlPersonInfo1.TabIndex = 0;
-            this.ctrlPersonInfo1.Load += new System.EventHandler(this.ctrlPersonInfo1_Load);
+            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(-3, 63);
+            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
+            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(794, 426);
+            this.ctrlPersonInfoWithFilter1.TabIndex = 0;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(641, 484);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(104, 40);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // lblTitle
             // 
@@ -46,23 +56,23 @@
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.Red;
-            this.lblTitle.Location = new System.Drawing.Point(288, 11);
+            this.lblTitle.Location = new System.Drawing.Point(272, 17);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(230, 43);
+            this.lblTitle.Size = new System.Drawing.Size(196, 43);
             this.lblTitle.TabIndex = 6;
-            this.lblTitle.Text = "Person Details";
-            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
+            this.lblTitle.Text = "Find Person";
             // 
-            // frmPersonInfo
+            // frmFindPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(847, 426);
+            this.ClientSize = new System.Drawing.Size(787, 538);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.ctrlPersonInfo1);
-            this.Name = "frmPersonInfo";
-            this.Text = "frmPersonInfo";
-            this.Load += new System.EventHandler(this.frmPersonInfo_Load);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.ctrlPersonInfoWithFilter1);
+            this.Name = "frmFindPerson";
+            this.Text = "frmFindPerson";
+            this.Load += new System.EventHandler(this.frmFindPerson_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -70,7 +80,8 @@
 
         #endregion
 
-        private ctrlPersonInfo ctrlPersonInfo1;
+        private user_Controls.ctrlPersonInfoWithFilter ctrlPersonInfoWithFilter1;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
     }
 }

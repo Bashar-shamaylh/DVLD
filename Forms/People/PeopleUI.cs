@@ -13,40 +13,74 @@ namespace DVLD.Forms
 {
     public partial class PeopleUI : Form
     {
-        DataTable _dtPeople ;
-        DataView _dvPeople ;
-        public void LoadPeopleDataIntoTheForm()
-        {
-            _dtPeople = clsPerson.GetPeopleInfo();
-            _dvPeople = new DataView(_dtPeople);
-            grdvPeople.DataSource = _dtPeople;
-            lblNumberOfRecordsResult.Text = _dtPeople.Rows.Count.ToString();
-            //            cmbxFitlerItems.Items.Add("None");
-
-            cmbxFitlerItems.Items.Add("PersonID");
-            cmbxFitlerItems.Items.Add("FirstName");
-            cmbxFitlerItems.Items.Add("SecondName");
-            cmbxFitlerItems.Items.Add("ThirdName");
-            cmbxFitlerItems.Items.Add("LastName");
-            cmbxFitlerItems.Items.Add("NationalNumber");
-            cmbxFitlerItems.Items.Add("Phone");
-            cmbxFitlerItems.Items.Add("Email");
-            cmbxFitlerItems.Items.Add("Nationality");          //................Update it later to string.............
-            cmbxFitlerItems.Items.Add("Gender");
-        }
+       private static DataTable _dtAllPeople=clsPerson.GetPeopleInfo() ;
+        private static DataTable _dtPeople = _dtAllPeople.DefaultView.ToTable(false, "PersonID", "NationalNumber", "FirstName",
+                                                    "SecondName", "ThirdName", "LastName", "GenderCatption",
+                                                     "Phone","Email", "CountryName", "DateOfBirth");
+     
         public PeopleUI()
         {
-            InitializeComponent();
-
-          
+            InitializeComponent();    
         }
 
         private void PeopleUI_Load(object sender, EventArgs e)
         {
-             LoadPeopleDataIntoTheForm();  
-        }
+            grdvPeople.DataSource = _dtPeople;
+            lblNumberOfRecordsResult.Text = _dtPeople.Rows.Count.ToString();
+            cmbxFitlerItems.SelectedIndex = 0;
+            if (grdvPeople.Rows.Count > 0)
+            {
+                {
+                    grdvPeople.Columns[0].HeaderText = "Person ID";
+                    grdvPeople.Columns[0].Width = 110;
 
-     
+                    grdvPeople.Columns[1].HeaderText = "National Number";
+                    grdvPeople.Columns[1].Width = 110;
+
+                    grdvPeople.Columns[2].HeaderText = "First Name";
+                    grdvPeople.Columns[2].Width = 110;
+
+                    grdvPeople.Columns[3].HeaderText = "Second Name";
+                    grdvPeople.Columns[3].Width = 120;
+
+                    grdvPeople.Columns[4].HeaderText = "Third Name";
+                    grdvPeople.Columns[4].Width = 120;
+
+                    grdvPeople.Columns[5].HeaderText = "Last Name";
+                    grdvPeople.Columns[5].Width = 120;
+
+                    grdvPeople.Columns[6].HeaderText = "Gender";
+                    grdvPeople.Columns[6].Width = 110;
+
+
+
+                    grdvPeople.Columns[7].HeaderText = "Phone";
+                    grdvPeople.Columns[7].Width = 110;
+
+                    grdvPeople.Columns[8].HeaderText = "Email";
+                    grdvPeople.Columns[8].Width = 120;
+
+                    grdvPeople.Columns[9].HeaderText = "Country Name";
+                    grdvPeople.Columns[9].Width = 110;
+
+                    grdvPeople.Columns[10].HeaderText = "Date of Birth";
+                    grdvPeople.Columns[10].Width = 120;
+
+
+
+                }
+            }
+            }
+
+        private void _RefreshPeopleList()
+        {
+              _dtAllPeople = clsPerson.GetPeopleInfo();
+         _dtPeople = _dtAllPeople.DefaultView.ToTable(false, "PersonID", "NationalNumber", "FirstName",
+                                                    "SecondName", "ThirdName", "LastName", "GenderCatption",
+                                                     "Phone", "Email", "CountryName", "DateOfBirth");
+            grdvPeople.DataSource = _dtPeople;
+            lblNumberOfRecordsResult.Text = _dtPeople.Rows.Count.ToString();
+        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -55,68 +89,87 @@ namespace DVLD.Forms
 
         private void cmbxFitlerItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if(cmbxFitlerItems.Items.Add("None"); if(!=None) then visible
-            txtSearch.Visible = true;
+            if(cmbxFitlerItems.Text!="None")
+                txtSearch.Visible = true;
+            else
+                txtSearch.Visible = false;
+            //txtSearch.Visible=(cmbxFilterItems.Text==None);
+            if (txtSearch.Visible)
+            {
+                txtSearch.Text = "";
+                txtSearch.Focus();
+            }
 
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (cmbxFitlerItems.Text == "Person ID")
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
 
-            if (cmbxFitlerItems.SelectedIndex == 0 || cmbxFitlerItems.SelectedIndex == 5 || cmbxFitlerItems.SelectedIndex == 6)
-            {
-                if (char.IsLetter(e.KeyChar))
-                {
-                    // Set Handled to true to "cancel" the event and block the character
-                    e.Handled = true;
-                }
-
-            }
-            else if(cmbxFitlerItems.SelectedIndex == 1 || cmbxFitlerItems.SelectedIndex == 2 || cmbxFitlerItems.SelectedIndex == 3 || cmbxFitlerItems.SelectedIndex == 4  )
-            {
-                if (char.IsDigit(e.KeyChar))
-                {
-
-                    e.Handled = true;
-                }
-            }
-            else if(cmbxFitlerItems.SelectedIndex == 9 )
-            {
-                if (e.KeyChar != 'M' && e.KeyChar != 'm' && e.KeyChar != 'F' && e.KeyChar != 'f' && e.KeyChar != (char)Keys.Back)
-                {
-
-                    e.Handled = true;
-                }
-            }
 
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string filterText = txtSearch.Text.Trim(); 
-
-            // If the box is empty, reset the filter and STOP
-            if (string.IsNullOrEmpty(filterText))
+            string filterText = "";
+            switch (cmbxFitlerItems.SelectedItem)
             {
-                _dvPeople.RowFilter = "";
+                case "Person ID":
+                    filterText = "PersonID";
+                    break;
+                case "National Number":
+                    filterText = "NationalNumber";
+                    break;
+                case "First Name":
+                    filterText = "FirstName";
+                    break;
+                case "Second Name":
+                    filterText = "SecondName";
+                    break;
+                case "Third Name":
+                    filterText = "ThirdName";
+                    break;
+                case "Last Name":
+                    filterText = "LastName";
+                    break;
+                case "Gender":
+                    filterText = "GenderCatption";
+                    break;
+                case "Phone":
+                    filterText = "Phone";
+                    break;
+                case "Email":
+                    filterText = "Email";
+                    break;
+                case "Country Name":
+                    filterText = "CountryName";
+                    break;
+                case "Date Of Birth":
+                    filterText = "DateOfBirth";
+                    break;
+
+                default :
+                    break;
+            }
+            if(filterText==""||cmbxFitlerItems.Text=="None")
+            {
+                _dtPeople.DefaultView.RowFilter = "";
+                lblNumberOfRecordsResult.Text = _dtPeople.Rows.Count.ToString();
                 return;
             }
-            string ColumnName = cmbxFitlerItems.Text.Trim() ;
-            if(cmbxFitlerItems.SelectedIndex==0 )
-                _dvPeople.RowFilter = $"{ColumnName} = {filterText}";
-            else if(cmbxFitlerItems.SelectedIndex == 9)
-                _dvPeople.RowFilter = $"{ColumnName} = '{filterText}'";
+            if (filterText == "PersonID")
+                _dtPeople.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterText, txtSearch.Text.Trim());
             else
-                _dvPeople.RowFilter = $"{ColumnName} LIKE '%{filterText}%'";
-
-            grdvPeople.DataSource = _dvPeople;
+                _dtPeople.DefaultView.RowFilter=string.Format("[{0}] Like '{1}%'",filterText, txtSearch.Text.Trim());
+            lblNumberOfRecordsResult.Text = _dtPeople.Rows.Count.ToString();
         }
 
         private void btnAddNewPerson_Click(object sender, EventArgs e)
         {
             Form form = new AddEditPersonInfoUI();
             form.ShowDialog();
-            LoadPeopleDataIntoTheForm();
+            _RefreshPeopleList();
         }
 
         private void lblManagePeople_Click(object sender, EventArgs e)
@@ -128,7 +181,7 @@ namespace DVLD.Forms
         {
             Form form = new AddEditPersonInfoUI();
             form.ShowDialog();
-            LoadPeopleDataIntoTheForm();
+            _RefreshPeopleList();
 
         }
 
@@ -136,49 +189,36 @@ namespace DVLD.Forms
         {
 
 
-            if (int.TryParse(grdvPeople.CurrentCell.Value.ToString(), out int id))
-            {
-                Form form = new AddEditPersonInfoUI(id);
+           
+                Form form = new AddEditPersonInfoUI((int)grdvPeople.CurrentRow.Cells[0].Value);
                 form.ShowDialog();
-            }
-            LoadPeopleDataIntoTheForm();
+            
+            _RefreshPeopleList();
 
         }
 
         private void grdvPeople_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
-            if (e.RowIndex < 0 || e.ColumnIndex <0)
-                return;
-            if(e.Button==MouseButtons.Right)
-            {
-                
-                
-               grdvPeople.CurrentCell=grdvPeople.Rows[e.RowIndex].Cells[0];
-                contextMenuStrip1.Show(Cursor.Position);
-
-            }
+         
         }
 
         private void tsmViewDetails_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(grdvPeople.CurrentCell.Value.ToString(), out int id))
-            {
-                frmPersonInfo frmPersonInfo = new frmPersonInfo(id);
+                frmPersonInfo frmPersonInfo = new frmPersonInfo((int)grdvPeople.CurrentRow.Cells[0].Value);
                 frmPersonInfo.ShowDialog();
                 
-            }
+            
             
         }
 
         private void tsmDeletePerson_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(grdvPeople.CurrentCell.Value.ToString(), out int id))
-            {
-                clsPerson.DeletePerson(id);
+           
+                clsPerson.DeletePerson((int)grdvPeople.CurrentRow.Cells[0].Value);
 
-            }
-            LoadPeopleDataIntoTheForm();
+            
+            _RefreshPeopleList();
 
         }
     }

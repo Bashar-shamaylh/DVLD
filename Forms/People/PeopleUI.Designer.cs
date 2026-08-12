@@ -57,6 +57,7 @@
             this.grdvPeople.AllowUserToResizeRows = false;
             this.grdvPeople.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.grdvPeople.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdvPeople.ContextMenuStrip = this.contextMenuStrip1;
             this.grdvPeople.Location = new System.Drawing.Point(5, 146);
             this.grdvPeople.Name = "grdvPeople";
             this.grdvPeople.ReadOnly = true;
@@ -178,6 +179,18 @@
             // 
             this.cmbxFitlerItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxFitlerItems.FormattingEnabled = true;
+            this.cmbxFitlerItems.Items.AddRange(new object[] {
+            "None",
+            "Person ID",
+            "National No.",
+            "First Name",
+            "Second Name",
+            "Third Name",
+            "Last Name",
+            "Nationality",
+            "Gendor",
+            "Phone",
+            "Email"});
             this.cmbxFitlerItems.Location = new System.Drawing.Point(90, 122);
             this.cmbxFitlerItems.Name = "cmbxFitlerItems";
             this.cmbxFitlerItems.Size = new System.Drawing.Size(132, 21);

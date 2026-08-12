@@ -24,7 +24,7 @@ namespace DVLD.Forms.Users
                 user = clsUser.Find(Userid);
 
 
-                ctrlPersonInfoWithFilter1.ctrlFindPersonFilter1_Load(user.PersonID);
+                ctrlPersonInfoWithFilter1.LoadPersonInfo(user.PersonID);
                 
                 if (user != null)
                 {

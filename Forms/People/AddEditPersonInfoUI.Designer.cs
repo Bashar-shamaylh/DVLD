@@ -36,7 +36,6 @@
             this.linklblSetImage = new System.Windows.Forms.LinkLabel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.PersonalImage = new System.Windows.Forms.PictureBox();
             this.txtBoxAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
             this.cmbCountries = new System.Windows.Forms.ComboBox();
@@ -66,9 +65,10 @@
             this.lblNationalNumResult = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.PersonalImage = new System.Windows.Forms.PictureBox();
             this.grbBoxPerson.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PersonalImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PersonalImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -173,16 +173,6 @@
             this.btnClose.Text = "Colse";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // PersonalImage
-            // 
-            this.PersonalImage.Image = global::DVLD.Properties.Resources.Male_512;
-            this.PersonalImage.Location = new System.Drawing.Point(738, 84);
-            this.PersonalImage.Name = "PersonalImage";
-            this.PersonalImage.Size = new System.Drawing.Size(161, 175);
-            this.PersonalImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PersonalImage.TabIndex = 51;
-            this.PersonalImage.TabStop = false;
             // 
             // txtBoxAddress
             // 
@@ -453,6 +443,16 @@
             this.lblTitle.TabIndex = 5;
             this.lblTitle.Text = "Add New Person";
             // 
+            // PersonalImage
+            // 
+            this.PersonalImage.Image = global::DVLD.Properties.Resources.Male_512;
+            this.PersonalImage.Location = new System.Drawing.Point(738, 84);
+            this.PersonalImage.Name = "PersonalImage";
+            this.PersonalImage.Size = new System.Drawing.Size(161, 175);
+            this.PersonalImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PersonalImage.TabIndex = 51;
+            this.PersonalImage.TabStop = false;
+            // 
             // AddEditPersonInfoUI
             // 
             this.AcceptButton = this.btnSave;
@@ -474,8 +474,8 @@
             this.Load += new System.EventHandler(this.AddEditPersonInfoUI_Load);
             this.grbBoxPerson.ResumeLayout(false);
             this.grbBoxPerson.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PersonalImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PersonalImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,28 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cmbxFitlerItems = new System.Windows.Forms.ComboBox();
             this.lblFilterBy = new System.Windows.Forms.Label();
             this.btnAddNewPerson = new System.Windows.Forms.Button();
             this.btnFindPerson = new System.Windows.Forms.Button();
             this.ctrlPersonInfo1 = new DVLD.ctrlPersonInfo();
+            this.grbFilter = new System.Windows.Forms.GroupBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.grbFilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(265, 50);
+            this.txtSearch.Location = new System.Drawing.Point(240, 16);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(137, 20);
             this.txtSearch.TabIndex = 16;
             this.txtSearch.Visible = false;
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
+            this.txtSearch.Validating += new System.ComponentModel.CancelEventHandler(this.txtSearch_Validating);
             // 
             // cmbxFitlerItems
             // 
             this.cmbxFitlerItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxFitlerItems.FormattingEnabled = true;
-            this.cmbxFitlerItems.Location = new System.Drawing.Point(127, 50);
+            this.cmbxFitlerItems.Location = new System.Drawing.Point(102, 16);
             this.cmbxFitlerItems.Name = "cmbxFitlerItems";
             this.cmbxFitlerItems.Size = new System.Drawing.Size(132, 21);
             this.cmbxFitlerItems.TabIndex = 15;
@@ -59,7 +65,7 @@
             // 
             this.lblFilterBy.AutoSize = true;
             this.lblFilterBy.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.lblFilterBy.Location = new System.Drawing.Point(40, 48);
+            this.lblFilterBy.Location = new System.Drawing.Point(15, 14);
             this.lblFilterBy.Name = "lblFilterBy";
             this.lblFilterBy.Size = new System.Drawing.Size(81, 23);
             this.lblFilterBy.TabIndex = 14;
@@ -67,7 +73,7 @@
             // 
             // btnAddNewPerson
             // 
-            this.btnAddNewPerson.Location = new System.Drawing.Point(494, 38);
+            this.btnAddNewPerson.Location = new System.Drawing.Point(469, 4);
             this.btnAddNewPerson.Name = "btnAddNewPerson";
             this.btnAddNewPerson.Size = new System.Drawing.Size(75, 48);
             this.btnAddNewPerson.TabIndex = 13;
@@ -77,7 +83,7 @@
             // 
             // btnFindPerson
             // 
-            this.btnFindPerson.Location = new System.Drawing.Point(413, 38);
+            this.btnFindPerson.Location = new System.Drawing.Point(388, 4);
             this.btnFindPerson.Name = "btnFindPerson";
             this.btnFindPerson.Size = new System.Drawing.Size(75, 48);
             this.btnFindPerson.TabIndex = 12;
@@ -93,21 +99,37 @@
             this.ctrlPersonInfo1.TabIndex = 0;
             this.ctrlPersonInfo1.Load += new System.EventHandler(this.ctrlPersonInfo1_Load);
             // 
+            // grbFilter
+            // 
+            this.grbFilter.Controls.Add(this.txtSearch);
+            this.grbFilter.Controls.Add(this.cmbxFitlerItems);
+            this.grbFilter.Controls.Add(this.lblFilterBy);
+            this.grbFilter.Controls.Add(this.btnAddNewPerson);
+            this.grbFilter.Controls.Add(this.btnFindPerson);
+            this.grbFilter.Location = new System.Drawing.Point(25, 31);
+            this.grbFilter.Name = "grbFilter";
+            this.grbFilter.Size = new System.Drawing.Size(613, 51);
+            this.grbFilter.TabIndex = 17;
+            this.grbFilter.TabStop = false;
+            this.grbFilter.Text = "Filter";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ctrlPersonInfoWithFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.cmbxFitlerItems);
-            this.Controls.Add(this.lblFilterBy);
-            this.Controls.Add(this.btnAddNewPerson);
-            this.Controls.Add(this.btnFindPerson);
+            this.Controls.Add(this.grbFilter);
             this.Controls.Add(this.ctrlPersonInfo1);
             this.Name = "ctrlPersonInfoWithFilter";
             this.Size = new System.Drawing.Size(839, 516);
             this.Load += new System.EventHandler(this.ctrlPersonInfoWithFilter_Load);
+            this.grbFilter.ResumeLayout(false);
+            this.grbFilter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -119,5 +141,7 @@
         private System.Windows.Forms.Label lblFilterBy;
         private System.Windows.Forms.Button btnAddNewPerson;
         private System.Windows.Forms.Button btnFindPerson;
+        private System.Windows.Forms.GroupBox grbFilter;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

@@ -405,7 +405,7 @@ namespace DVLDDataAccessLayer
             string query = @"select People.PersonID,People.NationalNumber,People.FirstName,
                         People.SecondName,People.ThirdName,People.LastName,
                         Case When People.Gender=0 then 'Male' Else 'Female' End as GenderCatption 
-                        ,People.Address,People.Phone,People.Email,People.PersonalPicturePath 
+                        ,People.Address,People.DateOfBirth,People.Phone,People.Email,People.Nationality,Countries.CountryName,People.PersonalPicturePath 
                         from People inner join Countries On People.Nationality=Countries.CountryID Order by People.FirstName;";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);

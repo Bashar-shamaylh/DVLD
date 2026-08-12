@@ -1,4 +1,5 @@
-﻿using DVLD.Forms.Users;
+﻿using DVLD.Forms;
+using DVLD.Forms.Users;
 using DVLDBussnissLayer;
 using System;
 using System.Collections.Generic;
@@ -14,41 +15,67 @@ namespace DVLD.user_Controls
 {
     public partial class ctrlPersonInfoWithFilter : UserControl
     {
-        public ctrlPersonInfoWithFilter()
-        {
-            InitializeComponent();
-            
-        }
-        public void ctrlFindPersonFilter1_Load(int PersonID = -1)
-        {
-            if (PersonID != -1)
-                ctrlPersonInfo1.LoadPersonInfo(PersonID);
-        }
-        //this is my first attempt
-        //this is my first attempt
-        //this is my first attempt
-        //this is my first attempt
-        //this is my first attempt
-        //this is my first attempt
-        //this is my first attempt
         public event Action<int> OnPersonSelected;
         protected virtual void PersonSelected(int PersonID)
         {
-            Action <int> handler = OnPersonSelected;
+            Action<int> handler = OnPersonSelected;
             if (handler != null)
             {
                 handler(PersonID);
             }
         }
-        //this is my first attempt
-        public clsPerson person;
-        private void ctrlPersonInfo1_Load(object sender, EventArgs e)
+        private bool _ShowAddPerson = true;
+        public bool ShowPerson
         {
-
+            get { return _ShowAddPerson; }
+            set
+            {
+                _ShowAddPerson = value;
+                btnAddNewPerson.Visible = _ShowAddPerson;
+               
+            }
         }
+        private bool _FilterEnabeld = true;
+        public bool FilterEnabeld
+        {
+            get
+            {
+                return _FilterEnabeld;
+            }
+            set { _FilterEnabeld= value;
+                grbFilter.Enabled = _FilterEnabeld; }
+        }
+        public ctrlPersonInfoWithFilter()
+        {
+            InitializeComponent();
+            
+        }
+        private int _PersonID;
+        public int PersonID
+        {
+            get { return ctrlPersonInfo1.PersonID; }
+         
+        }
+        private clsPerson person;
+        public clsPerson Person
+        {
+            get { return ctrlPersonInfo1.SelectedPersonInfo; }
+        }
+        public void LoadPersonInfo(int PersonID)
+        {
+            cmbxFitlerItems.SelectedIndex = 0;
+            txtSearch.Text=PersonID.ToString();
+            FindPerson();
+        }
+     
+       
+   
+       
+        //this is my first attempt
+        
 
        
-        private void _FindPerson()
+        public void FindPerson()
         {
             string SearchText=txtSearch.Text,  SearchType=cmbxFitlerItems.Text;
             if (SearchText == null)
@@ -69,7 +96,7 @@ namespace DVLD.user_Controls
                 }
                 else
                     ctrlPersonInfo1.LoadPersonInfo(SearchText);
-                if (OnPersonSelected!=null)
+                if (OnPersonSelected!=null&&FilterEnabeld)
                 {
                     OnPersonSelected(ctrlPersonInfo1.PersonID);
                 }
@@ -77,55 +104,46 @@ namespace DVLD.user_Controls
             }
         }
 
-        private void ctrlFindPersonFilter1_Load(object sender, EventArgs e)
-        {
-            
-        }
+  
 
 
         private void btnAddNewPerson_Click(object sender, EventArgs e)
         {
-            frmAddNewUser frmAddNewUser = new frmAddNewUser();
-            frmAddNewUser.ShowDialog();
+            AddEditPersonInfoUI frm = new AddEditPersonInfoUI();
+            frm.DataBack += DataBackEvent;
+            frm.ShowDialog();
         }
-
+        private void DataBackEvent(object sender,int PersonID)
+        {
+            cmbxFitlerItems.SelectedIndex=0;
+            txtSearch.Text=PersonID.ToString();
+            ctrlPersonInfo1.LoadPersonInfo(PersonID);
+        }
         private void btnFindPerson_Click(object sender, EventArgs e)
         {
-            _FindPerson();
+            if(!this.ValidateChildren())
+            {
+                MessageBox.Show("Error", "some feilds are not valid");
+                return;
+
+            }
+            FindPerson();
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (cmbxFitlerItems.SelectedIndex == 0 || cmbxFitlerItems.SelectedIndex == 5 || cmbxFitlerItems.SelectedIndex == 6)
+            if (e.KeyChar == (char)13)
             {
-                if (char.IsLetter(e.KeyChar))
-                {
-                    // Set Handled to true to "cancel" the event and block the character
-                    e.Handled = true;
-                }
-
+                btnFindPerson.PerformClick();
             }
-            else if (cmbxFitlerItems.SelectedIndex == 1 || cmbxFitlerItems.SelectedIndex == 2 || cmbxFitlerItems.SelectedIndex == 3 || cmbxFitlerItems.SelectedIndex == 4)
-            {
-                if (char.IsDigit(e.KeyChar))
-                {
-
-                    e.Handled = true;
-                }
-            }
-            else if (cmbxFitlerItems.SelectedIndex == 9)
-            {
-                if (e.KeyChar != 'M' && e.KeyChar != 'm' && e.KeyChar != 'F' && e.KeyChar != 'f' && e.KeyChar != (char)Keys.Back)
-                {
-
-                    e.Handled = true;
-                }
-            }
+            if(cmbxFitlerItems.SelectedIndex==0)
+                e.Handled=!char.IsDigit(e.KeyChar)&&!char.IsControl(e.KeyChar);
         }
 
         private void cmbxFitlerItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtSearch.Visible = true;
+            txtSearch.Text = "";
+            txtSearch.Focus();
         }
 
         private void ctrlPersonInfoWithFilter_Load(object sender, EventArgs e)
@@ -133,6 +151,23 @@ namespace DVLD.user_Controls
             cmbxFitlerItems.Items.Add("PersonID");
             cmbxFitlerItems.Items.Add("NationalNumber");
             cmbxFitlerItems.SelectedIndex = 0;
+        }
+
+        private void ctrlPersonInfo1_Load(object sender, EventArgs e)
+        {
+            cmbxFitlerItems.SelectedIndex = 0;
+            txtSearch.Focus();
+        }
+
+        private void txtSearch_Validating(object sender, CancelEventArgs e)
+        {
+            if(!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtSearch, "this feild is required");
+
+            }
+            errorProvider1.SetError(txtSearch, null);
         }
     }
 }
