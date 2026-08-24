@@ -55,6 +55,9 @@
             // 
             this.cmbxFitlerItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxFitlerItems.FormattingEnabled = true;
+            this.cmbxFitlerItems.Items.AddRange(new object[] {
+            "PersonID",
+            "NationalNumber"});
             this.cmbxFitlerItems.Location = new System.Drawing.Point(102, 16);
             this.cmbxFitlerItems.Name = "cmbxFitlerItems";
             this.cmbxFitlerItems.Size = new System.Drawing.Size(132, 21);

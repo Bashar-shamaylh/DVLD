@@ -68,13 +68,7 @@ namespace DVLD.user_Controls
             FindPerson();
         }
      
-       
-   
-       
-        //this is my first attempt
-        
 
-       
         public void FindPerson()
         {
             string SearchText=txtSearch.Text,  SearchType=cmbxFitlerItems.Text;
@@ -103,9 +97,6 @@ namespace DVLD.user_Controls
 
             }
         }
-
-  
-
 
         private void btnAddNewPerson_Click(object sender, EventArgs e)
         {
@@ -148,8 +139,7 @@ namespace DVLD.user_Controls
 
         private void ctrlPersonInfoWithFilter_Load(object sender, EventArgs e)
         {
-            cmbxFitlerItems.Items.Add("PersonID");
-            cmbxFitlerItems.Items.Add("NationalNumber");
+            
             cmbxFitlerItems.SelectedIndex = 0;
         }
 

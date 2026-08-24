@@ -37,7 +37,6 @@
             this.lblNumberOfRecordsResult = new System.Windows.Forms.Label();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.lblManageUsers = new System.Windows.Forms.Label();
-            this.grdvUsers = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAddUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUpdateUserInfo = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,8 +45,9 @@
             this.tsmSendEmail = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPhoneCall = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbxIsActiveOptions = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.grdvUsers)).BeginInit();
+            this.grdvUsers = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdvUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAddNewUser
@@ -74,6 +74,12 @@
             // 
             this.cmbxFitlerItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxFitlerItems.FormattingEnabled = true;
+            this.cmbxFitlerItems.Items.AddRange(new object[] {
+            "User ID",
+            "Person ID",
+            "Full Name",
+            "User Name",
+            "Is Active"});
             this.cmbxFitlerItems.Location = new System.Drawing.Point(117, 65);
             this.cmbxFitlerItems.Name = "cmbxFitlerItems";
             this.cmbxFitlerItems.Size = new System.Drawing.Size(132, 21);
@@ -106,10 +112,11 @@
             this.lblNumberOfRecordsResult.BackColor = System.Drawing.Color.Transparent;
             this.lblNumberOfRecordsResult.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNumberOfRecordsResult.ForeColor = System.Drawing.Color.Black;
-            this.lblNumberOfRecordsResult.Location = new System.Drawing.Point(94, 471);
+            this.lblNumberOfRecordsResult.Location = new System.Drawing.Point(113, 472);
             this.lblNumberOfRecordsResult.Name = "lblNumberOfRecordsResult";
-            this.lblNumberOfRecordsResult.Size = new System.Drawing.Size(0, 23);
+            this.lblNumberOfRecordsResult.Size = new System.Drawing.Size(67, 23);
             this.lblNumberOfRecordsResult.TabIndex = 13;
+            this.lblNumberOfRecordsResult.Text = "fuck off";
             // 
             // lblNumberOfRecords
             // 
@@ -117,7 +124,7 @@
             this.lblNumberOfRecords.BackColor = System.Drawing.Color.Transparent;
             this.lblNumberOfRecords.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNumberOfRecords.ForeColor = System.Drawing.Color.Black;
-            this.lblNumberOfRecords.Location = new System.Drawing.Point(30, 461);
+            this.lblNumberOfRecords.Location = new System.Drawing.Point(30, 472);
             this.lblNumberOfRecords.Name = "lblNumberOfRecords";
             this.lblNumberOfRecords.Size = new System.Drawing.Size(83, 23);
             this.lblNumberOfRecords.TabIndex = 12;
@@ -134,23 +141,6 @@
             this.lblManageUsers.Size = new System.Drawing.Size(226, 43);
             this.lblManageUsers.TabIndex = 11;
             this.lblManageUsers.Text = "Manage Users";
-            // 
-            // grdvUsers
-            // 
-            this.grdvUsers.AllowUserToAddRows = false;
-            this.grdvUsers.AllowUserToDeleteRows = false;
-            this.grdvUsers.AllowUserToResizeColumns = false;
-            this.grdvUsers.AllowUserToResizeRows = false;
-            this.grdvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.grdvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdvUsers.Location = new System.Drawing.Point(34, 89);
-            this.grdvUsers.Name = "grdvUsers";
-            this.grdvUsers.ReadOnly = true;
-            this.grdvUsers.Size = new System.Drawing.Size(751, 355);
-            this.grdvUsers.StandardTab = true;
-            this.grdvUsers.TabIndex = 10;
-            this.grdvUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdvUsers_CellContentClick);
-            this.grdvUsers.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdvUsers_CellMouseClick);
             // 
             // contextMenuStrip1
             // 
@@ -206,19 +196,41 @@
             // 
             // cmbxIsActiveOptions
             // 
+            this.cmbxIsActiveOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxIsActiveOptions.FormattingEnabled = true;
+            this.cmbxIsActiveOptions.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.cmbxIsActiveOptions.Items.AddRange(new object[] {
+            "All",
+            "Yes",
+            "No"});
             this.cmbxIsActiveOptions.Location = new System.Drawing.Point(255, 65);
             this.cmbxIsActiveOptions.Name = "cmbxIsActiveOptions";
             this.cmbxIsActiveOptions.Size = new System.Drawing.Size(80, 21);
             this.cmbxIsActiveOptions.TabIndex = 20;
             this.cmbxIsActiveOptions.Visible = false;
-            this.cmbxIsActiveOptions.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.cmbxIsActiveOptions.SelectedIndexChanged += new System.EventHandler(this.cmbxIsActiveOptions_SelectedIndexChanged);
+            // 
+            // grdvUsers
+            // 
+            this.grdvUsers.AllowUserToAddRows = false;
+            this.grdvUsers.AllowUserToDeleteRows = false;
+            this.grdvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdvUsers.ContextMenuStrip = this.contextMenuStrip1;
+            this.grdvUsers.Location = new System.Drawing.Point(34, 106);
+            this.grdvUsers.Name = "grdvUsers";
+            this.grdvUsers.ReadOnly = true;
+            this.grdvUsers.ShowCellErrors = false;
+            this.grdvUsers.ShowEditingIcon = false;
+            this.grdvUsers.ShowRowErrors = false;
+            this.grdvUsers.Size = new System.Drawing.Size(751, 291);
+            this.grdvUsers.TabIndex = 21;
             // 
             // frmUsersManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 510);
+            this.Controls.Add(this.grdvUsers);
             this.Controls.Add(this.cmbxIsActiveOptions);
             this.Controls.Add(this.btnAddNewUser);
             this.Controls.Add(this.txtSearch);
@@ -228,12 +240,11 @@
             this.Controls.Add(this.lblNumberOfRecordsResult);
             this.Controls.Add(this.lblNumberOfRecords);
             this.Controls.Add(this.lblManageUsers);
-            this.Controls.Add(this.grdvUsers);
             this.Name = "frmUsersManagement";
             this.Text = "frmUsersManagement";
             this.Load += new System.EventHandler(this.frmUsersManagement_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.grdvUsers)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdvUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,7 +260,6 @@
         private System.Windows.Forms.Label lblNumberOfRecordsResult;
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Label lblManageUsers;
-        private System.Windows.Forms.DataGridView grdvUsers;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmAddUser;
         private System.Windows.Forms.ToolStripMenuItem tsmUpdateUserInfo;
@@ -258,5 +268,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmSendEmail;
         private System.Windows.Forms.ToolStripMenuItem tsmPhoneCall;
         private System.Windows.Forms.ComboBox cmbxIsActiveOptions;
+        private System.Windows.Forms.DataGridView grdvUsers;
     }
 }

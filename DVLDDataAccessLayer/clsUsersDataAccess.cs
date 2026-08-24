@@ -152,7 +152,9 @@ namespace DVLDDataAccessLayer
         static public DataTable GetUsersInfo()
         {
             DataTable dt = new DataTable();
-            string query = @"SELECT * from Users";
+            string query = @"  SELECT Users.UserID,Users.PersonID,
+  People.FirstName+' '+People.SecondName +' '+People.ThirdName +' '+People.LastName as fullName,Users.UserName,Users.isActive 
+  from Users inner join People on Users.PersonID=People.PersonID;";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             try
