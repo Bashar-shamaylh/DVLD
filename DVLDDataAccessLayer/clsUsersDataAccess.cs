@@ -50,6 +50,38 @@ namespace DVLDDataAccessLayer
             return isFound;
 
         }
+        static public bool GetUserByPersonID(ref int userid, ref string username, ref string userpassword,  int personid, ref bool isactive)
+        {
+            bool isFound = false;
+            string query = "select * from Users where PersonID=@personid";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@personid", personid);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    username = (string)reader["UserName"];
+                    userpassword = (string)reader["UserPassword"];
+                    userid = (int)reader["UserID"];
+                    isactive = (bool)reader["isActive"];
+                    isFound = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            connection.Close();
+            return isFound;
+
+        }
         static public int AddNewUser(string username, string userpassword, int personid, bool isactive)
         {
             int id = -1;
@@ -237,6 +269,43 @@ namespace DVLDDataAccessLayer
             finally { connection.Close(); }
             return wasFound;
         }
+        static public bool ChangePassword(int userId, string newPassword)
+        {
+            bool ChangeWasMade = false;
+
+            string query = @"Update Users set UserPassword=@newPassword,where UserID=@userId;";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+
+            
+            command.Parameters.AddWithValue("@newPassword", newPassword);
+            command.Parameters.AddWithValue("@userId", userId);
+
+
+
+            try
+            {
+                connection.Open();
+                int numberofrowsaffected = command.ExecuteNonQuery();
+                if (numberofrowsaffected != 0)
+                {
+                    ChangeWasMade = true;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+            return ChangeWasMade;
+        }
+     
     }
 
 }

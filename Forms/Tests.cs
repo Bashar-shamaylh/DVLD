@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DVLDBussnissLayer;
 using DVLD.Forms.Users;
-
+using DVLD.Forms.People;
 namespace DVLD.Forms
 {
     public partial class Tests : Form
@@ -27,6 +27,8 @@ namespace DVLD.Forms
             //peopleUI.Show();
             //AddEditPersonInfoUI frm = new AddEditPersonInfoUI();
             //frm.Show();
+            //frmFindPerson findperson=new frmFindPerson();
+            //findperson.ShowDialog();
         }
 
         private void Tests_Load(object sender, EventArgs e)

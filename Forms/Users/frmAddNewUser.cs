@@ -15,22 +15,25 @@ namespace DVLD.Forms.Users
     public partial class frmAddNewUser : Form
     {
         clsPerson person;
-        clsUser user=new clsUser();
-        public frmAddNewUser(int Userid=-1)
+        clsUser user;
+        public delegate void DataBackEventHandler(object sender, int PersonID);
+
+        // Declare an event using the delegate
+        public event DataBackEventHandler DataBack;
+        public frmAddNewUser(int Userid)
         {
             InitializeComponent();
-            if (Userid != -1)
-            {
-                user = clsUser.Find(Userid);
 
+            user = clsUser.Find(Userid);
+            ctrlPersonInfoWithFilter1.LoadPersonInfo(user.PersonID);
+            _FillUserInfoIntoTheForm();
 
-                ctrlPersonInfoWithFilter1.LoadPersonInfo(user.PersonID);
-                
-                if (user != null)
-                {
-                    _FillUserInfoIntoTheForm();
-                }
-            }
+            
+        }
+        public frmAddNewUser()
+        {
+            InitializeComponent();
+            
         }
         private void _FillUserInfoIntoTheForm()
         {
@@ -124,10 +127,7 @@ namespace DVLD.Forms.Users
 
         private void frmAddNewUser_Load(object sender, EventArgs e)
         {
-            if(user.Mode==clsUser.enMode.AddMode)
-            {
-                chkisActive.Checked = true;
-            }
+            
           
             
         }
@@ -176,17 +176,17 @@ namespace DVLD.Forms.Users
             
             if (person != null)
             {
-                if(user.Mode == clsUser.enMode.AddMode)
-                if(clsUser.IsUserWithPersonIDExist(person.ID)) 
-                    {
-                        MessageBox.Show("This Person is Allready a User!","",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                    }
-               
-                    tabControl1.SelectedIndex = 1;
-                
 
-                    
+                user=clsUser.FindUserByPersonID(person.ID);
+                if (user == null)
+                {
+                    tabControl1.SelectedIndex = 1;
+                }
+                else
+                {
+                    MessageBox.Show("error", "this person is a user alredy");
+                }
+                
             }
             
         }
@@ -198,6 +198,8 @@ namespace DVLD.Forms.Users
 
         private void ctrlPersonInfoWithFilter1_OnPersonSelected(int obj)
         {
+            person = clsPerson.Find(obj);
+            
 
         }
     }

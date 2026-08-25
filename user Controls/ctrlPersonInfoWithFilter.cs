@@ -112,13 +112,14 @@ namespace DVLD.user_Controls
         }
         private void btnFindPerson_Click(object sender, EventArgs e)
         {
-            if(!this.ValidateChildren())
+            if (!this.ValidateChildren())
             {
                 MessageBox.Show("Error", "some feilds are not valid");
                 return;
 
             }
             FindPerson();
+
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -151,13 +152,18 @@ namespace DVLD.user_Controls
 
         private void txtSearch_Validating(object sender, CancelEventArgs e)
         {
-            if(!string.IsNullOrEmpty(txtSearch.Text))
+            if(string.IsNullOrEmpty(txtSearch.Text))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(txtSearch, "this feild is required");
-
+                return;
             }
             errorProvider1.SetError(txtSearch, null);
+        }
+
+        private void grbFilter_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

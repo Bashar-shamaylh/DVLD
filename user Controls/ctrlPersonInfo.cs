@@ -33,6 +33,7 @@ namespace DVLD
                 MessageBox.Show("Error","No Person With This ID",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
+            _personID = PersonID;
             _FillPersonInfoIntoTheForm();
         }
         public void LoadPersonInfo(string NationnalNum)
@@ -44,6 +45,7 @@ namespace DVLD
                 MessageBox.Show("Error", "No Person With This ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            _personID = PersonID;
             _FillPersonInfoIntoTheForm();
         }
 

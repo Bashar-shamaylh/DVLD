@@ -31,6 +31,12 @@ namespace DVLD.Forms.People
         private void btnClose_Click(object sender, EventArgs e)
         {
             DataBack?.Invoke(this,ctrlPersonInfoWithFilter1.PersonID);
+            this.Close();
+        }
+
+        private void ctrlPersonInfoWithFilter1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

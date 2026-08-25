@@ -28,21 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlPersonInfoWithFilter1 = new DVLD.user_Controls.ctrlPersonInfoWithFilter();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.ctrlPersonInfoWithFilter1 = new DVLD.user_Controls.ctrlPersonInfoWithFilter();
             this.SuspendLayout();
-            // 
-            // ctrlPersonInfoWithFilter1
-            // 
-            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(-3, 63);
-            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
-            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(794, 426);
-            this.ctrlPersonInfoWithFilter1.TabIndex = 0;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(641, 484);
+            this.btnClose.Location = new System.Drawing.Point(640, 495);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(104, 40);
             this.btnClose.TabIndex = 1;
@@ -61,6 +54,16 @@
             this.lblTitle.Size = new System.Drawing.Size(196, 43);
             this.lblTitle.TabIndex = 6;
             this.lblTitle.Text = "Find Person";
+            // 
+            // ctrlPersonInfoWithFilter1
+            // 
+            this.ctrlPersonInfoWithFilter1.FilterEnabeld = true;
+            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(-3, 63);
+            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
+            this.ctrlPersonInfoWithFilter1.ShowPerson = true;
+            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(794, 426);
+            this.ctrlPersonInfoWithFilter1.TabIndex = 0;
+            this.ctrlPersonInfoWithFilter1.Load += new System.EventHandler(this.ctrlPersonInfoWithFilter1_Load);
             // 
             // frmFindPerson
             // 

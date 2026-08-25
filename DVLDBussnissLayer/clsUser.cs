@@ -17,6 +17,7 @@ namespace DVLDBussnissLayer
        
         public string UserPassword { get; set; }
         public int PersonID { get; set; }
+        clsPerson PersonInfo;
         public bool isActive { get; set; }
        
 
@@ -35,6 +36,7 @@ namespace DVLDBussnissLayer
             UserName = username;
             UserPassword = userpassword;
             PersonID = personid;
+            PersonInfo = clsPerson.Find(PersonID);
             isActive = isactive;
            
             Mode = enMode.UpdateMode;
@@ -50,6 +52,19 @@ namespace DVLDBussnissLayer
 
             if (clsUsersDataAccess.GetUserByID(userid,ref username,ref userpassword,ref personid,ref isactive))
                 return new clsUser(userid,username,userpassword,personid,isactive);
+            return null;
+        }
+        static public clsUser FindUserByPersonID(int personid)
+        {
+
+
+            string username = "";
+            string userpassword = "";
+            int userid = -1;
+            bool isactive = false;
+
+            if (clsUsersDataAccess.GetUserByPersonID(ref userid, ref username, ref userpassword,  personid, ref isactive))
+                return new clsUser(userid, username, userpassword, personid, isactive);
             return null;
         }
         private bool _AddNewUser()

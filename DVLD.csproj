@@ -90,12 +90,6 @@
     <Compile Include="Forms\Users\frmUsersManagement.Designer.cs">
       <DependentUpon>frmUsersManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="user Controls\ctrlFindPersonFilter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="user Controls\ctrlFindPersonFilter.Designer.cs">
-      <DependentUpon>ctrlFindPersonFilter.cs</DependentUpon>
-    </Compile>
     <Compile Include="user Controls\ctrlPersonInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,9 +166,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users\frmUsersManagement.resx">
       <DependentUpon>frmUsersManagement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="user Controls\ctrlFindPersonFilter.resx">
-      <DependentUpon>ctrlFindPersonFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="user Controls\ctrlPersonInfo.resx">
       <DependentUpon>ctrlPersonInfo.cs</DependentUpon>
