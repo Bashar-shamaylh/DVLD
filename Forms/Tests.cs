@@ -21,14 +21,16 @@ namespace DVLD.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmUsersManagement user = new frmUsersManagement();
-            user.Show();
+            //frmUsersManagement user = new frmUsersManagement();
+            //user.Show();
             //PeopleUI peopleUI = new PeopleUI();
             //peopleUI.Show();
             //AddEditPersonInfoUI frm = new AddEditPersonInfoUI();
             //frm.Show();
             //frmFindPerson findperson=new frmFindPerson();
             //findperson.ShowDialog();
+            Main main=new Main();
+            main.Show();
         }
 
         private void Tests_Load(object sender, EventArgs e)

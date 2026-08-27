@@ -1,4 +1,5 @@
-﻿using DVLDBussnissLayer;
+﻿using DVLD.user_Controls;
+using DVLDBussnissLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace DVLD.Forms.Users
     public partial class frmAddNewUser : Form
     {
         clsPerson person;
-        clsUser user;
+        clsUser user=new clsUser();
         public delegate void DataBackEventHandler(object sender, int PersonID);
 
         // Declare an event using the delegate
@@ -26,6 +27,8 @@ namespace DVLD.Forms.Users
 
             user = clsUser.Find(Userid);
             ctrlPersonInfoWithFilter1.LoadPersonInfo(user.PersonID);
+            ctrlPersonInfoWithFilter1.FilterEnabeld = false;
+            lblTitle.Text = "Update";
             _FillUserInfoIntoTheForm();
 
             
@@ -137,32 +140,25 @@ namespace DVLD.Forms.Users
         {
             if (person!=null)
             {
-                if(user.Mode==clsUser.enMode.AddMode)
-                    if (clsUser.IsUserWithPersonIDExist(person.ID))
+                    if (!(string.IsNullOrEmpty(txtboxUserName.Text) || string.IsNullOrEmpty(txtboxPassword.Text) ))
                     {
-                        MessageBox.Show("This Person is Allready a User!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        //if (string.IsNullOrEmpty(txtboxConfirmPassword.Text))
+                        //{
+                           
+                        //} //replace with Validate function insted of bushet
+                        user.UserName = txtboxUserName.Text;
+                        user.UserPassword = txtboxPassword.Text;
+                        if (chkisActive.Checked)
+                        {
+
+                            user.isActive = true;
+                        }
+                        else { user.isActive = false; }
+                        user.PersonID = person.ID;
+                        user.Save();
+                        lblUserIDResult.Text = user.UserID.ToString();
+                    lblTitle.Text = "Update";
                     }
-
-
-                if (!(string.IsNullOrEmpty(txtboxUserName.Text) || string.IsNullOrEmpty(txtboxPassword.Text) || string.IsNullOrEmpty(txtboxConfirmPassword.Text)))
-                {
-                    user.UserName = txtboxUserName.Text;
-                    user.UserPassword = txtboxPassword.Text;
-                    if (chkisActive.Checked)
-                    {
-
-                        user.isActive = true;
-                    }
-                    else { user.isActive = false; }
-                    user.PersonID = person.ID;
-                    user.Save();
-                    lblUserIDResult.Text = user.UserID.ToString();
-
-                }
-            
-
-
             }
         }
 
@@ -178,14 +174,8 @@ namespace DVLD.Forms.Users
             {
 
                 user=clsUser.FindUserByPersonID(person.ID);
-                if (user == null)
-                {
-                    tabControl1.SelectedIndex = 1;
-                }
-                else
-                {
-                    MessageBox.Show("error", "this person is a user alredy");
-                }
+                tabControl1.SelectedIndex = 1;
+              
                 
             }
             
@@ -200,6 +190,11 @@ namespace DVLD.Forms.Users
         {
             person = clsPerson.Find(obj);
             
+
+        }
+
+        private void ctrlPersonInfoWithFilter1_Load_1(object sender, EventArgs e)
+        {
 
         }
     }

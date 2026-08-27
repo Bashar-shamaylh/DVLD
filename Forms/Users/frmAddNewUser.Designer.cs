@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbpPersonalInfo = new System.Windows.Forms.TabPage();
+            this.ctrlPersonInfoWithFilter1 = new DVLD.user_Controls.ctrlPersonInfoWithFilter();
             this.btnNext = new System.Windows.Forms.Button();
             this.tbpLoginInfo = new System.Windows.Forms.TabPage();
             this.lblConfirmPassword = new System.Windows.Forms.Label();
@@ -45,7 +46,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ctrlPersonInfoWithFilter1 = new DVLD.user_Controls.ctrlPersonInfoWithFilter();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tbpPersonalInfo.SuspendLayout();
             this.tbpLoginInfo.SuspendLayout();
@@ -74,6 +75,17 @@
             this.tbpPersonalInfo.Text = "Personal Info";
             this.tbpPersonalInfo.UseVisualStyleBackColor = true;
             this.tbpPersonalInfo.Click += new System.EventHandler(this.tbpPersonalInfo_Click);
+            // 
+            // ctrlPersonInfoWithFilter1
+            // 
+            this.ctrlPersonInfoWithFilter1.FilterEnabeld = true;
+            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(3, 6);
+            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
+            this.ctrlPersonInfoWithFilter1.ShowPerson = true;
+            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(810, 428);
+            this.ctrlPersonInfoWithFilter1.TabIndex = 4;
+            this.ctrlPersonInfoWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonInfoWithFilter1_OnPersonSelected);
+            this.ctrlPersonInfoWithFilter1.Load += new System.EventHandler(this.ctrlPersonInfoWithFilter1_Load_1);
             // 
             // btnNext
             // 
@@ -216,19 +228,24 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // ctrlPersonInfoWithFilter1
+            // lblTitle
             // 
-            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(3, 6);
-            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
-            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(810, 428);
-            this.ctrlPersonInfoWithFilter1.TabIndex = 4;
-            this.ctrlPersonInfoWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonInfoWithFilter1_OnPersonSelected);
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.Red;
+            this.lblTitle.Location = new System.Drawing.Point(267, 6);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(158, 43);
+            this.lblTitle.TabIndex = 6;
+            this.lblTitle.Text = "Add New ";
             // 
             // frmAddNewUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 662);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tabControl1);
@@ -241,6 +258,7 @@
             this.tbpLoginInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -263,5 +281,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button btnNext;
         private user_Controls.ctrlPersonInfoWithFilter ctrlPersonInfoWithFilter1;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
