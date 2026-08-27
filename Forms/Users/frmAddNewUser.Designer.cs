@@ -74,7 +74,6 @@
             this.tbpPersonalInfo.TabIndex = 0;
             this.tbpPersonalInfo.Text = "Personal Info";
             this.tbpPersonalInfo.UseVisualStyleBackColor = true;
-            this.tbpPersonalInfo.Click += new System.EventHandler(this.tbpPersonalInfo_Click);
             // 
             // ctrlPersonInfoWithFilter1
             // 
@@ -85,7 +84,6 @@
             this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(810, 428);
             this.ctrlPersonInfoWithFilter1.TabIndex = 4;
             this.ctrlPersonInfoWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonInfoWithFilter1_OnPersonSelected);
-            this.ctrlPersonInfoWithFilter1.Load += new System.EventHandler(this.ctrlPersonInfoWithFilter1_Load_1);
             // 
             // btnNext
             // 
@@ -115,7 +113,6 @@
             this.tbpLoginInfo.TabIndex = 1;
             this.tbpLoginInfo.Text = "Login Info";
             this.tbpLoginInfo.UseVisualStyleBackColor = true;
-            this.tbpLoginInfo.Click += new System.EventHandler(this.tbpLoginInfo_Click);
             // 
             // lblConfirmPassword
             // 
@@ -133,8 +130,8 @@
             this.txtboxConfirmPassword.Name = "txtboxConfirmPassword";
             this.txtboxConfirmPassword.Size = new System.Drawing.Size(169, 20);
             this.txtboxConfirmPassword.TabIndex = 7;
-            this.txtboxConfirmPassword.TextChanged += new System.EventHandler(this.txtboxConfirmPassword_TextChanged);
-            this.txtboxConfirmPassword.Leave += new System.EventHandler(this.txtboxConfirmPassword_Leave);
+            
+            this.txtboxConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxConfirmPassword_Validating);
             // 
             // lblPassword
             // 
@@ -152,8 +149,8 @@
             this.txtboxPassword.Name = "txtboxPassword";
             this.txtboxPassword.Size = new System.Drawing.Size(169, 20);
             this.txtboxPassword.TabIndex = 5;
-            this.txtboxPassword.TextChanged += new System.EventHandler(this.txtboxPassword_TextChanged);
-            this.txtboxPassword.Leave += new System.EventHandler(this.txtboxPassword_Leave);
+         
+            this.txtboxPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxPassword_Validating);
             // 
             // lblUserName
             // 
@@ -181,8 +178,8 @@
             this.txtboxUserName.Name = "txtboxUserName";
             this.txtboxUserName.Size = new System.Drawing.Size(169, 20);
             this.txtboxUserName.TabIndex = 2;
-            this.txtboxUserName.TextChanged += new System.EventHandler(this.txtboxUserName_TextChanged);
-            this.txtboxUserName.Leave += new System.EventHandler(this.txtboxUserName_Leave);
+         
+            this.txtboxUserName.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxUserName_Validating);
             // 
             // chkisActive
             // 
@@ -251,7 +248,6 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "frmAddNewUser";
             this.Text = "frmAddNewUser";
-            this.Load += new System.EventHandler(this.frmAddNewUser_Load);
             this.tabControl1.ResumeLayout(false);
             this.tbpPersonalInfo.ResumeLayout(false);
             this.tbpLoginInfo.ResumeLayout(false);

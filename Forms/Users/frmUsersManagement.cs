@@ -215,5 +215,15 @@ namespace DVLD.Forms.Users
                     break;
             }
         }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(grdvUsers.CurrentRow.Cells[0].Value.ToString(), out int id))
+            {
+                frmChangeUserPassword frmchangepassword= new frmChangeUserPassword(id);
+                frmchangepassword.ShowDialog();
+
+            }
+        }
     }
 }

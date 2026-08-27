@@ -46,6 +46,7 @@
             this.tsmPhoneCall = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbxIsActiveOptions = new System.Windows.Forms.ComboBox();
             this.grdvUsers = new System.Windows.Forms.DataGridView();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdvUsers)).BeginInit();
             this.SuspendLayout();
@@ -150,48 +151,49 @@
             this.tsmViewDetails,
             this.tsmDeleteUser,
             this.tsmSendEmail,
-            this.tsmPhoneCall});
+            this.tsmPhoneCall,
+            this.changePasswordToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 180);
             // 
             // tsmAddUser
             // 
             this.tsmAddUser.Name = "tsmAddUser";
-            this.tsmAddUser.Size = new System.Drawing.Size(138, 22);
+            this.tsmAddUser.Size = new System.Drawing.Size(180, 22);
             this.tsmAddUser.Text = "Add User";
             this.tsmAddUser.Click += new System.EventHandler(this.tsmAddUser_Click);
             // 
             // tsmUpdateUserInfo
             // 
             this.tsmUpdateUserInfo.Name = "tsmUpdateUserInfo";
-            this.tsmUpdateUserInfo.Size = new System.Drawing.Size(138, 22);
+            this.tsmUpdateUserInfo.Size = new System.Drawing.Size(180, 22);
             this.tsmUpdateUserInfo.Text = "Update User";
             this.tsmUpdateUserInfo.Click += new System.EventHandler(this.tsmUpdateUserInfo_Click);
             // 
             // tsmViewDetails
             // 
             this.tsmViewDetails.Name = "tsmViewDetails";
-            this.tsmViewDetails.Size = new System.Drawing.Size(138, 22);
+            this.tsmViewDetails.Size = new System.Drawing.Size(180, 22);
             this.tsmViewDetails.Text = "view info";
             this.tsmViewDetails.Click += new System.EventHandler(this.tsmViewDetails_Click);
             // 
             // tsmDeleteUser
             // 
             this.tsmDeleteUser.Name = "tsmDeleteUser";
-            this.tsmDeleteUser.Size = new System.Drawing.Size(138, 22);
+            this.tsmDeleteUser.Size = new System.Drawing.Size(180, 22);
             this.tsmDeleteUser.Text = "Delete";
             this.tsmDeleteUser.Click += new System.EventHandler(this.tsmDeleteUser_Click);
             // 
             // tsmSendEmail
             // 
             this.tsmSendEmail.Name = "tsmSendEmail";
-            this.tsmSendEmail.Size = new System.Drawing.Size(138, 22);
+            this.tsmSendEmail.Size = new System.Drawing.Size(180, 22);
             this.tsmSendEmail.Text = "Send Email";
             // 
             // tsmPhoneCall
             // 
             this.tsmPhoneCall.Name = "tsmPhoneCall";
-            this.tsmPhoneCall.Size = new System.Drawing.Size(138, 22);
+            this.tsmPhoneCall.Size = new System.Drawing.Size(180, 22);
             this.tsmPhoneCall.Text = "Phone Call";
             // 
             // cmbxIsActiveOptions
@@ -224,6 +226,13 @@
             this.grdvUsers.ShowRowErrors = false;
             this.grdvUsers.Size = new System.Drawing.Size(751, 291);
             this.grdvUsers.TabIndex = 21;
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // frmUsersManagement
             // 
@@ -269,5 +278,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmPhoneCall;
         private System.Windows.Forms.ComboBox cmbxIsActiveOptions;
         private System.Windows.Forms.DataGridView grdvUsers;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
     }
 }

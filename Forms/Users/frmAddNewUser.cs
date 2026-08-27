@@ -17,6 +17,9 @@ namespace DVLD.Forms.Users
     {
         clsPerson person;
         clsUser user=new clsUser();
+
+        enum enMode { Add = 0, Update = 1 };
+        enMode Mode = enMode.Add;
         public delegate void DataBackEventHandler(object sender, int PersonID);
 
         // Declare an event using the delegate
@@ -24,19 +27,25 @@ namespace DVLD.Forms.Users
         public frmAddNewUser(int Userid)
         {
             InitializeComponent();
-
             user = clsUser.Find(Userid);
-            ctrlPersonInfoWithFilter1.LoadPersonInfo(user.PersonID);
-            ctrlPersonInfoWithFilter1.FilterEnabeld = false;
-            lblTitle.Text = "Update";
-            _FillUserInfoIntoTheForm();
+            if (user != null) {
+                Mode = enMode.Update;
+                lblTitle.Text = "Update";
+                person = clsPerson.Find(user.PersonID);
+                ctrlPersonInfoWithFilter1.LoadPersonInfo(user.PersonID);
+                ctrlPersonInfoWithFilter1.FilterEnabeld = false;
 
-            
+                _FillUserInfoIntoTheForm();
+            }
+            else
+            {
+                Mode = enMode.Add;
+            }     
         }
         public frmAddNewUser()
         {
             InitializeComponent();
-            
+            //Mode = enMode.Add; the deffult value allready
         }
         private void _FillUserInfoIntoTheForm()
         {
@@ -44,7 +53,7 @@ namespace DVLD.Forms.Users
             txtboxUserName.Text = user.UserName;
             txtboxPassword.Text = user.UserPassword;
             lblUserIDResult.Text = user.UserID.ToString();
-            txtboxConfirmPassword.Visible = false;
+            
             if (user.isActive)
                 chkisActive.Checked = true;
             else
@@ -52,7 +61,21 @@ namespace DVLD.Forms.Users
 
 
         }
-
+        private bool _ValidateTextBoxIsNullOrWhiteSpace(TextBox textBox,string Message)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                errorProvider1.SetError(textBox, Message);
+                return true;
+            }
+           else
+            {
+                errorProvider1.SetError(textBox, "");
+            }
+                return false;
+            
+               
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             
@@ -60,82 +83,7 @@ namespace DVLD.Forms.Users
 
         }
 
-        private void txtboxUserName_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtboxUserName.Text))
-            {
-                errorProvider1.SetError(txtboxUserName, "");
-            }
-        }
-
-        private void txtboxUserName_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtboxUserName.Text))
-            {
-                errorProvider1.SetError(txtboxUserName, "User Name is Required,it can't be empty!");
-            }
-
-        }
-
-        private void txtboxPassword_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtboxPassword.Text))
-            {
-                errorProvider1.SetError(txtboxPassword, "");
-            }
-
-        }
-
-        private void txtboxPassword_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtboxPassword.Text))
-            {
-                errorProvider1.SetError(txtboxPassword, "User Name is Required,it can't be empty!");
-            }
-
-        }
-
-        private void txtboxConfirmPassword_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtboxConfirmPassword.Text))
-            {
-                errorProvider1.SetError(txtboxConfirmPassword, "");
-            }
-            else if (txtboxConfirmPassword.Text == txtboxPassword.Text)
-            {
-
-                errorProvider1.SetError(txtboxConfirmPassword, "");
-
-            }
-        }
-
-        private void txtboxConfirmPassword_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtboxConfirmPassword.Text))
-            {
-                errorProvider1.SetError(txtboxConfirmPassword, "Cant be empty!");
-            }
-            else if (txtboxConfirmPassword.Text != txtboxPassword.Text)
-            {
-
-                errorProvider1.SetError(txtboxConfirmPassword, "Password Mismatch!");
-
-            }
-        }
-
-        private void tbpLoginInfo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmAddNewUser_Load(object sender, EventArgs e)
-        {
-            
-          
-            
-        }
-        
-
+   
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (person!=null)
@@ -161,41 +109,59 @@ namespace DVLD.Forms.Users
                     }
             }
         }
-
-        private void ctrlPersonInfoWithFilter1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             
             if (person != null)
             {
+                if (Mode == enMode.Add)
+                {
+                    if(clsUser.IsUserWithPersonIDExist(person.ID))
+                    {
+                        MessageBox.Show("Person With This ID Allready a User", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
 
-                user=clsUser.FindUserByPersonID(person.ID);
+                    }
+                    
+                    
+                }
+                else
+                {
+                    user = clsUser.FindUserByPersonID(person.ID);
+                    
+                }
+
                 tabControl1.SelectedIndex = 1;
-              
-                
+
+
+
             }
             
         }
-
-        private void tbpPersonalInfo_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ctrlPersonInfoWithFilter1_OnPersonSelected(int obj)
         {
             person = clsPerson.Find(obj);
-            
-
+        }
+        private void txtboxUserName_Validating(object sender, CancelEventArgs e)
+        {
+           _ValidateTextBoxIsNullOrWhiteSpace(txtboxUserName,"User Name Is Required!");
+           
         }
 
-        private void ctrlPersonInfoWithFilter1_Load_1(object sender, EventArgs e)
+        private void txtboxPassword_Validating(object sender, CancelEventArgs e)
         {
+            _ValidateTextBoxIsNullOrWhiteSpace(txtboxPassword, "Password Is Required!");
+        }
 
+        private void txtboxConfirmPassword_Validating(object sender, CancelEventArgs e)
+        {
+            _ValidateTextBoxIsNullOrWhiteSpace(txtboxUserName, "Confirm Password Is Required!");
+            if (txtboxConfirmPassword.Text != txtboxPassword.Text)
+            {
+
+                errorProvider1.SetError(txtboxConfirmPassword, "Password Mismatch!");
+
+            }
         }
     }
 }

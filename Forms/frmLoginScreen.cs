@@ -14,11 +14,7 @@ namespace DVLD.Forms
 {
     public partial class frmLoginScreen : Form
     {
-        string path = Path.Combine(
-                     Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                     "DVLD",
-                     "UsersInfo.txt"
-                 );
+        string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"DVLD");//this path for users data
         
         public frmLoginScreen()
         {
@@ -27,13 +23,17 @@ namespace DVLD.Forms
 
         private void frmLoginScreen_Load(object sender, EventArgs e)
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            chkbRememberMe.Checked = true;
+            clsUtil.CreateFolderIfDoesNotExist(path);//create DVLD folder if not exist  //step 1
+
+            path = Path.Combine(path, "UsersInfo.txt");
             if (!File.Exists(path))
             {
-                File.WriteAllText(path, "");
+                File.WriteAllText(path, "");         //create UsersInfo.txt if not exist //step2
             }
 
-            string savedUser = File.ReadAllText(path);
+
+            string savedUser = File.ReadAllText(path);               //step 3
             if (!string.IsNullOrEmpty(savedUser))
             {
                 int idx = savedUser.IndexOf("/##/"); //bashar/##/12456
@@ -47,7 +47,11 @@ namespace DVLD.Forms
         {
             bool isactive = false;
             int userid = -1;
-             if (string.IsNullOrEmpty(txtUserName.Text))
+            if (!chkbRememberMe.Checked)
+            {
+                File.WriteAllText(path, "");
+            }
+            if (string.IsNullOrEmpty(txtUserName.Text))
             {
                 errorProvider1.SetError(txtUserName, "User Name Cannot be Empty!");
             }

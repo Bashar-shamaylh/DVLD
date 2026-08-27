@@ -45,7 +45,7 @@ namespace DVLD
                 MessageBox.Show("Error", "No Person With This ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            _personID = PersonID;
+            _personID = _Person.ID;
             _FillPersonInfoIntoTheForm();
         }
 
