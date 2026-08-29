@@ -83,7 +83,6 @@
             this.ctrlPersonInfoWithFilter1.ShowPerson = true;
             this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(810, 428);
             this.ctrlPersonInfoWithFilter1.TabIndex = 4;
-            this.ctrlPersonInfoWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonInfoWithFilter1_OnPersonSelected);
             // 
             // btnNext
             // 
@@ -130,7 +129,6 @@
             this.txtboxConfirmPassword.Name = "txtboxConfirmPassword";
             this.txtboxConfirmPassword.Size = new System.Drawing.Size(169, 20);
             this.txtboxConfirmPassword.TabIndex = 7;
-            
             this.txtboxConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxConfirmPassword_Validating);
             // 
             // lblPassword
@@ -149,7 +147,6 @@
             this.txtboxPassword.Name = "txtboxPassword";
             this.txtboxPassword.Size = new System.Drawing.Size(169, 20);
             this.txtboxPassword.TabIndex = 5;
-         
             this.txtboxPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxPassword_Validating);
             // 
             // lblUserName
@@ -178,7 +175,6 @@
             this.txtboxUserName.Name = "txtboxUserName";
             this.txtboxUserName.Size = new System.Drawing.Size(169, 20);
             this.txtboxUserName.TabIndex = 2;
-         
             this.txtboxUserName.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxUserName_Validating);
             // 
             // chkisActive
@@ -248,6 +244,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "frmAddNewUser";
             this.Text = "frmAddNewUser";
+            this.Load += new System.EventHandler(this.frmAddNewUser_Load);
             this.tabControl1.ResumeLayout(false);
             this.tbpPersonalInfo.ResumeLayout(false);
             this.tbpLoginInfo.ResumeLayout(false);

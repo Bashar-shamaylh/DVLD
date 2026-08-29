@@ -36,6 +36,10 @@ namespace DVLD.user_Controls
             }
         }
         private bool _FilterEnabeld = true;
+        public void FilterFocus()
+        {
+            txtSearch.Focus();
+        }
         public bool FilterEnabeld
         {
             get

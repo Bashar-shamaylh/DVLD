@@ -242,6 +242,60 @@ namespace DVLDDataAccessLayer
             return isFound;
 
         }
+        static public bool isUserWithUserNameExist(string username)
+        {
+            bool wasFound = false;
+            string query = @"select 1 from Users where UserName=@username;";
+
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@username", username);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                    wasFound = true;
+                else
+                    wasFound = false;
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { connection.Close(); }
+            return wasFound;
+        }
+        static public bool isUserWithUserIDExist(int userid)
+        {
+            bool wasFound = false;
+            string query = @"select 1 from Users where UserID=@userid;";
+
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@userid", userid);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                    wasFound = true;
+                else
+                    wasFound = false;
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { connection.Close(); }
+            return wasFound;
+        }
         static public bool isUserWithPersonIDExist(int personid)
         {
             bool wasFound = false;

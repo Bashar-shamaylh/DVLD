@@ -111,6 +111,14 @@ namespace DVLDBussnissLayer
         {
             return clsUsersDataAccess.isUserWithPersonIDExist(personid);
         }
+        public static bool IsUserWithUserIDExist(int userid)
+        {
+            return clsUsersDataAccess.isUserWithUserIDExist(userid);
+        }
+        public static bool IsUserWithUserNameExist(string username)
+        {
+            return clsUsersDataAccess.isUserWithUserNameExist(username);
+        }
 
 
     }
