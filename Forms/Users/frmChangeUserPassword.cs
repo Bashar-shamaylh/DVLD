@@ -17,12 +17,11 @@ namespace DVLD.Forms.Users
         public frmChangeUserPassword(int userid=-1)
         {
             InitializeComponent();
-            user = clsUser.Find(userid);
-            if (user != null)
-            {
+            
+            
                 ctrlPersonInfo1.LoadPersonInfo(user.PersonID);
-                ctrlUserInfo1.ctrlUserInfo_Load(user);
-            }
+                ctrlUserInfo1.LoadUserInfo(userid);
+            
             
             
         }

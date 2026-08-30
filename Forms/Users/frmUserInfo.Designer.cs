@@ -28,32 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlPersonInfo1 = new DVLD.ctrlPersonInfo();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.ctrlUserInfo1 = new DVLD.user_Controls.ctrlUserInfo();
             this.SuspendLayout();
             // 
-            // ctrlPersonInfo1
-            // 
-            this.ctrlPersonInfo1.Location = new System.Drawing.Point(-4, 0);
-            this.ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            this.ctrlPersonInfo1.Size = new System.Drawing.Size(795, 371);
-            this.ctrlPersonInfo1.TabIndex = 0;
-            this.ctrlPersonInfo1.Load += new System.EventHandler(this.ctrlPersonInfo1_Load);
-            // 
             // ctrlUserInfo1
             // 
-            this.ctrlUserInfo1.Location = new System.Drawing.Point(12, 363);
+            this.ctrlUserInfo1.Location = new System.Drawing.Point(9, 29);
             this.ctrlUserInfo1.Name = "ctrlUserInfo1";
-            this.ctrlUserInfo1.Size = new System.Drawing.Size(763, 75);
-            this.ctrlUserInfo1.TabIndex = 1;
+            this.ctrlUserInfo1.Size = new System.Drawing.Size(823, 541);
+            this.ctrlUserInfo1.TabIndex = 0;
+            this.ctrlUserInfo1.Load += new System.EventHandler(this.ctrlUserInfo1_Load);
             // 
             // frmUserInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 480);
+            this.ClientSize = new System.Drawing.Size(844, 586);
             this.Controls.Add(this.ctrlUserInfo1);
-            this.Controls.Add(this.ctrlPersonInfo1);
             this.Name = "frmUserInfo";
             this.Text = "frmUserInfo";
             this.Load += new System.EventHandler(this.frmUserInfo_Load);
@@ -63,7 +55,7 @@
 
         #endregion
 
-        private ctrlPersonInfo ctrlPersonInfo1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private user_Controls.ctrlUserInfo ctrlUserInfo1;
     }
 }

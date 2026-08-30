@@ -16,12 +16,7 @@ namespace DVLD.Forms.Users
         public frmUserInfo(int UserID)
         {
             InitializeComponent();
-            clsUser user = clsUser.Find(UserID);
-            if (user != null)
-            {
-                ctrlPersonInfo1.LoadPersonInfo(user.PersonID);
-                ctrlUserInfo1.ctrlUserInfo_Load(user);
-            }
+            ctrlUserInfo1.LoadUserInfo(UserID);
         }
 
         private void frmUserInfo_Load(object sender, EventArgs e)
@@ -30,6 +25,11 @@ namespace DVLD.Forms.Users
         }
 
         private void ctrlPersonInfo1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ctrlUserInfo1_Load(object sender, EventArgs e)
         {
 
         }

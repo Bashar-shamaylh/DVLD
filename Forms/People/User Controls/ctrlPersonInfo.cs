@@ -29,7 +29,7 @@ namespace DVLD
             _Person=clsPerson.Find(PersonID);
             if(_Person==null)
             {
-                _ResetPersonInfo();
+                ResetPersonInfo();
                 MessageBox.Show("Error","No Person With This ID",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
@@ -41,7 +41,7 @@ namespace DVLD
             _Person = clsPerson.FindPersonByNationnalNum(NationnalNum);
             if (_Person == null)
             {
-                _ResetPersonInfo();
+                ResetPersonInfo();
                 MessageBox.Show("Error", "No Person With This ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -115,7 +115,7 @@ namespace DVLD
             }
         }
      
-        private void _ResetPersonInfo()
+        public void ResetPersonInfo()
         {
             lblNameResult.Text = "?????";
             lblPersonIdResult.Text = "?????";

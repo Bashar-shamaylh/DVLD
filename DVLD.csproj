@@ -90,10 +90,10 @@
     <Compile Include="Forms\Users\frmUsersManagement.Designer.cs">
       <DependentUpon>frmUsersManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="user Controls\ctrlPersonInfo.cs">
+    <Compile Include="Forms\People\User Controls\ctrlPersonInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="user Controls\ctrlPersonInfo.Designer.cs">
+    <Compile Include="Forms\People\User Controls\ctrlPersonInfo.Designer.cs">
       <DependentUpon>ctrlPersonInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmLoginScreen.cs">
@@ -134,16 +134,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="user Controls\ctrlPersonInfoWithFilter.cs">
+    <Compile Include="Forms\People\User Controls\ctrlPersonInfoWithFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="user Controls\ctrlPersonInfoWithFilter.Designer.cs">
+    <Compile Include="Forms\People\User Controls\ctrlPersonInfoWithFilter.Designer.cs">
       <DependentUpon>ctrlPersonInfoWithFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="user Controls\ctrlUserInfo.cs">
+    <Compile Include="Forms\Users\User Controls\ctrlUserInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="user Controls\ctrlUserInfo.Designer.cs">
+    <Compile Include="Forms\Users\User Controls\ctrlUserInfo.Designer.cs">
       <DependentUpon>ctrlUserInfo.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\Application Types\frmEditApplicationType.resx">
@@ -167,7 +167,7 @@
     <EmbeddedResource Include="Forms\Users\frmUsersManagement.resx">
       <DependentUpon>frmUsersManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="user Controls\ctrlPersonInfo.resx">
+    <EmbeddedResource Include="Forms\People\User Controls\ctrlPersonInfo.resx">
       <DependentUpon>ctrlPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmLoginScreen.resx">
@@ -198,10 +198,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="user Controls\ctrlPersonInfoWithFilter.resx">
+    <EmbeddedResource Include="Forms\People\User Controls\ctrlPersonInfoWithFilter.resx">
       <DependentUpon>ctrlPersonInfoWithFilter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="user Controls\ctrlUserInfo.resx">
+    <EmbeddedResource Include="Forms\Users\User Controls\ctrlUserInfo.resx">
       <DependentUpon>ctrlUserInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -219,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Database\" />
+    <Folder Include="user Controls\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DVLDModels\DVLDModels.csproj">
