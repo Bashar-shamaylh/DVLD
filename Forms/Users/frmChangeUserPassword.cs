@@ -13,21 +13,22 @@ namespace DVLD.Forms.Users
 {
     public partial class frmChangeUserPassword : Form
     {
-        clsUser user = new clsUser();
+        private int _UserID = -1;
+        clsUser user ;
         public frmChangeUserPassword(int userid=-1)
         {
             InitializeComponent();
-            
-            
-                ctrlPersonInfo1.LoadPersonInfo(user.PersonID);
-                ctrlUserInfo1.LoadUserInfo(userid);
-            
-            
-            
+            _UserID = userid;
         }
-
+    
         private void frmChangeUserPassword_Load(object sender, EventArgs e)
         {
+            user=clsUser.Find(_UserID);
+           
+            if (user != null)
+            {
+                ctrlUserInfo2.LoadUserInfo(_UserID);
+            }
 
         }
 
@@ -35,67 +36,27 @@ namespace DVLD.Forms.Users
         {
             this.Close();
         }
-
-        private void txtboxCurrentPassowrd_TextChanged(object sender, EventArgs e)
+        public bool IsTxtBoxNullOrWhiteSpace(TextBox txtbox,string Message)
         {
-
-            if (!string.IsNullOrEmpty(txtboxCurrentPassowrd.Text))
+            if (string.IsNullOrWhiteSpace(txtbox.Text))
             {
-                errorProvider1.SetError(txtboxCurrentPassowrd, "");
+                errorProvider1.SetError(txtbox, Message);
+
+                return true;
             }
-                
+            errorProvider1.SetError(txtbox, "");
+            return false;
 
         }
-
-        private void txtboxNewPassword_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtboxCurrentPassowrd.Text))
-                errorProvider1.SetError(txtboxCurrentPassowrd, "");
-        }
-
-        private void txtboxConfirmPassword_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtboxCurrentPassowrd.Text))
-                errorProvider1.SetError(txtboxCurrentPassowrd, "");
-        }
-
-        private void txtboxCurrentPassowrd_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtboxCurrentPassowrd.Text))
-                errorProvider1.SetError(txtboxCurrentPassowrd, "this Field Cannot be empty!");
-        }
-
-        private void txtboxNewPassword_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtboxCurrentPassowrd.Text))
-                errorProvider1.SetError(txtboxCurrentPassowrd, "this Field Cannot be empty!");
-        }
-
-        private void txtboxConfirmPassword_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtboxCurrentPassowrd.Text))
-                errorProvider1.SetError(txtboxCurrentPassowrd, "this Field Cannot be empty!");
-        }
+       
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
-
-            if (string.IsNullOrEmpty(txtboxCurrentPassowrd.Text) ||
-                string.IsNullOrEmpty(txtboxCurrentPassowrd.Text) ||
-                string.IsNullOrEmpty(txtboxCurrentPassowrd.Text))
-            {
-                MessageBox.Show("Some Fields are empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (txtboxCurrentPassowrd.Text.Trim() != user.UserPassword)
-            {
-                MessageBox.Show("Current Password is not Correct", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (txtboxNewPassword.Text.Trim() != txtboxConfirmPassword.Text.Trim())
-            {
-                MessageBox.Show("Passwords do not match", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 
+            if (!this.ValidateChildren())
+            {
+                return;
             }
             else
             {
@@ -115,9 +76,38 @@ namespace DVLD.Forms.Users
 
             }
 
-        private void ctrlPersonInfo1_Load(object sender, EventArgs e)
+        private void txtboxCurrentPassowrd_Validating(object sender, CancelEventArgs e)
         {
+            if (IsTxtBoxNullOrWhiteSpace(txtboxCurrentPassowrd, "Current Password Canont be blank"))
+            { e.Cancel = true; return; }
+               
+            if(user.UserPassword!= txtboxCurrentPassowrd.Text.Trim())
+            {
+                errorProvider1.SetError(txtboxCurrentPassowrd, "Current Password Is not Correct");
+                e.Cancel = true;
+                return;
+            }
 
+            errorProvider1.SetError(txtboxCurrentPassowrd,null);
+        }
+
+        private void txtboxNewPassword_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsTxtBoxNullOrWhiteSpace(txtboxNewPassword, "New Password Canont be blank"))
+            { e.Cancel = true; return; }
+        }
+
+        private void txtboxConfirmPassword_Validating(object sender, CancelEventArgs e)
+        {
+            if (IsTxtBoxNullOrWhiteSpace(txtboxConfirmPassword, "Confirm Password Canont be blank"))
+            { e.Cancel = true; return; }
+            if(txtboxNewPassword.Text!=txtboxConfirmPassword.Text)
+            {
+                errorProvider1.SetError(txtboxCurrentPassowrd, "Password's do not match");
+                e.Cancel = true;
+                return;
+            }
+            errorProvider1.SetError(txtboxCurrentPassowrd,null);
         }
     }
 }

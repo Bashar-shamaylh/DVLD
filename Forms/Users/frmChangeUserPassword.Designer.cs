@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.ctrlPersonInfo1 = new DVLD.ctrlPersonInfo();
             this.ctrlUserInfo1 = new DVLD.user_Controls.ctrlUserInfo();
             this.txtboxCurrentPassowrd = new System.Windows.Forms.TextBox();
             this.txtboxNewPassword = new System.Windows.Forms.TextBox();
@@ -40,16 +39,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ctrlUserInfo2 = new DVLD.user_Controls.ctrlUserInfo();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctrlPersonInfo1
-            // 
-            this.ctrlPersonInfo1.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPersonInfo1.Name = "ctrlPersonInfo1";
-            this.ctrlPersonInfo1.Size = new System.Drawing.Size(791, 368);
-            this.ctrlPersonInfo1.TabIndex = 0;
-            this.ctrlPersonInfo1.Load += new System.EventHandler(this.ctrlPersonInfo1_Load);
             // 
             // ctrlUserInfo1
             // 
@@ -60,27 +52,26 @@
             // 
             // txtboxCurrentPassowrd
             // 
-            this.txtboxCurrentPassowrd.Location = new System.Drawing.Point(202, 454);
+            this.txtboxCurrentPassowrd.Location = new System.Drawing.Point(223, 541);
             this.txtboxCurrentPassowrd.Name = "txtboxCurrentPassowrd";
             this.txtboxCurrentPassowrd.Size = new System.Drawing.Size(223, 20);
             this.txtboxCurrentPassowrd.TabIndex = 2;
-            this.txtboxCurrentPassowrd.TextChanged += new System.EventHandler(this.txtboxCurrentPassowrd_TextChanged);
-            this.txtboxCurrentPassowrd.Leave += new System.EventHandler(this.txtboxCurrentPassowrd_Leave);
+            this.txtboxCurrentPassowrd.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxCurrentPassowrd_Validating);
             // 
             // txtboxNewPassword
             // 
-            this.txtboxNewPassword.Location = new System.Drawing.Point(202, 499);
+            this.txtboxNewPassword.Location = new System.Drawing.Point(223, 586);
             this.txtboxNewPassword.Name = "txtboxNewPassword";
             this.txtboxNewPassword.Size = new System.Drawing.Size(223, 20);
             this.txtboxNewPassword.TabIndex = 3;
-            this.txtboxNewPassword.TextChanged += new System.EventHandler(this.txtboxNewPassword_TextChanged);
-            this.txtboxNewPassword.Leave += new System.EventHandler(this.txtboxNewPassword_Leave);
+           
+            this.txtboxNewPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxNewPassword_Validating);
             // 
             // lblCurrentPassword
             // 
             this.lblCurrentPassword.AutoSize = true;
             this.lblCurrentPassword.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.lblCurrentPassword.Location = new System.Drawing.Point(21, 454);
+            this.lblCurrentPassword.Location = new System.Drawing.Point(42, 541);
             this.lblCurrentPassword.Name = "lblCurrentPassword";
             this.lblCurrentPassword.Size = new System.Drawing.Size(155, 23);
             this.lblCurrentPassword.TabIndex = 4;
@@ -90,7 +81,7 @@
             // 
             this.lblNewPassword.AutoSize = true;
             this.lblNewPassword.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.lblNewPassword.Location = new System.Drawing.Point(21, 494);
+            this.lblNewPassword.Location = new System.Drawing.Point(42, 581);
             this.lblNewPassword.Name = "lblNewPassword";
             this.lblNewPassword.Size = new System.Drawing.Size(130, 23);
             this.lblNewPassword.TabIndex = 5;
@@ -100,7 +91,7 @@
             // 
             this.lblConfirmPassword.AutoSize = true;
             this.lblConfirmPassword.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.lblConfirmPassword.Location = new System.Drawing.Point(18, 536);
+            this.lblConfirmPassword.Location = new System.Drawing.Point(39, 623);
             this.lblConfirmPassword.Name = "lblConfirmPassword";
             this.lblConfirmPassword.Size = new System.Drawing.Size(158, 23);
             this.lblConfirmPassword.TabIndex = 6;
@@ -108,16 +99,16 @@
             // 
             // txtboxConfirmPassword
             // 
-            this.txtboxConfirmPassword.Location = new System.Drawing.Point(202, 541);
+            this.txtboxConfirmPassword.Location = new System.Drawing.Point(223, 628);
             this.txtboxConfirmPassword.Name = "txtboxConfirmPassword";
             this.txtboxConfirmPassword.Size = new System.Drawing.Size(223, 20);
             this.txtboxConfirmPassword.TabIndex = 7;
-            this.txtboxConfirmPassword.TextChanged += new System.EventHandler(this.txtboxConfirmPassword_TextChanged);
-            this.txtboxConfirmPassword.Leave += new System.EventHandler(this.txtboxConfirmPassword_Leave);
+
+            this.txtboxConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxConfirmPassword_Validating);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(525, 556);
+            this.btnClose.Location = new System.Drawing.Point(546, 643);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(77, 35);
             this.btnClose.TabIndex = 8;
@@ -127,7 +118,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(626, 556);
+            this.btnSave.Location = new System.Drawing.Point(647, 643);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(77, 35);
             this.btnSave.TabIndex = 9;
@@ -139,11 +130,19 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // ctrlUserInfo2
+            // 
+            this.ctrlUserInfo2.Location = new System.Drawing.Point(0, 0);
+            this.ctrlUserInfo2.Name = "ctrlUserInfo2";
+            this.ctrlUserInfo2.Size = new System.Drawing.Size(836, 522);
+            this.ctrlUserInfo2.TabIndex = 10;
+            // 
             // frmChangeUserPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 603);
+            this.ClientSize = new System.Drawing.Size(848, 691);
+            this.Controls.Add(this.ctrlUserInfo2);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtboxConfirmPassword);
@@ -153,7 +152,6 @@
             this.Controls.Add(this.txtboxNewPassword);
             this.Controls.Add(this.txtboxCurrentPassowrd);
             this.Controls.Add(this.ctrlUserInfo1);
-            this.Controls.Add(this.ctrlPersonInfo1);
             this.Name = "frmChangeUserPassword";
             this.Text = "frmChangeUserPassword";
             this.Load += new System.EventHandler(this.frmChangeUserPassword_Load);
@@ -164,8 +162,6 @@
         }
 
         #endregion
-
-        private ctrlPersonInfo ctrlPersonInfo1;
         private user_Controls.ctrlUserInfo ctrlUserInfo1;
         private System.Windows.Forms.TextBox txtboxCurrentPassowrd;
         private System.Windows.Forms.TextBox txtboxNewPassword;
@@ -176,5 +172,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private user_Controls.ctrlUserInfo ctrlUserInfo2;
     }
 }
