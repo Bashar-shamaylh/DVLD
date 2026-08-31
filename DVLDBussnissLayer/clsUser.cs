@@ -67,6 +67,15 @@ namespace DVLDBussnissLayer
                 return new clsUser(userid, username, userpassword, personid, isactive);
             return null;
         }
+        public static clsUser FindUserByUserNameAndUserPassword(string userName, string userpassword)
+        {
+            int personid = -1;
+            int userid = -1;
+            bool isActive = false;
+            if( clsUsersDataAccess.FindUserByUserNameAndUserPassword(userName, userpassword,ref isActive,ref userid,ref personid))
+                return new clsUser(userid,userName,userpassword, personid, isActive);
+            return null;
+        }
         private bool _AddNewUser()
         {
             this.UserID = clsUsersDataAccess.AddNewUser(UserName,UserPassword,PersonID,isActive);
@@ -107,6 +116,7 @@ namespace DVLDBussnissLayer
         {
             return clsUsersDataAccess.FindUserByUserNameAndUserPassword(userName,userpassword,ref isactive,ref userid);
         }
+       
         public static bool IsUserWithPersonIDExist(int personid)
         {
             return clsUsersDataAccess.isUserWithPersonIDExist(personid);

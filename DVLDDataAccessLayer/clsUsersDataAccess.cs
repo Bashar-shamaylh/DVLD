@@ -242,6 +242,39 @@ namespace DVLDDataAccessLayer
             return isFound;
 
         }
+        static public bool FindUserByUserNameAndUserPassword(string username, string userpassword,ref bool isactive,ref int userid,ref int personid)
+        {
+            bool isFound = false;
+            string query = "select * from Users where UserName=@username and UserPassword=@userpassword";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@username", username);
+            command.Parameters.AddWithValue("@userpassword", userpassword);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+
+                    isactive = (bool)reader["isActive"];
+                    userid = (int)reader["UserID"];
+                    personid = (int)reader["PersonID"];
+                    isFound = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            connection.Close();
+            return isFound;
+
+        }
         static public bool isUserWithUserNameExist(string username)
         {
             bool wasFound = false;

@@ -23,67 +23,41 @@ namespace DVLD.Forms
 
         private void frmLoginScreen_Load(object sender, EventArgs e)
         {
-            chkbRememberMe.Checked = true;
-            clsUtil.CreateFolderIfDoesNotExist(path);//create DVLD folder if not exist  //step 1
-
-            path = Path.Combine(path, "UsersInfo.txt");
-            if (!File.Exists(path))
+            string UserName = "";string Password = "";
+            if (clsGlobalProjectSettings.GetStoredCredential(ref UserName, ref Password))
             {
-                File.WriteAllText(path, "");         //create UsersInfo.txt if not exist //step2
+                txtUserName.Text = UserName;
+                txtPassword.Text = Password;
+                chkbRememberMe.Checked = true;
             }
-
-
-            string savedUser = File.ReadAllText(path);               //step 3
-            if (!string.IsNullOrEmpty(savedUser))
-            {
-                int idx = savedUser.IndexOf("/##/"); //bashar/##/12456
-                txtUserName.Text = savedUser.Substring(0, idx);
-                txtPassword.Text = savedUser.Substring(idx + 4);
-            }
+            else
+                chkbRememberMe.Checked= false;
 
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            bool isactive = false;
-            int userid = -1;
-            if (!chkbRememberMe.Checked)
-            {
-                File.WriteAllText(path, "");
-            }
-            if (string.IsNullOrEmpty(txtUserName.Text))
-            {
-                errorProvider1.SetError(txtUserName, "User Name Cannot be Empty!");
-            }
-            else if (string.IsNullOrEmpty(txtPassword.Text))
-            {
-                errorProvider1.SetError(txtPassword, "Password Cannot be Empty!");
-            }
-            else if (clsUser.FindUserByUserNameAndUserPassword(txtUserName.Text, txtPassword.Text, ref isactive,ref userid))
-            {
-                if (!isactive)
+            clsUser user = clsUser.FindUserByUserNameAndUserPassword(txtUserName.Text, txtPassword.Text);
+            if (user != null) 
                 {
-                    MessageBox.Show("This User is not Active,Plese Contact you'r Admin.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                if (chkbRememberMe.Checked)
+                {
+                    clsGlobalProjectSettings.RememberUsernameAndPassword(txtUserName.Text, txtPassword.Text);
+                }
+                else
+                    clsGlobalProjectSettings.RememberUsernameAndPassword("", "");
+
+
+                if (user.isActive)
+                {
+                    clsGlobalProjectSettings.CurrentUserId = user.UserID;
+                    Main main = new Main();
+                    main.Show();
                 }
                 else
                 {
-                   
-                    if (chkbRememberMe.Checked)
-                    {
-                                                
-                                                
-                        File.WriteAllText(path,txtUserName.Text+"/##/"+txtPassword.Text);
-
-
-                    }
-
-                    clsGlobalProjectSettings.CurrentUserId = userid;
-                    Main main = new Main();
-                    main.Show();
-                    
-                    
-
+                    MessageBox.Show("Your Account isn't Active Plese Contact Your Admin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
             }
@@ -91,6 +65,7 @@ namespace DVLD.Forms
             {
                 MessageBox.Show("Invalid Password or User Name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }
