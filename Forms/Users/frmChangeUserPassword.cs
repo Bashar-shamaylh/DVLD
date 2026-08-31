@@ -20,16 +20,25 @@ namespace DVLD.Forms.Users
             InitializeComponent();
             _UserID = userid;
         }
-    
+
+        private void _ResetDefualtValues()
+        {
+            txtboxConfirmPassword.Text = "";
+            txtboxNewPassword.Text = "";
+            txtboxCurrentPassowrd.Text = "";
+            txtboxCurrentPassowrd.Focus();
+        }
         private void frmChangeUserPassword_Load(object sender, EventArgs e)
         {
-            user=clsUser.Find(_UserID);
+            _ResetDefualtValues();
+            user =clsUser.Find(_UserID);
            
-            if (user != null)
+            if (user == null)
             {
-                ctrlUserInfo2.LoadUserInfo(_UserID);
+                MessageBox.Show("User with User ID :" + _UserID + " was not found.", "Wrong User ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
-
+            ctrlUserInfo2.LoadUserInfo(_UserID);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -61,17 +70,17 @@ namespace DVLD.Forms.Users
             else
             {
                 user.UserPassword = txtboxNewPassword.Text.Trim();
-                try
+               
+                    if(user.Save())
                 {
-                    user.Save();
-                    MessageBox.Show("Password Was Changed Succefuly.","",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("Password Was Changed Succefuly.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _ResetDefualtValues();
                 }
-                catch (Exception)
+                else
                 {
                     MessageBox.Show("UnExpected Error Has Occored!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
                 }
-               
+       
             }
 
             }
@@ -103,11 +112,11 @@ namespace DVLD.Forms.Users
             { e.Cancel = true; return; }
             if(txtboxNewPassword.Text!=txtboxConfirmPassword.Text)
             {
-                errorProvider1.SetError(txtboxCurrentPassowrd, "Password's do not match");
+                errorProvider1.SetError(txtboxConfirmPassword, "Password's do not match");
                 e.Cancel = true;
                 return;
             }
-            errorProvider1.SetError(txtboxCurrentPassowrd,null);
+            errorProvider1.SetError(txtboxConfirmPassword,null);
         }
     }
 }

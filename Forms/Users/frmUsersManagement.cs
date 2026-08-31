@@ -75,15 +75,22 @@ namespace DVLD.Forms.Users
                     break;
 
                 default:
+                    ColumnName = "None";
                     break;
             }
-
+            if(txtSearch.Text.Trim()==""|| ColumnName == "None")
+            {
+                _dtUsers.DefaultView.RowFilter = "";
+                lblNumberOfRecordsResult.Text = _dtUsers.Rows.Count.ToString();
+                return;
+            }
                 if (ColumnName == "UserID" || ColumnName == "PersonID")
                 _dtUsers.DefaultView.RowFilter = $"{ColumnName} = {txtSearch.Text.Trim()}";
                 else if (ColumnName == "UserName" || ColumnName == "FullName")
                 _dtUsers.DefaultView.RowFilter = $"{ColumnName} Like '%{txtSearch.Text.Trim()}%'";
                 else
                 _dtUsers.DefaultView.RowFilter = "";
+            lblNumberOfRecordsResult.Text = _dtUsers.Rows.Count.ToString();
         }
 
         private void frmUsersManagement_Load(object sender, EventArgs e)
@@ -105,6 +112,11 @@ namespace DVLD.Forms.Users
             {
                 
                 cmbxIsActiveOptions.Visible = true;
+                txtSearch.Visible = false;
+            }
+            else if(cmbxFitlerItems.Text == "None")
+            {
+                cmbxIsActiveOptions.Visible = false;
                 txtSearch.Visible = false;
             }
             else
@@ -181,7 +193,16 @@ namespace DVLD.Forms.Users
         {
             if (int.TryParse(grdvUsers.CurrentRow.Cells[0].Value.ToString(), out int id))
             {
-                clsUser.DeleteUser(id);
+                if(clsUser.DeleteUser(id))
+                {
+                    MessageBox.Show("User Has been Deleted Succeffly", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmUsersManagement_Load(null, null);
+
+                }
+                else
+                {
+                    MessageBox.Show("Deleteing User was faild", "Faild", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
             }
             Reffresh();
@@ -213,7 +234,9 @@ namespace DVLD.Forms.Users
                 default:
                     _dtUsers.DefaultView.RowFilter = "";
                     break;
+
             }
+            lblNumberOfRecordsResult.Text = _dtUsers.Rows.Count.ToString();
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
