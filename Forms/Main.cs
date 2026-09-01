@@ -1,4 +1,5 @@
 ﻿using DVLD.Forms.Applictaion_Types;
+using DVLD.Forms.Test_Types;
 using DVLD.Forms.Users;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,13 @@ namespace DVLD.Forms
             frmManageApplicationTypes frmManageApplicationTypes = new frmManageApplicationTypes();
             frmManageApplicationTypes.MdiParent = this;
             frmManageApplicationTypes.Show();
+        }
+
+        private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListTestTypes frmListTestTypes = new frmListTestTypes();
+            frmListTestTypes.MdiParent = this;
+            frmListTestTypes.Show();
         }
     }
 }
