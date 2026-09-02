@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="clsGlobalProjectSettings.cs" />
     <Compile Include="clsUtil.cs" />
+    <Compile Include="clsValidation.cs" />
     <Compile Include="Forms\Application Types\frmEditApplicationType.cs">
       <SubType>Form</SubType>
     </Compile>

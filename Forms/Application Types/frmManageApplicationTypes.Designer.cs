@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label2 = new System.Windows.Forms.Label();
-            this.grdvApplicationTypes = new System.Windows.Forms.DataGridView();
+            this.dgvApplicationTypes = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblRecords = new System.Windows.Forms.Label();
-            this.lblRecordsResult = new System.Windows.Forms.Label();
+            this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmEditApplicationType = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.grdvApplicationTypes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,18 +51,17 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Manage Application Types";
             // 
-            // grdvApplicationTypes
+            // dgvApplicationTypes
             // 
-            this.grdvApplicationTypes.AllowUserToAddRows = false;
-            this.grdvApplicationTypes.AllowUserToDeleteRows = false;
-            this.grdvApplicationTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdvApplicationTypes.Location = new System.Drawing.Point(12, 78);
-            this.grdvApplicationTypes.Name = "grdvApplicationTypes";
-            this.grdvApplicationTypes.ShowEditingIcon = false;
-            this.grdvApplicationTypes.Size = new System.Drawing.Size(840, 360);
-            this.grdvApplicationTypes.TabIndex = 2;
-            this.grdvApplicationTypes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdvApplicationTypes_CellContentClick);
-            this.grdvApplicationTypes.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdvApplicationTypes_CellMouseClick);
+            this.dgvApplicationTypes.AllowUserToAddRows = false;
+            this.dgvApplicationTypes.AllowUserToDeleteRows = false;
+            this.dgvApplicationTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvApplicationTypes.ContextMenuStrip = this.contextMenuStrip1;
+            this.dgvApplicationTypes.Location = new System.Drawing.Point(12, 78);
+            this.dgvApplicationTypes.Name = "dgvApplicationTypes";
+            this.dgvApplicationTypes.ShowEditingIcon = false;
+            this.dgvApplicationTypes.Size = new System.Drawing.Size(840, 360);
+            this.dgvApplicationTypes.TabIndex = 2;
             // 
             // btnClose
             // 
@@ -84,15 +83,15 @@
             this.lblRecords.TabIndex = 4;
             this.lblRecords.Text = "Records :";
             // 
-            // lblRecordsResult
+            // lblNumberOfRecords
             // 
-            this.lblRecordsResult.AutoSize = true;
-            this.lblRecordsResult.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecordsResult.Location = new System.Drawing.Point(103, 465);
-            this.lblRecordsResult.Name = "lblRecordsResult";
-            this.lblRecordsResult.Size = new System.Drawing.Size(67, 25);
-            this.lblRecordsResult.TabIndex = 5;
-            this.lblRecordsResult.Text = "?????";
+            this.lblNumberOfRecords.AutoSize = true;
+            this.lblNumberOfRecords.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumberOfRecords.Location = new System.Drawing.Point(103, 465);
+            this.lblNumberOfRecords.Name = "lblNumberOfRecords";
+            this.lblNumberOfRecords.Size = new System.Drawing.Size(67, 25);
+            this.lblNumberOfRecords.TabIndex = 5;
+            this.lblNumberOfRecords.Text = "?????";
             // 
             // contextMenuStrip1
             // 
@@ -113,15 +112,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 523);
-            this.Controls.Add(this.lblRecordsResult);
+            this.Controls.Add(this.lblNumberOfRecords);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.grdvApplicationTypes);
+            this.Controls.Add(this.dgvApplicationTypes);
             this.Controls.Add(this.label2);
             this.Name = "frmManageApplicationTypes";
             this.Text = "frmManageApplicationTypes";
             this.Load += new System.EventHandler(this.frmManageApplicationTypes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.grdvApplicationTypes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -131,10 +130,10 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView grdvApplicationTypes;
+        private System.Windows.Forms.DataGridView dgvApplicationTypes;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblRecords;
-        private System.Windows.Forms.Label lblRecordsResult;
+        private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmEditApplicationType;
     }

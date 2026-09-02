@@ -10,6 +10,37 @@ namespace DVLDDataAccessLayer
 {
     public static  class clsApplicationTypesDataAccess
     {
+        static public bool Find(int id, ref string apptitle, ref float fees)
+        {
+            bool isFound = false;
+            string query = "select * from ApplicationTypes where ApplicationTypeID=@id";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id", id);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    apptitle = (string)reader["ApplicationTypeName"];
+                    fees = Convert.ToSingle(reader["ApplicationTypeFees"]);
+                    
+                    isFound = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            connection.Close();
+            return isFound;
+
+        }
         public static DataTable GetAllApplicationTypes()
         {
             DataTable dt = new DataTable();
@@ -35,6 +66,32 @@ namespace DVLDDataAccessLayer
             finally { connection.Close(); }
             return dt;
         }
+        static public int AddNew(string applicationtypename,float applicationtypefees)
+        {
+            int id = -1;
+            string query = @"insert into ApplicationTypes (ApplicationTypeName,ApplicationTypeFees) Values  (@applicationtypename,@applicationtypefees) ;
+                                SELECT SCOPE_IDENTITY();";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@applicationtypename", applicationtypename);
+            command.Parameters.AddWithValue("@applicationtypefees", applicationtypefees);
+         
+            try
+            {
+                connection.Open();
+                Object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int ID)) { id = ID; }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { connection.Close(); }
+            return id;
+        }
         public static bool Update( int id, string title, float fees)
         {
             bool ChangeWasMade = false;
@@ -42,7 +99,7 @@ namespace DVLDDataAccessLayer
             string query = @"Update ApplicationTypes
                                             set 
                                             ApplicationTypeName=@title,
-                                            Fees=@fees
+                                            ApplicationTypeFees=@fees
                                             
                                             where ApplicationTypeID=@id;";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);

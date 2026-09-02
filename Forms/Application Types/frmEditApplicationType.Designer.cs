@@ -28,15 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblApplicationTypeID = new System.Windows.Forms.Label();
-            this.lblApplicationTypeIDResult = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblFees = new System.Windows.Forms.Label();
             this.txtboxTitle = new System.Windows.Forms.TextBox();
             this.txtboxFees = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -50,27 +53,27 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Update Application Type";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(12, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 31);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "ID :";
+            // 
             // lblApplicationTypeID
             // 
             this.lblApplicationTypeID.AutoSize = true;
             this.lblApplicationTypeID.Font = new System.Drawing.Font("Arial Narrow", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApplicationTypeID.ForeColor = System.Drawing.Color.Black;
-            this.lblApplicationTypeID.Location = new System.Drawing.Point(12, 65);
+            this.lblApplicationTypeID.Location = new System.Drawing.Point(90, 65);
             this.lblApplicationTypeID.Name = "lblApplicationTypeID";
-            this.lblApplicationTypeID.Size = new System.Drawing.Size(49, 31);
-            this.lblApplicationTypeID.TabIndex = 3;
-            this.lblApplicationTypeID.Text = "ID :";
-            // 
-            // lblApplicationTypeIDResult
-            // 
-            this.lblApplicationTypeIDResult.AutoSize = true;
-            this.lblApplicationTypeIDResult.Font = new System.Drawing.Font("Arial Narrow", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApplicationTypeIDResult.ForeColor = System.Drawing.Color.Black;
-            this.lblApplicationTypeIDResult.Location = new System.Drawing.Point(90, 65);
-            this.lblApplicationTypeIDResult.Name = "lblApplicationTypeIDResult";
-            this.lblApplicationTypeIDResult.Size = new System.Drawing.Size(84, 31);
-            this.lblApplicationTypeIDResult.TabIndex = 4;
-            this.lblApplicationTypeIDResult.Text = "?????";
+            this.lblApplicationTypeID.Size = new System.Drawing.Size(84, 31);
+            this.lblApplicationTypeID.TabIndex = 4;
+            this.lblApplicationTypeID.Text = "?????";
             // 
             // lblTitle
             // 
@@ -100,6 +103,7 @@
             this.txtboxTitle.Name = "txtboxTitle";
             this.txtboxTitle.Size = new System.Drawing.Size(318, 20);
             this.txtboxTitle.TabIndex = 7;
+            this.txtboxTitle.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxTitle_Validating);
             // 
             // txtboxFees
             // 
@@ -107,10 +111,11 @@
             this.txtboxFees.Name = "txtboxFees";
             this.txtboxFees.Size = new System.Drawing.Size(318, 20);
             this.txtboxFees.TabIndex = 8;
+            this.txtboxFees.Validating += new System.ComponentModel.CancelEventHandler(this.txtboxFees_Validating);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(138, 211);
+            this.btnClose.Location = new System.Drawing.Point(206, 214);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(103, 39);
             this.btnClose.TabIndex = 9;
@@ -120,7 +125,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(294, 211);
+            this.btnSave.Location = new System.Drawing.Point(329, 214);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(103, 39);
             this.btnSave.TabIndex = 10;
@@ -128,23 +133,28 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmEditApplicationType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 262);
+            this.ClientSize = new System.Drawing.Size(516, 269);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtboxFees);
             this.Controls.Add(this.txtboxTitle);
             this.Controls.Add(this.lblFees);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.lblApplicationTypeIDResult);
             this.Controls.Add(this.lblApplicationTypeID);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Name = "frmEditApplicationType";
             this.Text = "frmEditApplicationType";
             this.Load += new System.EventHandler(this.frmEditApplicationType_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,13 +163,14 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblApplicationTypeID;
-        private System.Windows.Forms.Label lblApplicationTypeIDResult;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblFees;
         private System.Windows.Forms.TextBox txtboxTitle;
         private System.Windows.Forms.TextBox txtboxFees;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
