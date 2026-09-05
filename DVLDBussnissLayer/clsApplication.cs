@@ -17,8 +17,10 @@ namespace DVLDBussnissLayer
         public enApplicationState ApplicationState = enApplicationState.New;
 
 
+
         public int      ApplicationID { get; set; }
         public int      PersonID { get; set; }
+        public clsPerson Person { get; set; }
         public DateTime ApplicatoinDate { get; set; }
         public enApplicationState ApplicationStatus { get; set; }
         public int      ApplicationTypeID { get; set; }
@@ -33,6 +35,7 @@ namespace DVLDBussnissLayer
             PersonID = -1;
             ApplicationTypeID = -1;
             CreatedByUserID = -1;
+            
             ApplicationStatus = enApplicationState.New;
             ApplicatoinDate = DateTime.Now;
             LastStatusDate= DateTime.Now;
@@ -40,12 +43,13 @@ namespace DVLDBussnissLayer
            
             Mode = enMode.AddMode;
         }
-        clsApplication(int ApplicationID,int PersonID,
+       protected clsApplication(int ApplicationID,int PersonID,
              DateTime ApplicatoinDate, int ApplicationTypeID, enApplicationState ApplicatoinStatus,
              DateTime LastStatusDate, float PaidFees, int CreatedByUserID)
         {
             this.ApplicationID = ApplicationID;
             this.PersonID = PersonID;
+            this.Person = clsPerson.Find(PersonID);
             this.ApplicatoinDate = ApplicatoinDate;
             this.ApplicationTypeID = ApplicationTypeID;
             this.ApplicationStatus = ApplicatoinStatus;
@@ -77,8 +81,21 @@ namespace DVLDBussnissLayer
               LastStatusDate,  PaidFees,  CreatedByUserID);
             return null;
         }
-        
-       
+        static public bool Find(int ApplicationID,ref int  PersonID, ref DateTime ApplicatoinDate, ref  int ApplicationTypeID, ref short ApplicationStatus,
+             ref DateTime LastStatusDate, ref float PaidFees, ref int CreatedByUserID)
+        {
+
+
+
+            if (clsApplicationData.GetApplicationByID(ApplicationID, ref PersonID,
+             ref ApplicatoinDate, ref ApplicationTypeID, ref ApplicationStatus,
+             ref LastStatusDate, ref PaidFees, ref CreatedByUserID))
+
+                return true;
+            return false;
+        }
+
+
         private bool _AddNewApplication()
         {
             this.ApplicationID = clsApplicationData.AddNewApplication( PersonID,
