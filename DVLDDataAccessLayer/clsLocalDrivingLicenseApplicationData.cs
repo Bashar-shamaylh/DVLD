@@ -139,15 +139,13 @@ namespace DVLDDataAccessLayer
         static public DataTable GetApplicationsInfo()
         {
             DataTable dt = new DataTable();
-            string query = @"SELECT [ApplicationID]
-                              ,[PersonID]
-                              ,[ApplicationTypeID]
-                              ,[ApplicationDate]
-                              ,[ApplicationState]
-                              ,[LastStatusDate]
-                              ,[PaidFees]
-                              ,[CreatedByUserID]
-                          FROM [dbo].[Applications]   ";
+            string query = @"SELECT   LocalDrivingLicenseApplication.LocalDrivingLiceneseApplicationID, LicenseClasses.ClassName ,People.NationalNumber,People.FirstName+' '+ People.SecondName+' '+ People.ThirdName+' '+People.LastName as FullName,
+                         Applications.ApplicationDate, Applications.ApplicationState
+                         
+                        FROM            Applications INNER JOIN
+                         People ON Applications.PersonID = People.PersonID INNER JOIN
+                         LocalDrivingLicenseApplication ON Applications.ApplicationID = LocalDrivingLicenseApplication.ApplicationID INNER JOIN
+                         LicenseClasses ON LocalDrivingLicenseApplication.LicenseClassID = LicenseClasses.LicenseClassID";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             try
@@ -168,6 +166,37 @@ namespace DVLDDataAccessLayer
             }
             finally { connection.Close(); }
             return dt;
+        }
+        static public bool isPersonHasApplicationWithLicenseClassID(int PersonID,int LicenseClassID)
+        {
+            bool wasFound = false;
+            string query = @"select 1 from Applications inner join LocalDrivingLicenseApplication
+                        on Applications.ApplicationID=LocalDrivingLicenseApplication.ApplicationID 
+                            where Applications.PersonID=@PersonID and
+                ( (Applications.ApplicationState =1 or Applications.ApplicationState=2)and LocalDrivingLicenseApplication.LicenseClassID=@LicenseClassID);";
+
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                    wasFound = true;
+                else
+                    wasFound = false;
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { connection.Close(); }
+            return wasFound;
         }
     }
 }

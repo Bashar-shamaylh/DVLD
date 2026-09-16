@@ -16,13 +16,19 @@ namespace DVLDBussnissLayer
         public int LocalDrivingLicenseApplicationID {  get; set; }
         
         public int LicenseClassID { get; set; }
-
+        public clsApplicationType applicationType= clsApplicationType.Find(2);
         public clsLocalDrivingLicenseApplication()
         {
             ApplicationID = -1;
             LocalDrivingLicenseApplicationID = -1;
             LicenseClassID = -1;
-          //  Mode = clsApplication.enMode.AddMode;
+             
+            this.ApplicationTypeID = 2;
+            this.ApplicationDate= DateTime.Now;
+            this.ApplicationState=enApplicationState.New;
+            this.LastStatusDate = ApplicationDate;
+            this.PaidFees=applicationType.Fees;
+            
 
         }
         clsLocalDrivingLicenseApplication(int LocalDrivingLicenseApplicationID,int LicenseClassID,int ApplicationID, int PersonID,
@@ -35,21 +41,22 @@ namespace DVLDBussnissLayer
             this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
             this.LicenseClassID = LicenseClassID;
 
-          //  Mode = clsApplication.enMode.UpdateMode;
+          
         }
-        static public clsLocalDrivingLicenseApplication FindLocalDrvingLicenseApp(int LocalDrivingLicenseID)
+        static public clsLocalDrivingLicenseApplication Find(int LocalDrivingLicenseID)
         {
             int LicenseClassID = -1;
 
             int ApplicationID = -1;
             int PersonID = -1;
-            int ApplicationTypeID = -1;
+            int ApplicationTypeID = 2;
             int CreatedByUserID = -1;
             short ApplicationStatus = 1;
             DateTime ApplicatoinDate = DateTime.Now;
             DateTime LastStatusDate = DateTime.Now;
             float PaidFees = -1;
-            if(clsLocalDrivingLicenseApplicationData.GetLocalDrivingLicenseApplicationByID(LocalDrivingLicenseID, ref ApplicationID,ref LicenseClassID))
+            if(clsLocalDrivingLicenseApplicationData.GetLocalDrivingLicenseApplicationByID
+                (LocalDrivingLicenseID, ref ApplicationID,ref LicenseClassID))
                 if (Find(ApplicationID, ref PersonID,
                  ref ApplicatoinDate, ref ApplicationTypeID, ref ApplicationStatus,
                  ref LastStatusDate, ref PaidFees, ref CreatedByUserID))
@@ -64,7 +71,7 @@ namespace DVLDBussnissLayer
         private bool _AddNew()
         {
             this.ApplicationID = clsApplicationData.AddNewApplication(PersonID,
-              ApplicatoinDate, ApplicationTypeID, (short)ApplicationStatus,
+              ApplicationDate, ApplicationTypeID, (short)ApplicationState,
               LastStatusDate, PaidFees, CreatedByUserID);
             if (this.ApplicationID == -1)
                 return false;
@@ -75,7 +82,7 @@ namespace DVLDBussnissLayer
         private bool _Update()
         {
             return (clsApplicationData.UpdateApplicatoinInfo(ApplicationID, PersonID,
-              ApplicatoinDate, ApplicationTypeID, (short)ApplicationStatus,
+              ApplicationDate, ApplicationTypeID, (short)ApplicationState,
               LastStatusDate, PaidFees, CreatedByUserID)&&
               clsLocalDrivingLicenseApplicationData.UpdateLocalDrivingLicenseApplication
               (this.LocalDrivingLicenseApplicationID,this.ApplicationID,this.LicenseClassID));
@@ -101,12 +108,16 @@ namespace DVLDBussnissLayer
         }
         public static bool Delete(int localDrivingLicenseApplicationID)
         {
-            clsLocalDrivingLicenseApplication obj= FindLocalDrvingLicenseApp(localDrivingLicenseApplicationID);
+            clsLocalDrivingLicenseApplication obj= Find(localDrivingLicenseApplicationID);
             return clsApplicationData.DeleteApplicatoin(obj.ApplicationID) &&clsLocalDrivingLicenseApplicationData.DeleteLocalDrivingLicenseApplication(localDrivingLicenseApplicationID);
         }
         public static DataTable GetApplicationInfo()
         {
             return clsLocalDrivingLicenseApplicationData.GetApplicationsInfo();
+        }
+        public static bool isPersonHasApplicationWithLicenseClassID(int personID,int licenseClassID)
+        {
+            return clsLocalDrivingLicenseApplicationData.isPersonHasApplicationWithLicenseClassID (personID,licenseClassID);
         }
 
     }
