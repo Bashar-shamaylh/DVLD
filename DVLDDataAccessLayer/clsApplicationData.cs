@@ -59,20 +59,20 @@ namespace DVLDDataAccessLayer
         }
        
         static public int AddNewApplication( int PersonID,
-             DateTime ApplicatoinDate,  int ApplicationTypeID,  short ApplicatoinStatus,
+             DateTime ApplicationDate,  int ApplicationTypeID,  short ApplicationState,
              DateTime LastStatusDate,  float PaidFees,  int CreatedByUserID)
         {
             int id = -1;
-            string query = @"insert into Applicatoins (PersonID,ApplicatoinDate,ApplicationTypeID,ApplicatoinStatus,LastStatusDate,PaidFees,CreatedByUserID) 
-                        Values  (@PersonID,@ApplicatoinDate,@ApplicationTypeID,@ApplicatoinStatus,@LastStatusDate,@PaidFees,@CreatedByUserID) ;
+            string query = @"insert into Applications (PersonID,ApplicationDate,ApplicationTypeID,ApplicationState,LastStatusDate,PaidFees,CreatedByUserID) 
+                        Values  (@PersonID,@ApplicationDate,@ApplicationTypeID,@ApplicationState,@LastStatusDate,@PaidFees,@CreatedByUserID) ;
                                 SELECT SCOPE_IDENTITY();";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@ApplicatoinDate", ApplicatoinDate);
+            command.Parameters.AddWithValue("@ApplicationDate", ApplicationDate);
             command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
-            command.Parameters.AddWithValue("@ApplicatoinStatus", ApplicatoinStatus);
+            command.Parameters.AddWithValue("@ApplicationState", ApplicationState);
             command.Parameters.AddWithValue("@LastStatusDate", LastStatusDate);
             command.Parameters.AddWithValue("@PaidFees", PaidFees);
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);

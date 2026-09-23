@@ -45,8 +45,8 @@ namespace DVLDDataAccessLayer
         static public int AddNewLocalDrivingLicenseApplication(int ApplicationID,int LicenseClassID)
         {
             int id = -1;
-            string query = @"insert into LocalDrivingLicenseApplications (ApplicationID,LicenseClassID) 
-                        Values  (@ApplicationID,@LicenseClassID,) ;
+            string query = @"insert into LocalDrivingLicenseApplication (ApplicationID,LicenseClassID) 
+                        Values  (@ApplicationID,@LicenseClassID) ;
                                 SELECT SCOPE_IDENTITY();";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);

@@ -101,6 +101,7 @@
             this.pcbPersonalImage.Location = new System.Drawing.Point(568, 58);
             this.pcbPersonalImage.Name = "pcbPersonalImage";
             this.pcbPersonalImage.Size = new System.Drawing.Size(170, 220);
+            this.pcbPersonalImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbPersonalImage.TabIndex = 18;
             this.pcbPersonalImage.TabStop = false;
             // 

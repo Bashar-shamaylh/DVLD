@@ -31,7 +31,6 @@
             this.tbAddUpdateLocalApplication = new System.Windows.Forms.TabControl();
             this.tbpPersonInfo = new System.Windows.Forms.TabPage();
             this.btnNext = new System.Windows.Forms.Button();
-            this.ctrlPersonInfoWithFilter1 = new DVLD.user_Controls.ctrlPersonInfoWithFilter();
             this.tbpApplicationInfo = new System.Windows.Forms.TabPage();
             this.cbLicenseClasses = new System.Windows.Forms.ComboBox();
             this.lblApplicationDate = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.ctrlPersonInfoWithFilter1 = new DVLD.user_Controls.ctrlPersonInfoWithFilter();
             this.tbAddUpdateLocalApplication.SuspendLayout();
             this.tbpPersonInfo.SuspendLayout();
             this.tbpApplicationInfo.SuspendLayout();
@@ -81,15 +81,7 @@
             this.btnNext.TabIndex = 1;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
-            // 
-            // ctrlPersonInfoWithFilter1
-            // 
-            this.ctrlPersonInfoWithFilter1.FilterEnabeld = true;
-            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(6, 6);
-            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
-            this.ctrlPersonInfoWithFilter1.ShowPerson = true;
-            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(839, 424);
-            this.ctrlPersonInfoWithFilter1.TabIndex = 0;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click_1);
             // 
             // tbpApplicationInfo
             // 
@@ -114,6 +106,14 @@
             // cbLicenseClasses
             // 
             this.cbLicenseClasses.FormattingEnabled = true;
+            this.cbLicenseClasses.Items.AddRange(new object[] {
+            "Class 1 - Small Motorcycle",
+            "Class 2 - Heavy Motorcycle License",
+            "Class 3 - Ordinary driving license",
+            "Class 4 - Commercial",
+            "Class 5 - Agricultural\t",
+            "Class 6 - Small and medium bus",
+            "Class 7 - Truck and heavy vehicle"});
             this.cbLicenseClasses.Location = new System.Drawing.Point(362, 216);
             this.cbLicenseClasses.Name = "cbLicenseClasses";
             this.cbLicenseClasses.Size = new System.Drawing.Size(181, 21);
@@ -257,6 +257,17 @@
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // ctrlPersonInfoWithFilter1
+            // 
+            this.ctrlPersonInfoWithFilter1.FilterEnabeld = true;
+            this.ctrlPersonInfoWithFilter1.Location = new System.Drawing.Point(6, 6);
+            this.ctrlPersonInfoWithFilter1.Name = "ctrlPersonInfoWithFilter1";
+            this.ctrlPersonInfoWithFilter1.ShowPerson = true;
+            this.ctrlPersonInfoWithFilter1.Size = new System.Drawing.Size(839, 424);
+            this.ctrlPersonInfoWithFilter1.TabIndex = 0;
+            this.ctrlPersonInfoWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonInfoWithFilter1_OnPersonSelected);
             // 
             // frmAddUpdateLocalDrivingLicenseApplication
             // 
@@ -269,6 +280,7 @@
             this.Controls.Add(this.tbAddUpdateLocalApplication);
             this.Name = "frmAddUpdateLocalDrivingLicenseApplication";
             this.Text = "frmAddUpdateLocalDrivingLicenseApplication";
+            this.Load += new System.EventHandler(this.frmAddUpdateLocalDrivingLicenseApplication_Load);
             this.tbAddUpdateLocalApplication.ResumeLayout(false);
             this.tbpPersonInfo.ResumeLayout(false);
             this.tbpApplicationInfo.ResumeLayout(false);
