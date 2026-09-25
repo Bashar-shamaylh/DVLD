@@ -13,7 +13,7 @@ namespace DVLDDataAccessLayer
         static public bool GetLocalDrivingLicenseApplicationByID(int LocalDrivingLicenseApplicationID,ref int ApplicationID,ref int LicenseClassID)
         {
             bool isFound = false;
-            string query = "select * from LocalDrivingLicenseApplications where LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID";
+            string query = "select * from LocalDrivingLicenseApplication where LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
@@ -75,7 +75,7 @@ namespace DVLDDataAccessLayer
         {
             bool ChangeWasMade = false;
 
-            string query = @"Update LocalDrivingLicenseApplications
+            string query = @"Update LocalDrivingLicenseApplication
                                             set 
                                             ApplicationID=@ApplicationID,
                                             LicenseClassID=@LicenseClassID,
@@ -139,13 +139,7 @@ namespace DVLDDataAccessLayer
         static public DataTable GetApplicationsInfo()
         {
             DataTable dt = new DataTable();
-            string query = @"SELECT   LocalDrivingLicenseApplication.LocalDrivingLiceneseApplicationID, LicenseClasses.ClassName ,People.NationalNumber,People.FirstName+' '+ People.SecondName+' '+ People.ThirdName+' '+People.LastName as FullName,
-                         Applications.ApplicationDate, Applications.ApplicationState
-                         
-                        FROM            Applications INNER JOIN
-                         People ON Applications.PersonID = People.PersonID INNER JOIN
-                         LocalDrivingLicenseApplication ON Applications.ApplicationID = LocalDrivingLicenseApplication.ApplicationID INNER JOIN
-                         LicenseClasses ON LocalDrivingLicenseApplication.LicenseClassID = LicenseClasses.LicenseClassID";
+            string query = @"select * from LocalDrivingLicenseApplicationsInfo";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             try

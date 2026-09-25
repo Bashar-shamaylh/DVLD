@@ -86,5 +86,12 @@ namespace DVLD.Forms
             frmAddUpdateLocalDrivingLicenseApplication frm=new frmAddUpdateLocalDrivingLicenseApplication();
             frm.ShowDialog();
         }
+
+        private void localDrivingLicenseApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListLocalDrivingLicenseApplications frm=new frmListLocalDrivingLicenseApplications();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

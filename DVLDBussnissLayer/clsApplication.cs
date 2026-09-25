@@ -14,7 +14,7 @@ namespace DVLDBussnissLayer
         public enMode Mode = enMode.AddMode;
 
         public enum enApplicationState { New = 1, Completed=2,Canceled=3 }
-        public enApplicationState ApplicationState = enApplicationState.New;
+        protected enApplicationState ApplicationState = enApplicationState.New;
 
 
 
@@ -136,6 +136,13 @@ namespace DVLDBussnissLayer
         {
             return clsApplicationData.GetApplicationsInfo();
         }
-        
+        public bool UpdateState(enApplicationState State)
+        {
+           
+            if (this.ApplicationState != enApplicationState.New)
+                return false;
+           
+            return clsApplicationData.UpdateApplicationState(this.ApplicationID,(short)State);
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace DVLDDataAccessLayer
             ref DateTime LastStatusDate, ref float PaidFees, ref int CreatedByUserID)
         {
             bool isFound = false;
-            string query = "select * from Applicatoins where ApplicationID=@ApplicationID";
+            string query = "select * from Applications where ApplicationID=@ApplicationID";
             SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
@@ -36,9 +36,9 @@ namespace DVLDDataAccessLayer
                     PersonID = (int)reader["PersonID"];
                     ApplicationTypeID = (int)reader["ApplicationTypeID"];
                     CreatedByUserID = (int)reader["CreatedByUserID"];
-                    ApplicatoinStatus = (short)reader["ApplicatoinStatus"];
+                    ApplicatoinStatus = Convert.ToInt16(reader["ApplicationState"]);
 
-                    ApplicatoinDate = (DateTime)reader["ApplicatoinDate"];
+                    ApplicatoinDate = (DateTime)reader["ApplicationDate"];
                     LastStatusDate = (DateTime)reader["LastStatusDate"];
 
                     PaidFees = Convert.ToSingle(reader["PaidFees"]);
@@ -202,8 +202,47 @@ namespace DVLDDataAccessLayer
             finally { connection.Close(); }
             return dt;
         }
-      
-}
+        static public bool UpdateApplicationState(int ApplicationID,short ApplicationState)
+        {
+            bool ChangeWasMade = false;
+
+            string query = @"Update Applications
+                                            set 
+                                            
+                                            ApplicationState=@ApplicationState
+                                            
+                                            where ApplicationID=@ApplicationID;";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+
+           
+            command.Parameters.AddWithValue("@ApplicationState", ApplicationState);
+           
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+
+            try
+            {
+                connection.Open();
+                int numberofrowsaffected = command.ExecuteNonQuery();
+                if (numberofrowsaffected != 0)
+                {
+                    ChangeWasMade = true;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+            return ChangeWasMade;
+        }
+    }
 
 }
 

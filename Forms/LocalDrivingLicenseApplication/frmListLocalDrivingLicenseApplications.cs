@@ -1,4 +1,5 @@
-﻿using DVLDBussnissLayer;
+﻿using DVLD.Forms.Application_Types;
+using DVLDBussnissLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,11 +45,13 @@ namespace DVLD.Forms.LocalDrivingLicenseApplication
                     dgvLocalDrivingLicenseApplications.Columns[4].HeaderText = "Application Date";
                     dgvLocalDrivingLicenseApplications.Columns[4].Width = 120;
 
-                    dgvLocalDrivingLicenseApplications.Columns[5].HeaderText = "Application State";
+                    dgvLocalDrivingLicenseApplications.Columns[5].HeaderText = "Passed Tests";
                     dgvLocalDrivingLicenseApplications.Columns[5].Width = 120;
 
-                    //dgvLocalDrivingLicenseApplications.Columns[6].HeaderText = "Passed Tests";
-                    //dgvLocalDrivingLicenseApplications.Columns[6].Width = 110;
+                    dgvLocalDrivingLicenseApplications.Columns[6].HeaderText = "Application State";
+                    dgvLocalDrivingLicenseApplications.Columns[6].Width = 120;
+
+                    
 
                 
             }
@@ -70,7 +73,8 @@ namespace DVLD.Forms.LocalDrivingLicenseApplication
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-
+            frmAddUpdateLocalDrivingLicenseApplication frm = new frmAddUpdateLocalDrivingLicenseApplication();
+            frm.ShowDialog();
         }
 
         private void cbFilterItems_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,7 +95,6 @@ namespace DVLD.Forms.LocalDrivingLicenseApplication
                 default:
                     txtFilterValue.Visible = true;
                     cbStateValues.Visible = false;
-                    
                     break;
             }
         }
@@ -133,6 +136,25 @@ namespace DVLD.Forms.LocalDrivingLicenseApplication
         {
             if (cbFilterItems.Text == "L.D.L.ApplicationID")
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int Localid = Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value);
+            clsLocalDrivingLicenseApplication clsLocalDrivingLicenseApplication=clsLocalDrivingLicenseApplication.Find(Localid);
+            if(clsLocalDrivingLicenseApplication.UpdateState(clsApplication.enApplicationState.Canceled))
+            {
+                MessageBox.Show("Success","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                _RefreshApplicatoinsList();
+            }
+
+           
+
         }
     }
 }
