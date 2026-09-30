@@ -5,18 +5,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLDDataAccessLayer
 {
     public class clsApplicationData
     {
-        //CRUD:
-
-        //Create(AddNewPearson)                      done
-        //Read(FindPearsonByID)(FindPearsonByName)   done
-        //Update(UpdatePearsonInfo)                  done
-        //Delete(DeletePearson)                      soon
-        //Read All People(GetPeopleData)             soon
+        
         static public bool GetApplicationByID(int ApplicationID, ref int PersonID,
             ref DateTime ApplicatoinDate, ref int ApplicationTypeID , ref short ApplicatoinStatus,
             ref DateTime LastStatusDate, ref float PaidFees, ref int CreatedByUserID)
@@ -42,7 +37,7 @@ namespace DVLDDataAccessLayer
                     LastStatusDate = (DateTime)reader["LastStatusDate"];
 
                     PaidFees = Convert.ToSingle(reader["PaidFees"]);
-                   
+                    
                     isFound = true;
                 }
 
@@ -241,6 +236,99 @@ namespace DVLDDataAccessLayer
                 connection.Close();
             }
             return ChangeWasMade;
+        }
+        static public bool isApplicationExist(int ApplicationID)
+        {
+            bool wasFound = false;
+            string query = @"select 1 from Applications Where ApplicationID=@ApplicationID;";
+
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+      
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                    wasFound = true;
+                else
+                    wasFound = false;
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { connection.Close(); }
+            return wasFound;
+        }
+        public static bool DoesPersonHaveActiveApplication(int PersonID,int ApplicationTypeID)
+        {
+            return (GetActiveApplicationID (PersonID,ApplicationTypeID)!= -1);
+        }
+       public static int GetActiveApplicationID(int PersonID,int ApplicationTypeID)
+        {
+            int ActiveApplicationID = -1;
+            string query = "select ActiveApplicationID=ApplicationID from Applications where PersonID=@PersonID and ApplicationTypeID=@ApplicationTypeID and ApplicationState=1";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    ActiveApplicationID = (int)reader["ActiveApplicationID"];
+            
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            connection.Close();
+            return ActiveApplicationID;
+
+        }
+       public  static int GetActiveApplicationIDForLicenseClass(int PersonID, int ApplicationTypeID,int LicenseClassID)
+        {
+            int ActiveApplicationID = -1;
+            string query = "select ActiveApplicationID=Applications.ApplicationID from Applications inner join LocalDrivingLicenseApplication On Applications.ApplicationID=LocalDrivingLicenseApplication.ApplicationID\r\n\r\n where PersonID=@PersonID and ApplicationTypeID=@ApplicationTypeID and ApplicationState=1  and LicenseClassID=@LicenseClassID;";
+            SqlConnection connection = new SqlConnection(ClsDataAccessSetting.ConnectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    ActiveApplicationID = (int)reader["ActiveApplicationID"];
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            connection.Close();
+            return ActiveApplicationID;
+
         }
     }
 

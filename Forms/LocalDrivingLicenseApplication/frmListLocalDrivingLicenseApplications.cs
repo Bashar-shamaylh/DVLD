@@ -147,7 +147,7 @@ namespace DVLD.Forms.LocalDrivingLicenseApplication
         {
             int Localid = Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value);
             clsLocalDrivingLicenseApplication clsLocalDrivingLicenseApplication=clsLocalDrivingLicenseApplication.Find(Localid);
-            if(clsLocalDrivingLicenseApplication.UpdateState(clsApplication.enApplicationState.Canceled))
+            if(clsLocalDrivingLicenseApplication.Cancel())
             {
                 MessageBox.Show("Success","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 _RefreshApplicatoinsList();
