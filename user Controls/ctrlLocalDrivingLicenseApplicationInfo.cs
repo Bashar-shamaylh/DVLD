@@ -34,10 +34,10 @@ namespace DVLD.user_Controls
         }
         private void _FillApplicationInfoIntoTheForm()
         {
-            linkLabel1.Enabled = (_LocalDrivingLicenseApp.PassedTests == 3);
+           // linkLabel1.Enabled = (_LocalDrivingLicenseApp.PassedTests == 3);
             lblLicenseClassName.Text= _LocalDrivingLicenseApp.LicenseClassInfo.ClassName;
             lblLocalDrivingLicenseApplicationID.Text = _LocalDrivingLicenseApp.LocalDrivingLicenseApplicationID.ToString();
-            lblPassedTests.Text=_LocalDrivingLicenseApp.PassedTests.ToString();
+           // lblPassedTests.Text=_LocalDrivingLicenseApp.PassedTests.ToString();
         }
        
         public void ResetControlInfo()

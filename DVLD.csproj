@@ -171,6 +171,12 @@
     <Compile Include="Forms\Users\User Controls\ctrlUserInfo.Designer.cs">
       <DependentUpon>ctrlUserInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="user Controls\ctrlApplicationInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="user Controls\ctrlApplicationInfo.Designer.cs">
+      <DependentUpon>ctrlApplicationInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="user Controls\ctrlLocalDrivingLicenseApplicationInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users\User Controls\ctrlUserInfo.resx">
       <DependentUpon>ctrlUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user Controls\ctrlApplicationInfo.resx">
+      <DependentUpon>ctrlApplicationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="user Controls\ctrlLocalDrivingLicenseApplicationInfo.resx">
       <DependentUpon>ctrlLocalDrivingLicenseApplicationInfo.cs</DependentUpon>
