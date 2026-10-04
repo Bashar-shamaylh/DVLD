@@ -16,14 +16,17 @@ namespace DVLDBussnissLayer
         public int LocalDrivingLicenseApplicationID {  get; set; }
         
         public int LicenseClassID { get; set; }
+        public short PassedTests { get;private set; }
+        public clsLicenseClass LicenseClassInfo;
+       
         public clsApplicationType applicationType= clsApplicationType.Find(2);
         public clsLocalDrivingLicenseApplication()
-        {
+        { 
             ApplicationID = -1;
             LocalDrivingLicenseApplicationID = -1;
             LicenseClassID = -1;
              
-            this.ApplicationTypeID = 2;
+           
             this.ApplicationDate= DateTime.Now;
             this.ApplicationState=enApplicationState.New;
             this.LastStatusDate = ApplicationDate;
@@ -32,16 +35,16 @@ namespace DVLDBussnissLayer
 
         }
         clsLocalDrivingLicenseApplication(int LocalDrivingLicenseApplicationID,int LicenseClassID,int ApplicationID, int PersonID,
-             DateTime ApplicationDate, int ApplicationTypeID, enApplicationState ApplicatoinStatus,
-             DateTime LastStatusDate, float PaidFees, int CreatedByUserID) :base(ApplicationID,PersonID, ApplicationDate, ApplicationTypeID, ApplicatoinStatus, LastStatusDate,
+             DateTime ApplicationDate, enApplicationType ApplicationType, enApplicationState ApplicatoinStatus,
+             DateTime LastStatusDate, float PaidFees, int CreatedByUserID, short PassedTests = 0) :base(ApplicationID,PersonID, ApplicationDate, ApplicationType, ApplicatoinStatus, LastStatusDate,
                  PaidFees, CreatedByUserID)
         {
             this.ApplicationID = ApplicationID;
             
             this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
             this.LicenseClassID = LicenseClassID;
-
-          
+            this.LicenseClassInfo=clsLicenseClass.Find(LicenseClassID);
+            this.PassedTests=PassedTests;
         }
         static public clsLocalDrivingLicenseApplication Find(int LocalDrivingLicenseID)
         {
@@ -49,20 +52,21 @@ namespace DVLDBussnissLayer
 
             int ApplicationID = -1;
             int PersonID = -1;
-            int ApplicationTypeID = 2;
+            int ApplicationType = 2;
             int CreatedByUserID = -1;
             short ApplicationStatus = 1;
             DateTime ApplicatoinDate = DateTime.Now;
             DateTime LastStatusDate = DateTime.Now;
             float PaidFees = -1;
+            short passedtests = 0;
             if(clsLocalDrivingLicenseApplicationData.GetLocalDrivingLicenseApplicationByID
-                (LocalDrivingLicenseID, ref ApplicationID,ref LicenseClassID))
+                (LocalDrivingLicenseID, ref ApplicationID,ref LicenseClassID,ref passedtests))
                 if (Find(ApplicationID, ref PersonID,
-                 ref ApplicatoinDate, ref ApplicationTypeID, ref ApplicationStatus,
+                 ref ApplicatoinDate, ref ApplicationType, ref ApplicationStatus,
                  ref LastStatusDate, ref PaidFees, ref CreatedByUserID))
 
                 return new clsLocalDrivingLicenseApplication(LocalDrivingLicenseID,LicenseClassID,ApplicationID, PersonID,
-              ApplicatoinDate, ApplicationTypeID, (enApplicationState)ApplicationStatus,
+              ApplicatoinDate, (enApplicationType)ApplicationType, (enApplicationState)ApplicationStatus,
               LastStatusDate, PaidFees, CreatedByUserID);
             return null;
         }
@@ -71,7 +75,7 @@ namespace DVLDBussnissLayer
         private bool _AddNew()
         {
             this.ApplicationID = clsApplicationData.AddNewApplication(PersonID,
-              ApplicationDate, ApplicationTypeID, (short)ApplicationState,
+              ApplicationDate,(short) ApplicationType, (short)ApplicationState,
               LastStatusDate, PaidFees, CreatedByUserID);
             if (this.ApplicationID == -1)
                 return false;
@@ -82,7 +86,7 @@ namespace DVLDBussnissLayer
         private bool _Update()
         {
             return (clsApplicationData.UpdateApplicatoinInfo(ApplicationID, PersonID,
-              ApplicationDate, ApplicationTypeID, (short)ApplicationState,
+              ApplicationDate,(short) ApplicationType, (short)ApplicationState,
               LastStatusDate, PaidFees, CreatedByUserID)&&
               clsLocalDrivingLicenseApplicationData.UpdateLocalDrivingLicenseApplication
               (this.LocalDrivingLicenseApplicationID,this.ApplicationID,this.LicenseClassID));

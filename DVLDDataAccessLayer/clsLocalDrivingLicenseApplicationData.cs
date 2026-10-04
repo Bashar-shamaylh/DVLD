@@ -10,7 +10,7 @@ namespace DVLDDataAccessLayer
 {
     public static class clsLocalDrivingLicenseApplicationData 
     {
-        static public bool GetLocalDrivingLicenseApplicationByID(int LocalDrivingLicenseApplicationID,ref int ApplicationID,ref int LicenseClassID)
+        static public bool GetLocalDrivingLicenseApplicationByID(int LocalDrivingLicenseApplicationID,ref int ApplicationID,ref int LicenseClassID,ref short PassedTests)
         {
             bool isFound = false;
             string query = "select * from LocalDrivingLicenseApplication where LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID";
@@ -26,7 +26,8 @@ namespace DVLDDataAccessLayer
                 {
                     ApplicationID = (int)reader["ApplicationID"];
                     LicenseClassID = (int)reader["LicenseClassID"];
-                    
+                    PassedTests = (short)reader["PassedTests"];
+
                     isFound = true;
                 }
 
@@ -34,7 +35,7 @@ namespace DVLDDataAccessLayer
             catch (Exception ex)
             {
 
-                throw;
+                throw; 
             }
 
             connection.Close();

@@ -134,13 +134,14 @@ namespace DVLD.Forms.LocalDrivingLicenseApplication
             if (Mode == enMode.Add)
             {
                 _LocalDrivingLicenseApp.CreatedByUserID = clsGlobalProjectSettings.CurrentUserId;
-                if (clsLocalDrivingLicenseApplication.isPersonHasApplicationWithLicenseClassID(_LocalDrivingLicenseApp.PersonID, _LocalDrivingLicenseApp.LicenseClassID))
+                if (clsLocalDrivingLicenseApplication.GetActiveApplicationIDForLicenseClass
+                    (_LocalDrivingLicenseApp.PersonID, _LocalDrivingLicenseApp.ApplicationType, _LocalDrivingLicenseApp.LicenseClassID)==-1)
                 {
-                    MessageBox.Show("This Person Has Already an Application For the same License Class", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("This Person Has Already an Active Application For the same License Class", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
-
+           
            
 
 
