@@ -1,4 +1,5 @@
 ﻿using DVLD.Forms.Application_Types;
+using DVLD.Forms.TestAppointments;
 using DVLDBussnissLayer;
 using System;
 using System.Collections.Generic;
@@ -155,6 +156,13 @@ namespace DVLD.Forms.LocalDrivingLicenseApplication
 
            
 
+        }
+
+        private void visionTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int Localid = Convert.ToInt32(dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value);
+            frmTestAppointments frmTestAppointments = new frmTestAppointments(Localid);
+            frmTestAppointments.ShowDialog();
         }
     }
 }

@@ -36,14 +36,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblStatusDate = new System.Windows.Forms.Label();
+            this.lblCreatedByUserID = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblApplicantFullName = new System.Windows.Forms.Label();
+            this.lblType = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblFees = new System.Windows.Forms.Label();
+            this.lblApplicationid = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
@@ -127,85 +127,86 @@
             this.label7.TabIndex = 20;
             this.label7.Text = "Type :";
             // 
-            // label8
+            // lblStatusDate
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(584, 56);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 23);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "?????";
+            this.lblStatusDate.AutoSize = true;
+            this.lblStatusDate.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblStatusDate.Location = new System.Drawing.Point(584, 56);
+            this.lblStatusDate.Name = "lblStatusDate";
+            this.lblStatusDate.Size = new System.Drawing.Size(60, 23);
+            this.lblStatusDate.TabIndex = 24;
+            this.lblStatusDate.Text = "?????";
             // 
-            // label9
+            // lblCreatedByUserID
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(584, 103);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(60, 23);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "?????";
+            this.lblCreatedByUserID.AutoSize = true;
+            this.lblCreatedByUserID.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblCreatedByUserID.Location = new System.Drawing.Point(584, 103);
+            this.lblCreatedByUserID.Name = "lblCreatedByUserID";
+            this.lblCreatedByUserID.Size = new System.Drawing.Size(60, 23);
+            this.lblCreatedByUserID.TabIndex = 23;
+            this.lblCreatedByUserID.Text = "?????";
             // 
-            // label10
+            // lblDate
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(584, 18);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(60, 23);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "?????";
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblDate.Location = new System.Drawing.Point(584, 18);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(60, 23);
+            this.lblDate.TabIndex = 22;
+            this.lblDate.Text = "?????";
             // 
-            // label11
+            // lblApplicantFullName
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label11.Location = new System.Drawing.Point(148, 188);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(60, 23);
-            this.label11.TabIndex = 29;
-            this.label11.Text = "?????";
+            this.lblApplicantFullName.AutoSize = true;
+            this.lblApplicantFullName.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblApplicantFullName.Location = new System.Drawing.Point(148, 188);
+            this.lblApplicantFullName.Name = "lblApplicantFullName";
+            this.lblApplicantFullName.Size = new System.Drawing.Size(60, 23);
+            this.lblApplicantFullName.TabIndex = 29;
+            this.lblApplicantFullName.Text = "?????";
             // 
-            // label12
+            // lblType
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label12.Location = new System.Drawing.Point(148, 144);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(60, 23);
-            this.label12.TabIndex = 28;
-            this.label12.Text = "?????";
+            this.lblType.AutoSize = true;
+            this.lblType.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblType.Location = new System.Drawing.Point(148, 144);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(60, 23);
+            this.lblType.TabIndex = 28;
+            this.lblType.Text = "?????";
             // 
-            // label13
+            // lblStatus
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label13.Location = new System.Drawing.Point(148, 56);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 23);
-            this.label13.TabIndex = 27;
-            this.label13.Text = "?????";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblStatus.Location = new System.Drawing.Point(148, 56);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(60, 23);
+            this.lblStatus.TabIndex = 27;
+            this.lblStatus.Text = "?????";
+            this.lblStatus.Click += new System.EventHandler(this.lblStatus_Click);
             // 
-            // label14
+            // lblFees
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label14.Location = new System.Drawing.Point(148, 103);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 23);
-            this.label14.TabIndex = 26;
-            this.label14.Text = "?????";
+            this.lblFees.AutoSize = true;
+            this.lblFees.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblFees.Location = new System.Drawing.Point(148, 103);
+            this.lblFees.Name = "lblFees";
+            this.lblFees.Size = new System.Drawing.Size(60, 23);
+            this.lblFees.TabIndex = 26;
+            this.lblFees.Text = "?????";
             // 
-            // label15
+            // lblApplicationid
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label15.Location = new System.Drawing.Point(148, 18);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(60, 23);
-            this.label15.TabIndex = 25;
-            this.label15.Text = "?????";
+            this.lblApplicationid.AutoSize = true;
+            this.lblApplicationid.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblApplicationid.Location = new System.Drawing.Point(148, 18);
+            this.lblApplicationid.Name = "lblApplicationid";
+            this.lblApplicationid.Size = new System.Drawing.Size(60, 23);
+            this.lblApplicationid.TabIndex = 25;
+            this.lblApplicationid.Text = "?????";
             // 
             // linkLabel1
             // 
@@ -224,14 +225,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lblApplicantFullName);
+            this.Controls.Add(this.lblType);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.lblFees);
+            this.Controls.Add(this.lblApplicationid);
+            this.Controls.Add(this.lblStatusDate);
+            this.Controls.Add(this.lblCreatedByUserID);
+            this.Controls.Add(this.lblDate);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
@@ -258,14 +259,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblStatusDate;
+        private System.Windows.Forms.Label lblCreatedByUserID;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label lblApplicantFullName;
+        private System.Windows.Forms.Label lblType;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblFees;
+        private System.Windows.Forms.Label lblApplicationid;
         private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

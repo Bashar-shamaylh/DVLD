@@ -91,6 +91,24 @@
     <Compile Include="Forms\Test Types\frmUpdateTestType.Designer.cs">
       <DependentUpon>frmUpdateTestType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TestAppointments\frmAddEditTestAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TestAppointments\frmAddEditTestAppointment.Designer.cs">
+      <DependentUpon>frmAddEditTestAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TestAppointments\frmTakeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TestAppointments\frmTakeTest.Designer.cs">
+      <DependentUpon>frmTakeTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TestAppointments\frmTestAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TestAppointments\frmTestAppointments.Designer.cs">
+      <DependentUpon>frmTestAppointments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Users\frmAddNewUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +201,12 @@
     <Compile Include="user Controls\ctrlLocalDrivingLicenseApplicationInfo.Designer.cs">
       <DependentUpon>ctrlLocalDrivingLicenseApplicationInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="user Controls\ctrlLocalDrivingLicenseFullInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="user Controls\ctrlLocalDrivingLicenseFullInfo.Designer.cs">
+      <DependentUpon>ctrlLocalDrivingLicenseFullInfo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\Application Types\frmEditApplicationType.resx">
       <DependentUpon>frmEditApplicationType.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,6 +227,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Test Types\frmUpdateTestType.resx">
       <DependentUpon>frmUpdateTestType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TestAppointments\frmAddEditTestAppointment.resx">
+      <DependentUpon>frmAddEditTestAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TestAppointments\frmTakeTest.resx">
+      <DependentUpon>frmTakeTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TestAppointments\frmTestAppointments.resx">
+      <DependentUpon>frmTestAppointments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users\frmAddNewUser.resx">
       <DependentUpon>frmAddNewUser.cs</DependentUpon>
@@ -258,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="user Controls\ctrlLocalDrivingLicenseApplicationInfo.resx">
       <DependentUpon>ctrlLocalDrivingLicenseApplicationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user Controls\ctrlLocalDrivingLicenseFullInfo.resx">
+      <DependentUpon>ctrlLocalDrivingLicenseFullInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

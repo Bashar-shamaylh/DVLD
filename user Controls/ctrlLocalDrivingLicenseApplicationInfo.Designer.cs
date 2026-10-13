@@ -28,16 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbl1 = new System.Windows.Forms.Label();
             this.lblLocalDrivingLicenseApplicationID = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblLicenseClassName = new System.Windows.Forms.Label();
-            this.lblPassedTests = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblPassedTests = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.linkLabel1);
+            this.groupBox1.Controls.Add(this.lblPassedTests);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblLicenseClassName);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblLocalDrivingLicenseApplicationID);
+            this.groupBox1.Controls.Add(this.lbl1);
+            this.groupBox1.Location = new System.Drawing.Point(15, 20);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(701, 122);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Driving License Application Info";
             // 
             // lbl1
             // 
@@ -79,16 +95,6 @@
             this.lblLicenseClassName.TabIndex = 16;
             this.lblLicenseClassName.Text = "?????";
             // 
-            // lblPassedTests
-            // 
-            this.lblPassedTests.AutoSize = true;
-            this.lblPassedTests.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.lblPassedTests.Location = new System.Drawing.Point(423, 65);
-            this.lblPassedTests.Name = "lblPassedTests";
-            this.lblPassedTests.Size = new System.Drawing.Size(60, 23);
-            this.lblPassedTests.TabIndex = 18;
-            this.lblPassedTests.Text = "?????";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -98,6 +104,16 @@
             this.label3.Size = new System.Drawing.Size(121, 23);
             this.label3.TabIndex = 17;
             this.label3.Text = "Passed Tests :";
+            // 
+            // lblPassedTests
+            // 
+            this.lblPassedTests.AutoSize = true;
+            this.lblPassedTests.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblPassedTests.Location = new System.Drawing.Point(423, 65);
+            this.lblPassedTests.Name = "lblPassedTests";
+            this.lblPassedTests.Size = new System.Drawing.Size(60, 23);
+            this.lblPassedTests.TabIndex = 18;
+            this.lblPassedTests.Text = "?????";
             // 
             // linkLabel1
             // 
@@ -115,29 +131,13 @@
             this.linkLabel1.Text = "Show License Info";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.linkLabel1);
-            this.groupBox1.Controls.Add(this.lblPassedTests);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.lblLicenseClassName);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.lblLocalDrivingLicenseApplicationID);
-            this.groupBox1.Controls.Add(this.lbl1);
-            this.groupBox1.Location = new System.Drawing.Point(11, 21);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(701, 110);
-            this.groupBox1.TabIndex = 20;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Driving License Application Info";
-            // 
             // ctrlLocalDrivingLicenseApplicationInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "ctrlLocalDrivingLicenseApplicationInfo";
-            this.Size = new System.Drawing.Size(726, 142);
+            this.Size = new System.Drawing.Size(752, 175);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -146,13 +146,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lbl1;
-        private System.Windows.Forms.Label lblLocalDrivingLicenseApplicationID;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblLicenseClassName;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label lblPassedTests;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblLicenseClassName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblLocalDrivingLicenseApplicationID;
+        private System.Windows.Forms.Label lbl1;
     }
 }

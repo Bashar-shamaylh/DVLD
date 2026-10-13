@@ -15,7 +15,7 @@ namespace DVLDBussnissLayer
         public enMode Mode = enMode.AddMode;
 
         public enum enApplicationState { New = 1, Completed=2,Canceled=3 }
-        protected enApplicationState ApplicationState = enApplicationState.New;
+        public enApplicationState ApplicationState = enApplicationState.New;
 
         public enum enApplicationType {
             NewDrivingLicense = 1, RenewDrivingLicense = 2, ReplaceLostDrivingLicense = 3,

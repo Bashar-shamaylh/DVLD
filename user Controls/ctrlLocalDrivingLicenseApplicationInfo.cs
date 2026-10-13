@@ -18,8 +18,11 @@ namespace DVLD.user_Controls
         private clsLocalDrivingLicenseApplication _LocalDrivingLicenseApp;
         private int _LocalDrivingLicenseAppID = -1;
         public int LocalDrivingLicenseAppID { get { return _LocalDrivingLicenseAppID; } }
-        
-       
+
+        public ctrlLocalDrivingLicenseApplicationInfo()
+        {
+            InitializeComponent();
+        }
         public void LoadApplicationInfo(int localDrivingApplicationID)
         {
             _LocalDrivingLicenseApp = clsLocalDrivingLicenseApplication.Find(localDrivingApplicationID);
@@ -34,10 +37,10 @@ namespace DVLD.user_Controls
         }
         private void _FillApplicationInfoIntoTheForm()
         {
-           // linkLabel1.Enabled = (_LocalDrivingLicenseApp.PassedTests == 3);
+            linkLabel1.Enabled = (_LocalDrivingLicenseApp.PassedTests == 3);
             lblLicenseClassName.Text= _LocalDrivingLicenseApp.LicenseClassInfo.ClassName;
             lblLocalDrivingLicenseApplicationID.Text = _LocalDrivingLicenseApp.LocalDrivingLicenseApplicationID.ToString();
-           // lblPassedTests.Text=_LocalDrivingLicenseApp.PassedTests.ToString();
+            lblPassedTests.Text=_LocalDrivingLicenseApp.PassedTests.ToString();
         }
        
         public void ResetControlInfo()
