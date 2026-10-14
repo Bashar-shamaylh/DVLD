@@ -30,7 +30,12 @@
         {
             this.btnClose = new System.Windows.Forms.Button();
             this.grpTestTitle = new System.Windows.Forms.GroupBox();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.rdoFail = new System.Windows.Forms.RadioButton();
+            this.rdoPass = new System.Windows.Forms.RadioButton();
+            this.lblDate = new System.Windows.Forms.Label();
             this.lblApplicationFees = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblTrial = new System.Windows.Forms.Label();
@@ -43,12 +48,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.lblManagePeople = new System.Windows.Forms.Label();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.rdoPass = new System.Windows.Forms.RadioButton();
-            this.rdoFail = new System.Windows.Forms.RadioButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.grpTestTitle.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,14 +88,65 @@
             this.grpTestTitle.TabStop = false;
             this.grpTestTitle.Text = "Vision Test";
             // 
-            // btnSave
+            // label8
             // 
-            this.btnSave.Location = new System.Drawing.Point(476, 641);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(143, 48);
-            this.btnSave.TabIndex = 42;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(66, 447);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 23);
+            this.label8.TabIndex = 47;
+            this.label8.Text = "Notes :";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(175, 447);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(432, 145);
+            this.textBox1.TabIndex = 46;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(66, 406);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 23);
+            this.label4.TabIndex = 45;
+            this.label4.Text = "Results :";
+            // 
+            // rdoFail
+            // 
+            this.rdoFail.AutoSize = true;
+            this.rdoFail.Location = new System.Drawing.Point(252, 406);
+            this.rdoFail.Name = "rdoFail";
+            this.rdoFail.Size = new System.Drawing.Size(41, 17);
+            this.rdoFail.TabIndex = 44;
+            this.rdoFail.TabStop = true;
+            this.rdoFail.Text = "Fail";
+            this.rdoFail.UseVisualStyleBackColor = true;
+            // 
+            // rdoPass
+            // 
+            this.rdoPass.AutoSize = true;
+            this.rdoPass.Location = new System.Drawing.Point(185, 406);
+            this.rdoPass.Name = "rdoPass";
+            this.rdoPass.Size = new System.Drawing.Size(48, 17);
+            this.rdoPass.TabIndex = 43;
+            this.rdoPass.TabStop = true;
+            this.rdoPass.Text = "Pass";
+            this.rdoPass.UseVisualStyleBackColor = true;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblDate.Location = new System.Drawing.Point(259, 294);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(60, 23);
+            this.lblDate.TabIndex = 42;
+            this.lblDate.Text = "?????";
             // 
             // lblApplicationFees
             // 
@@ -213,71 +264,20 @@
             this.lblManagePeople.BackColor = System.Drawing.Color.Transparent;
             this.lblManagePeople.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblManagePeople.ForeColor = System.Drawing.Color.Red;
-            this.lblManagePeople.Location = new System.Drawing.Point(156, 25);
+            this.lblManagePeople.Location = new System.Drawing.Point(167, 25);
             this.lblManagePeople.Name = "lblManagePeople";
-            this.lblManagePeople.Size = new System.Drawing.Size(226, 43);
+            this.lblManagePeople.Size = new System.Drawing.Size(200, 43);
             this.lblManagePeople.TabIndex = 3;
-            this.lblManagePeople.Text = "Schedule Test";
+            this.lblManagePeople.Text = "Test Results";
             // 
-            // lblDate
+            // btnSave
             // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.lblDate.Location = new System.Drawing.Point(259, 294);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(60, 23);
-            this.lblDate.TabIndex = 42;
-            this.lblDate.Text = "?????";
-            // 
-            // rdoPass
-            // 
-            this.rdoPass.AutoSize = true;
-            this.rdoPass.Location = new System.Drawing.Point(185, 406);
-            this.rdoPass.Name = "rdoPass";
-            this.rdoPass.Size = new System.Drawing.Size(48, 17);
-            this.rdoPass.TabIndex = 43;
-            this.rdoPass.TabStop = true;
-            this.rdoPass.Text = "Pass";
-            this.rdoPass.UseVisualStyleBackColor = true;
-            // 
-            // rdoFail
-            // 
-            this.rdoFail.AutoSize = true;
-            this.rdoFail.Location = new System.Drawing.Point(252, 406);
-            this.rdoFail.Name = "rdoFail";
-            this.rdoFail.Size = new System.Drawing.Size(41, 17);
-            this.rdoFail.TabIndex = 44;
-            this.rdoFail.TabStop = true;
-            this.rdoFail.Text = "Fail";
-            this.rdoFail.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(66, 406);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 23);
-            this.label4.TabIndex = 45;
-            this.label4.Text = "Results :";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(175, 447);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(432, 145);
-            this.textBox1.TabIndex = 46;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(66, 447);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 23);
-            this.label8.TabIndex = 47;
-            this.label8.Text = "Notes :";
+            this.btnSave.Location = new System.Drawing.Point(476, 641);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(143, 48);
+            this.btnSave.TabIndex = 42;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // frmTakeTest
             // 

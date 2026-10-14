@@ -44,7 +44,7 @@ namespace DVLDDataAccessLayer
 
         }
        
-        static public int AddTestUser( int testappointmentid,  bool testresult,  string notes,  int createdbyuserid)
+        static public int AddTest( int testappointmentid,  bool testresult,  string notes,  int createdbyuserid)
         {
             int id = -1;
             string query = @"insert into Tests (TestAppointmentID,TestResult,Notes,CreatedByUserID) Values  (@testappointmentid,@testresult,@notes,@createdbyuserid) ;
